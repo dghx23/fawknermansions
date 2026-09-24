@@ -14,6 +14,10 @@ This is a clean handoff package for Grok Code. It contains the complete visual p
 3. Open `index.html` to preview the interface.
 4. Use `router/INSTALLATION_GUIDE.md` when deploying to the Cudy M1200.
 
+For the payment/voucher logic on top of this design (not yet built), see
+[`CHATGPT_HANDOFF_PROMPT.md`](CHATGPT_HANDOFF_PROMPT.md) — a separate
+handoff prompt for continuing that specific piece in ChatGPT.
+
 The hosted preview remains available at:
 
 `https://mansion-wifi-guest-portal.hough-dawid.chatgpt.site`
