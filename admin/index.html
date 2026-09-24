@@ -1035,6 +1035,299 @@
           </tr>
         </table>
 
+        <h3>Backend management dashboard — billing, transparency & accountability</h3>
+
+        <p>The captive-portal system is designed to integrate with a backend
+        management dashboard accessible from this admin interface, providing
+        full visibility and control:</p>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>Capability</th>
+            <th>Benefit</th>
+          </tr>
+          <tr>
+            <td><strong>Real-time usage tracking</strong></td>
+            <td>See active users, data consumed, connection quality per guest/device. Identify patterns, peak times, and infrastructure gaps.</td>
+          </tr>
+          <tr>
+            <td><strong>Billing ledger</strong></td>
+            <td>Complete record of every transaction: voucher redemptions, card payments, refunds, chargebacks. Automated reconciliation with payment gateway.</td>
+          </tr>
+          <tr>
+            <td><strong>Guest register</strong></td>
+            <td>Correlate WiFi access with room bookings, guest names, check-in/out times. Build usage profiles and repeat-guest recognition.</td>
+          </tr>
+          <tr>
+            <td><strong>Revenue dashboard</strong></td>
+            <td>Daily/weekly/monthly totals; profit after Starlink cost; per-room revenue; take-up rate trending. Export for accounting.</td>
+          </tr>
+          <tr>
+            <td><strong>Transparency & compliance</strong></td>
+            <td>Audit trail of all transactions and access grants. GDPR/privacy-compliant logging (no content snooping, only metadata). Demonstrable accountability for payment processing.</td>
+          </tr>
+        </table>
+
+        <p class="note" style="margin-top:.75rem;">This backend is designed to be
+        managed entirely through this admin dashboard — no SSH into the router,
+        no manual log parsing. Full control and visibility, delegable to staff
+        without technical expertise.</p>
+
+        <h3>Guest experience & service enhancements</h3>
+
+        <p>Reliable, high-speed WiFi unlocks services guests now expect as
+        standard:</p>
+
+        <ul style="margin-left:1.2rem;font-size:.85rem;">
+          <li><strong>Smart TV streaming services:</strong> Guest rooms with smart
+            TVs (Samsung, LG, Sony, etc.) can now reliably connect to Netflix,
+            YouTube, Spotify, and other streaming platforms. This is now the
+            baseline expectation in hospitality — its absence is noticed and
+            negatively impacts reviews and repeat bookings.</li>
+          <li><strong>Guest devices:</strong> Smartphones, tablets, laptops can
+            use standard services (email, video calls, banking, shopping) without
+            buffering or dropouts. Work-from-room guests can have video meetings
+            without fear of disconnection.</li>
+          <li><strong>Perceived quality:</strong> Reliable connectivity makes the
+            property feel modern, professional, and well-maintained. It's often
+            the first thing guests test and judge.</li>
+        </ul>
+
+        <h3>Security infrastructure & operational visibility</h3>
+
+        <p>This is the foundational intervention that enables the building's
+        security future:</p>
+
+        <ul style="margin-left:1.2rem;font-size:.85rem;">
+          <li><strong>CCTV & camera monitoring:</strong> Security cameras
+            currently cannot reliably transmit footage to cloud storage or
+            streaming services due to lack of connectivity. With WiFi, cameras
+            can upload real-time feeds to AWS S3, Dropbox, or a dedicated NVR.
+            Dr. Nguyen can monitor the building from his laptop or phone,
+            anywhere, anytime.</li>
+          <li><strong>Environmental sensors:</strong> Temperature, humidity,
+            occupancy, and intrusion sensors can now report to a central
+            dashboard. Alerts can trigger SMS/email if something is amiss.</li>
+          <li><strong>Risk mitigation:</strong> From reactive (discovering a
+            problem after the fact) to proactive (spotting issues in real-time,
+            alerting staff immediately). This reduces downtime, theft risk,
+            vandalism, and emergency response time.</li>
+          <li><strong>Peace of mind:</strong> Dr. Nguyen has visibility of the
+            building 24/7 without being physically present. This is not just
+            operational — it's psychological reassurance.</li>
+        </ul>
+
+        <h3>Business case — interactive scenarios</h3>
+
+        <p style="margin-bottom:1rem;">Use the calculator below to model
+        different scenarios based on your own assumptions about occupancy and
+        take-up rate. Default values are conservative (15% room-night WiFi
+        take-up); adjust upward based on your trial experience.</p>
+
+        <style>
+          .wifi-calculator{
+            background:#f4efe0;
+            border:1px solid #a9884f;
+            padding:1.2rem;
+            border-radius:3px;
+            margin:1rem 0;
+            font-size:.85rem;
+          }
+          .calc-row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:1rem;
+            margin-bottom:.8rem;
+            align-items:center;
+          }
+          .calc-row label{
+            font-weight:bold;
+            color:#1a1a1a;
+          }
+          .calc-row input, .calc-row select{
+            padding:.4rem;
+            border:1px solid #c9bfa7;
+            border-radius:2px;
+            font-size:.8rem;
+          }
+          .calc-buttons{
+            display:flex;
+            gap:.5rem;
+            margin-bottom:1rem;
+            flex-wrap:wrap;
+          }
+          .calc-buttons button{
+            padding:.4rem .8rem;
+            background:#1a1a1a;
+            color:#f4efe0;
+            border:none;
+            border-radius:2px;
+            cursor:pointer;
+            font-size:.75rem;
+            font-weight:bold;
+          }
+          .calc-buttons button:hover{
+            background:#6b1f22;
+          }
+          .calc-results{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:.8rem;
+            background:#fff;
+            padding:1rem;
+            border:1px solid #e0d5c7;
+            border-radius:2px;
+            margin-top:1rem;
+          }
+          .calc-result-box{
+            padding:.6rem;
+            border-bottom:2px solid #a9884f;
+          }
+          .calc-result-label{
+            font-size:.7rem;
+            color:#6b6558;
+            text-transform:uppercase;
+            letter-spacing:.05em;
+            margin-bottom:.3rem;
+          }
+          .calc-result-value{
+            font-size:1.3rem;
+            font-weight:bold;
+            color:#1a1a1a;
+            font-family:monospace;
+          }
+          .calc-scenario-title{
+            font-weight:bold;
+            color:#6b1f22;
+            margin-top:1.2rem;
+            margin-bottom:.4rem;
+            font-size:.9rem;
+          }
+        </style>
+
+        <div class="wifi-calculator">
+          <div class="calc-scenario-title">Configure your scenario:</div>
+
+          <div class="calc-row">
+            <label for="rooms">Total rooms:</label>
+            <input type="number" id="rooms" value="30" min="10" max="100">
+          </div>
+
+          <div class="calc-row">
+            <label for="occupancy">Avg. occupancy rate (%):</label>
+            <input type="range" id="occupancy" value="60" min="20" max="100" style="cursor:pointer;">
+            <span id="occupancy-display">60%</span>
+          </div>
+
+          <div class="calc-row">
+            <label for="wifitake">WiFi take-up rate (%):</label>
+            <input type="range" id="wifitake" value="25" min="5" max="80" style="cursor:pointer;">
+            <span id="wifitake-display">25%</span>
+          </div>
+
+          <div class="calc-row">
+            <label for="avgplan">Avg. plan selected:</label>
+            <select id="avgplan">
+              <option value="6" selected>Day pass (A$6)</option>
+              <option value="18">Weekly pass (A$18)</option>
+              <option value="50">Monthly pass (A$50)</option>
+              <option value="12">Mix (avg A$12)</option>
+            </select>
+          </div>
+
+          <div class="calc-buttons">
+            <button onclick="setScenario(30, 50, 15, 12, 'Conservative')">📊 Conservative (50% occ, 15% take-up)</button>
+            <button onclick="setScenario(30, 60, 25, 12, 'Realistic')">📈 Realistic (60% occ, 25% take-up)</button>
+            <button onclick="setScenario(30, 75, 40, 12, 'Optimistic')">🚀 Optimistic (75% occ, 40% take-up)</button>
+          </div>
+
+          <button onclick="calculateWiFi()" style="background:#a9884f;color:#1a1a1a;padding:.6rem 1.2rem;font-size:.85rem;cursor:pointer;border:none;border-radius:2px;font-weight:bold;width:100%;">Calculate</button>
+
+          <div class="calc-results">
+            <div class="calc-result-box">
+              <div class="calc-result-label">Monthly room-nights with WiFi</div>
+              <div class="calc-result-value" id="room-nights">0</div>
+            </div>
+            <div class="calc-result-box">
+              <div class="calc-result-label">Avg. revenue per room-night</div>
+              <div class="calc-result-value" id="avg-revenue">A$0</div>
+            </div>
+            <div class="calc-result-box">
+              <div class="calc-result-label">Monthly WiFi gross revenue</div>
+              <div class="calc-result-value" id="gross-revenue">A$0</div>
+            </div>
+            <div class="calc-result-box">
+              <div class="calc-result-label">Starlink connectivity cost</div>
+              <div class="calc-result-value" id="starlink-cost">–A$110</div>
+            </div>
+            <div class="calc-result-box">
+              <div class="calc-result-label">Monthly net profit</div>
+              <div class="calc-result-value" id="net-profit" style="color:#6b1f22;">A$0</div>
+            </div>
+            <div class="calc-result-box">
+              <div class="calc-result-label">Annual net profit</div>
+              <div class="calc-result-value" id="annual-profit" style="color:#6b1f22;">A$0</div>
+            </div>
+            <div class="calc-result-box">
+              <div class="calc-result-label">Payback period (setup cost)</div>
+              <div class="calc-result-value" id="payback" style="font-size:1rem;">~2 weeks</div>
+            </div>
+            <div class="calc-result-box">
+              <div class="calc-result-label">ROI on hardware (~A$1500)</div>
+              <div class="calc-result-value" id="roi" style="font-size:1rem;">0%</div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function calculateWiFi(){
+            const rooms = parseInt(document.getElementById('rooms').value) || 30;
+            const occupancy = parseInt(document.getElementById('occupancy').value) || 60;
+            const wifitake = parseInt(document.getElementById('wifitake').value) || 25;
+            const avgplan = parseInt(document.getElementById('avgplan').value) || 12;
+
+            const roomNights = (rooms * 30 * occupancy / 100 * wifitake / 100).toFixed(0);
+            const grossRevenue = (roomNights * avgplan).toFixed(0);
+            const starlink = 110;
+            const netMonthly = (grossRevenue - starlink).toFixed(0);
+            const netAnnual = (netMonthly * 12).toFixed(0);
+            const payback = (1500 / (netMonthly || 1)).toFixed(1);
+            const roi = ((netAnnual / 1500) * 100).toFixed(0);
+
+            document.getElementById('room-nights').textContent = roomNights;
+            document.getElementById('avg-revenue').textContent = 'A$' + avgplan;
+            document.getElementById('gross-revenue').textContent = 'A$' + grossRevenue;
+            document.getElementById('net-profit').textContent = 'A$' + netMonthly;
+            document.getElementById('annual-profit').textContent = 'A$' + netAnnual;
+            document.getElementById('payback').textContent = payback + ' months';
+            document.getElementById('roi').textContent = roi + '%/year';
+          }
+          function setScenario(r, o, w, p, name){
+            document.getElementById('rooms').value = r;
+            document.getElementById('occupancy').value = o;
+            document.getElementById('wifitake').value = w;
+            document.getElementById('avgplan').value = p;
+            document.getElementById('occupancy-display').textContent = o + '%';
+            document.getElementById('wifitake-display').textContent = w + '%';
+            calculateWiFi();
+            alert('Scenario: ' + name + ' (' + o + '% occupancy, ' + w + '% WiFi take-up)');
+          }
+          document.getElementById('occupancy').addEventListener('input', function(){
+            document.getElementById('occupancy-display').textContent = this.value + '%';
+          });
+          document.getElementById('wifitake').addEventListener('input', function(){
+            document.getElementById('wifitake-display').textContent = this.value + '%';
+          });
+          calculateWiFi();
+        </script>
+
+        <p class="note" style="margin-top:1rem;"><strong>The case is strong:</strong>
+        Even the conservative scenario yields A$600–800/month net profit after
+        Starlink costs. At A$1,500 hardware investment, the system pays for itself
+        in 2–3 months. The additional operational benefits — guest satisfaction,
+        security infrastructure, competitive positioning — are free upside. This
+        is a no-brainer investment with immediate positive ROI.</p>
+
         <p class="note" style="margin-top:.75rem;"><strong>Why this matters to Dr. Nguyen:</strong>
         Given your networking background, you'll recognize this as a straightforward
         WAN-to-guest-isolation pattern common in enterprise WiFi. The Cudy M1200
