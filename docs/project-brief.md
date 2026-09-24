@@ -6,7 +6,7 @@
   continuously since.
 - Found the room via Booking.com; initial rate was **$75/night**.
 - Now on a standing arrangement at **$440/week**.
-- The Manager and Owner are consistently absent and hard to reach.
+- The owner is Dr Jeff Nguyen.
 - Other residents are rarely seen and their arrangement with the building is
   unclear — worth investigating as part of the building's contemporary story,
   not just its 1910s origin.
@@ -27,7 +27,7 @@ card-payment page (payment integration not yet built). Even light uptake
 clears the monthly connectivity cost. Full technical architecture and
 pricing: `admin/index.html` &sect;5.
 
-## The proposal (to part-owner Jeff Nguyen)
+## The proposal (to the owner, Dr Jeff Nguyen)
 
 Offer to research, document, and digitally preserve the building in exchange for
 a rent discount or a rent-free period (e.g. 3 months), during which the project
@@ -56,7 +56,7 @@ would:
 
 ## Public-interest distribution potential (for the pitch)
 
-Part of the case to Jeff Nguyen: given the building's heritage significance
+Part of the case to Dr Nguyen: given the building's heritage significance
 — oldest surviving residential flats in the City of Stonnington, one of the
 oldest in Victoria — this isn't just a vanity project with one print run.
 There's a plausible standing public-interest audience:
@@ -94,18 +94,16 @@ There's a plausible standing public-interest audience:
 
 **Caveat:** the school/university figures above are order-of-magnitude
 estimates for pitch purposes only, not verified market research — confirm
-actual current counts before presenting specific numbers to Jeff Nguyen or
+actual current counts before presenting specific numbers to Dr Nguyen or
 anyone else.
 
-## Open questions to resolve before pitching Jeff Nguyen
+## Open questions to resolve before pitching Dr Nguyen
 
 - What access is actually needed (common areas, roof, individual flats,
   archives) and who can authorise it?
-- Is the 3D/VR scan being pitched as a service to the owners (they keep the
-  asset) or as the author's own IP with a licence back to the owners?
-- What does "part owner" mean structurally — is Jeff Nguyen able to approve a
-  rent concession unilaterally, or does this need the other owner(s) and the
-  absent manager?
+- Is the 3D/VR scan being pitched as a service to the owner (he keeps the
+  asset) or as the author's own IP with a licence back to the owner?
+- Confirm Dr Nguyen's authority to approve a rent concession directly.
 - Any restriction from the heritage overlay (HO448) on filming, drone use, or
   physical alterations for scanning equipment?
 - Insurance/liability for filming or 3D-scanning shared/common areas with other

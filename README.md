@@ -15,7 +15,7 @@ the book concept, the preservation/VR plan, and an early, parked concept for a
   statement of significance and physical description (Heritage Overlay HO448, Hermes
   No. 31143), report generated 16 September 2026.
 - [`docs/project-brief.md`](docs/project-brief.md) — the book concept, tenancy context,
-  and the proposal being put to part-owner Jeff Nguyen.
+  and the proposal being put to the owner, Dr Jeff Nguyen.
 - [`docs/ideas.md`](docs/ideas.md) — brainstormed ideas for the pitch, book structure,
   research sources, 3D/VR capture, documentary, and website.
 - [`docs/website-proposal.md`](docs/website-proposal.md) — skeleton proposal for the

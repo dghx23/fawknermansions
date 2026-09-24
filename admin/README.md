@@ -1,7 +1,7 @@
 # Project Dashboard (`admin/index.html`)
 
 A single self-contained HTML page: the storyboard, the condensed pitch to
-Jeff Nguyen, best practices for this kind of heritage documentation project,
+the owner, Dr Jeff Nguyen, best practices for this kind of heritage documentation project,
 technology value-add ideas, monetisation ideas, and a list of who's likely to
 be interested (councils, heritage bodies, universities, press, audiences).
 

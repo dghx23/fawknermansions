@@ -63,9 +63,27 @@
     background:var(--paper);text-align:center;
   }
   .book-render .mini-cover h4{font-variant-caps:small-caps;margin:.3rem 0;}
+  .site-nav-strip{
+    text-align:center;
+    font-size:.7rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:.6rem;
+    background:#1a1a1a;
+    color:#f4efe0;
+  }
+  .site-nav-strip a{color:#f4efe0;margin:0 .6rem;}
+  .site-nav-strip a:hover{color:#a9884f;}
+  @media print{ .site-nav-strip{display:none !important;} }
 </style>
 </head>
 <body>
+
+  <div class="site-nav-strip">
+    <a href="../index.html">&larr; Home</a>
+    <a href="../admin/index.html">Admin</a>
+    <a href="book-mockup.html">Book mockup</a>
+  </div>
 
   <div class="cover">
     <div class="monogram">FM</div>
@@ -74,7 +92,7 @@
     <div class="tagline">A proposal for the research, digital preservation, and public
     documentation of a heritage-listed building &mdash; and what it can
     mean for the people who own it.</div>
-    <div class="meta">Prepared by David Hough &middot; September 2026</div>
+    <div class="meta">Prepared by David Hough for Dr Jeff Nguyen &middot; September 2026</div>
   </div>
 
   <section>
@@ -230,6 +248,12 @@
 
   <div class="footer-note">Fawkner Mansions &middot; 250 Punt Road, Prahran VIC 3181 &middot; Heritage Overlay HO448<br>
   Prepared by David Hough &middot; github.com/dghx23/fawknermansions</div>
+
+  <div class="site-nav-strip">
+    <a href="../index.html">&larr; Home</a>
+    <a href="../admin/index.html">Admin</a>
+    <a href="book-mockup.html">Book mockup</a>
+  </div>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
-# Ideas — Book, Documentary, Website, and the Pitch to Jeff Nguyen
+# Ideas — Book, Documentary, Website, and the Pitch to Dr Jeff Nguyen
 
-## 1. Framing the pitch to Jeff Nguyen
+## 1. Framing the pitch to Dr Nguyen
 
 - Lead with the heritage fact that does the most work: Fawkner Mansions is
   believed to be **the oldest surviving residential flats in the City of
@@ -22,8 +22,8 @@
   reads as devaluing the asset.
 - Put a time limit and a checkpoint in the proposal itself (e.g. "after 6
   weeks I'll show you the draft chapter outline and 3D scan progress before
-  the next 6 weeks proceed") — this is easier for an absent, hard-to-reach
-  owner to say yes to than an open-ended 3-month commitment.
+  the next 6 weeks proceed") — this is easier to say yes to than an
+  open-ended 3-month commitment.
 - Have a fallback ask ready if "free rent" is rejected: a smaller discount, or
   simply access permission (roof, common areas, archives, photography) with no
   rent change at all — the research and book can proceed either way.
@@ -42,8 +42,8 @@
      Sands & McDougall directories, Trove newspaper archives, council rate
      records.
   5. The building today — present-day residents (as much as can be
-     respectfully documented), the absent-ownership condition, what it's like
-     to actually live there in 2026.
+     respectfully documented), what it's like to actually live there in
+     2026.
   6. Preservation — the case for the building's future, the 3D/VR record, and
      what "digital preservation" means for a heritage-listed building that
      isn't (yet) on the Victorian Heritage Register itself, only the local

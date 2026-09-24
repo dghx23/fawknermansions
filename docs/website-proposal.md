@@ -3,7 +3,7 @@
 A companion public website to the book, built to showcase the building's
 heritage while the research and book are in progress, and to remain as a
 permanent public record afterwards. This is a skeleton proposal — intended as
-a discussion draft for the owners (Jeff Nguyen) alongside
+a discussion draft for the owner, Dr Jeff Nguyen, alongside
 [`docs/project-brief.md`](project-brief.md), not a final spec.
 
 ## 1. Purpose
