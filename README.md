@@ -25,6 +25,10 @@ the book concept, the preservation/VR plan, and an early, parked concept for a
   the building, with a heritage-grounded design (oxblood brick, bluestone, cream
   render, black iron). Kept here for reference and for the shared design language
   it establishes; not part of the current active work.
+- [`admin/`](admin/) — a private project dashboard (storyboard, condensed pitch,
+  best practices, tech value-add ideas, monetisation ideas, target audience) behind
+  a **soft, client-side-only login gate** — see [`admin/README.md`](admin/README.md)
+  for what that does and doesn't protect.
 
 ## Project goals
 

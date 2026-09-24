@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fawkner Mansions — Project Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --oxblood:#6b1f22;
+    --oxblood-dark:#4a1517;
+    --bluestone:#4a5560;
+    --bluestone-dark:#333c44;
+    --cream:#f2ead9;
+    --iron:#1a1a1a;
+    --brass:#a9884f;
+    --paper:#faf6ee;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--cream);
+    color:var(--iron);
+    line-height:1.5;
+  }
+  /* ---------- Login screen ---------- */
+  #login-screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg, var(--bluestone-dark), var(--iron));
+  }
+  .login-card{
+    background:var(--paper);
+    border:2px solid var(--brass);
+    border-radius:4px;
+    padding:2.5rem 2.5rem 2rem;
+    width:min(340px, 90vw);
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+  }
+  .monogram{
+    font-family: Georgia, serif;
+    font-size:2.2rem;
+    letter-spacing:.15em;
+    color:var(--oxblood);
+    border:2px solid var(--oxblood);
+    border-radius:50%;
+    width:64px;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 1rem;
+  }
+  .login-card h1{
+    font-size:1.1rem;
+    margin:.25rem 0 .1rem;
+    color:var(--bluestone-dark);
+  }
+  .login-card p.sub{
+    font-size:.8rem;
+    color:#6b6558;
+    margin:0 0 1.5rem;
+  }
+  .login-card input{
+    width:100%;
+    padding:.6rem .7rem;
+    margin-bottom:.75rem;
+    border:1px solid #c9bfa7;
+    border-radius:3px;
+    font-family:inherit;
+    font-size:.95rem;
+    background:#fff;
+  }
+  .login-card button{
+    width:100%;
+    padding:.65rem;
+    background:var(--oxblood);
+    color:#fff;
+    border:none;
+    border-radius:3px;
+    font-family:inherit;
+    font-size:.95rem;
+    cursor:pointer;
+    letter-spacing:.03em;
+  }
+  .login-card button:hover{background:var(--oxblood-dark);}
+  #login-error{
+    color:var(--oxblood);
+    font-size:.8rem;
+    min-height:1.2em;
+    margin-top:.5rem;
+  }
+  .gate-note{
+    font-size:.68rem;
+    color:#8a8370;
+    margin-top:1.25rem;
+    border-top:1px solid #e0d7c0;
+    padding-top:.75rem;
+    text-align:left;
+  }
+
+  /* ---------- Dashboard ---------- */
+  #dashboard{display:none;}
+  header.topbar{
+    background:var(--iron);
+    color:var(--cream);
+    padding:1.25rem 1.5rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:.75rem;
+    border-bottom:4px solid var(--brass);
+  }
+  header.topbar .title{display:flex;align-items:center;gap:.75rem;}
+  header.topbar .monogram-sm{
+    font-size:1.1rem;
+    border:1.5px solid var(--brass);
+    color:var(--brass);
+    border-radius:50%;
+    width:34px;height:34px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  header.topbar h1{font-size:1.05rem;margin:0;font-weight:normal;letter-spacing:.02em;}
+  header.topbar .addr{font-size:.75rem;color:#c9bfa7;margin-top:.15rem;}
+  #logout-btn{
+    background:transparent;
+    border:1px solid var(--brass);
+    color:var(--brass);
+    padding:.4rem .9rem;
+    border-radius:3px;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.8rem;
+  }
+  #logout-btn:hover{background:var(--brass);color:var(--iron);}
+
+  nav.jump{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.4rem;
+    padding:1rem 1.5rem;
+    background:#eee2c8;
+    border-bottom:1px solid #d8ccac;
+    position:sticky;
+    top:0;
+    z-index:5;
+  }
+  nav.jump a{
+    font-size:.75rem;
+    color:var(--bluestone-dark);
+    text-decoration:none;
+    background:#fff;
+    border:1px solid #d8ccac;
+    padding:.3rem .7rem;
+    border-radius:999px;
+  }
+  nav.jump a:hover{border-color:var(--brass);}
+
+  main{max-width:920px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+  section{margin-bottom:3rem;scroll-margin-top:4.5rem;}
+  section h2{
+    color:var(--oxblood);
+    font-size:1.3rem;
+    border-bottom:2px solid var(--brass);
+    padding-bottom:.4rem;
+    margin-bottom:1rem;
+  }
+  section h3{color:var(--bluestone-dark);font-size:1rem;margin:1.25rem 0 .4rem;}
+  section p, section li{font-size:.92rem;color:#2a2a2a;}
+  .tag{
+    display:inline-block;
+    font-size:.65rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    background:var(--bluestone);
+    color:#fff;
+    padding:.15rem .5rem;
+    border-radius:2px;
+    margin-right:.4rem;
+  }
+
+  /* storyboard */
+  .storyboard{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .story-step{
+    display:flex;
+    gap:1rem;
+    padding:1rem 0;
+    border-left:3px solid var(--brass);
+    padding-left:1.25rem;
+    position:relative;
+  }
+  .story-step::before{
+    content:attr(data-n);
+    position:absolute;
+    left:-1.1rem;
+    top:1rem;
+    width:1.9rem;
+    height:1.9rem;
+    background:var(--oxblood);
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.8rem;
+    font-family:Georgia,serif;
+  }
+  .story-step h4{margin:0 0 .3rem;color:var(--oxblood-dark);font-size:1rem;}
+  .story-step p{margin:0;}
+
+  table.simple{width:100%;border-collapse:collapse;font-size:.85rem;margin:.5rem 0 1rem;}
+  table.simple th, table.simple td{border:1px solid #d8ccac;padding:.5rem .6rem;text-align:left;vertical-align:top;}
+  table.simple th{background:#eee2c8;color:var(--bluestone-dark);}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:.75rem;}
+  .card{
+    background:#fff;
+    border:1px solid #d8ccac;
+    border-top:3px solid var(--oxblood);
+    border-radius:3px;
+    padding:1rem;
+  }
+  .card h4{margin:0 0 .4rem;font-size:.9rem;color:var(--oxblood-dark);}
+  .card p{margin:0;font-size:.82rem;}
+
+  footer.foot{
+    text-align:center;
+    font-size:.7rem;
+    color:#8a8370;
+    padding:2rem 1rem 3rem;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= LOGIN ================= -->
+  <div id="login-screen">
+    <div class="login-card">
+      <div class="monogram">FM</div>
+      <h1>Fawkner Mansions</h1>
+      <p class="sub">Project dashboard — private working area</p>
+      <input type="text" id="username" placeholder="Username" autocomplete="username">
+      <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+      <button id="login-btn" type="button">Enter</button>
+      <div id="login-error"></div>
+      <div class="gate-note">
+        This is a soft access gate, not real security. All content on this
+        page ships to the browser regardless of login and is visible in page
+        source. Do not put anything genuinely confidential here.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DASHBOARD ================= -->
+  <div id="dashboard">
+    <header class="topbar">
+      <div class="title">
+        <div class="monogram-sm">FM</div>
+        <div>
+          <h1>Fawkner Mansions — Project Dashboard</h1>
+          <div class="addr">250 Punt Road, Prahran VIC 3181 · Heritage Overlay HO448</div>
+        </div>
+      </div>
+      <button id="logout-btn" type="button">Log out</button>
+    </header>
+
+    <nav class="jump">
+      <a href="#storyboard">Storyboard</a>
+      <a href="#proposal">Proposal</a>
+      <a href="#best-practice">Best practice</a>
+      <a href="#tech">Technology value-add</a>
+      <a href="#monetise">Monetisation</a>
+      <a href="#audience">Who's interested</a>
+    </nav>
+
+    <main>
+
+      <section id="storyboard">
+        <h2>1. Storyboard</h2>
+        <p>The end-to-end narrative arc, shared across the book, the documentary,
+        and the website — each output is a different edit of the same underlying
+        story.</p>
+        <div class="storyboard">
+          <div class="story-step" data-n="1">
+            <div><h4>Discovery</h4><p>Move into a heritage-listed building
+            (11 Sept 2026) and notice it has almost no public documentation
+            despite being the oldest surviving flats in Stonnington.</p></div>
+          </div>
+          <div class="story-step" data-n="2">
+            <div><h4>Research</h4><p>Victorian Heritage Database, Trove,
+            Stonnington History Centre, PROV, Sands &amp; McDougall directories,
+            land title history — build a verifiable timeline.</p></div>
+          </div>
+          <div class="story-step" data-n="3">
+            <div><h4>Proposal</h4><p>Pitch the owners (Jeff Nguyen): research +
+            digital preservation, in exchange for a defined rent concession over
+            a fixed period, with checkpoints.</p></div>
+          </div>
+          <div class="story-step" data-n="4">
+            <div><h4>Capture</h4><p>Photogrammetry/LiDAR scan of exterior and
+            common areas, real dated photography, archive digging, careful
+            present-day observation.</p></div>
+          </div>
+          <div class="story-step" data-n="5">
+            <div><h4>Production</h4><p>Manuscript, 3D/VR model, documentary edit,
+            website build — all drawing from the same research base.</p></div>
+          </div>
+          <div class="story-step" data-n="6">
+            <div><h4>Release</h4><p>A5 hardcover via KDP + seeded copies to
+            heritage groups/universities, website live, documentary distributed
+            on YouTube/social.</p></div>
+          </div>
+          <div class="story-step" data-n="7">
+            <div><h4>Legacy</h4><p>A permanent, dated digital record of the
+            building exists independently of what happens to it physically —
+            plus an ongoing relationship with heritage bodies.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="proposal">
+        <h2>2. Proposal recap</h2>
+        <p><span class="tag">The ask</span> A defined research period (e.g. 3
+        months) in exchange for a rent discount or rent-free period.</p>
+        <p><span class="tag">The give</span> A professionally produced 3D scan
+        and digital record of the building, delivered to the owners regardless
+        of whether the book is ever published — plus the heritage/publicity
+        upside of "oldest surviving flats in Stonnington."</p>
+        <table class="simple">
+          <tr><th>Owner risk</th><td>Low — deliverables are staged, with a
+          checkpoint (e.g. 6 weeks) before the arrangement continues.</td></tr>
+          <tr><th>Owner cost</th><td>Defined and capped: the agreed rent
+          concession only.</td></tr>
+          <tr><th>Fallback ask</th><td>If a rent concession isn't approved,
+          fall back to simply requesting access/permission (roof, common
+          areas, archives, photography) with no rent change.</td></tr>
+        </table>
+        <p>Full detail: <code>docs/project-brief.md</code> in the repo.</p>
+      </section>
+
+      <section id="best-practice">
+        <h2>3. Best practice for this type of project</h2>
+        <div class="card-grid">
+          <div class="card"><h4>Cite everything</h4><p>Every historical claim
+          traces to a specific archive or record. Don't state anything that
+          can't be sourced.</p></div>
+          <div class="card"><h4>Keep raw capture data</h4><p>Archive the
+          unprocessed photogrammetry/LiDAR scans, not just the polished model —
+          that's the part with real long-term preservation value.</p></div>
+          <div class="card"><h4>Non-invasive capture</h4><p>No physical
+          alteration, no destructive testing, drone use checked against HO448
+          and any body-corporate rules first.</p></div>
+          <div class="card"><h4>Resident privacy</h4><p>No identifiable images,
+          names, or interviews of current residents published without their
+          explicit written consent.</p></div>
+          <div class="card"><h4>Separate owner IP from author IP</h4><p>Agree
+          up front, in writing, what the owners receive unconditionally (scan,
+          archive) versus what remains the author's own work (book,
+          documentary).</p></div>
+          <div class="card"><h4>Version and date everything</h4><p>Given the
+          building "might be knocked down," the dated record is the whole
+          point — timestamp every asset.</p></div>
+          <div class="card"><h4>Give it an institutional home</h4><p>Lodge
+          copies/records with Stonnington History Centre or a similar body, so
+          the work survives independently of the book's commercial fate.</p></div>
+          <div class="card"><h4>No invented heritage claims</h4><p>Stick to
+          what the Heritage Database and archives actually support — inflated
+          claims undermine credibility with the exact institutions worth
+          impressing.</p></div>
+        </div>
+      </section>
+
+      <section id="tech">
+        <h2>4. Technology value-add ideas</h2>
+        <p>This is where the technical skill set differentiates the project
+        from a purely written local-history book.</p>
+        <div class="card-grid">
+          <div class="card"><h4>Photogrammetry + WebXR tour</h4><p>A
+          browser-based VR walkthrough, no app install required — the most
+          shareable proof of the preservation work.</p></div>
+          <div class="card"><h4>"Then vs now" slider</h4><p>Interactive
+          before/after comparison using the 1960s photo and the 2026 tram
+          photo on the website.</p></div>
+          <div class="card"><h4>Interactive timeline</h4><p>1910 construction
+          → today, with archive finds plotted along it as they're
+          discovered.</p></div>
+          <div class="card"><h4>Digital twin / condition tracker</h4><p>Track
+          building condition (e.g. the joinery repainting noted in the
+          heritage report) over the project period — a concrete value-add for
+          the owners.</p></div>
+          <div class="card"><h4>Drone + interior capture</h4><p>Doubles as
+          both 3D-scan input and documentary b-roll — one shoot, two
+          deliverables.</p></div>
+          <div class="card"><h4>On-site QR link</h4><p>Discreet signage near
+          the entrance linking to the tour/website — needs owner sign-off, but
+          a strong "living heritage" touch.</p></div>
+        </div>
+      </section>
+
+      <section id="monetise">
+        <h2>5. Monetisation ideas</h2>
+        <table class="simple">
+          <tr><th>Book sales</th><td>KDP royalties (trade edition) + direct
+          sales of the limited hardcover run. Treat as reputational income
+          first, revenue second.</td></tr>
+          <tr><th>Documentary</th><td>YouTube ad revenue; sponsorship from a
+          heritage-adjacent brand (architecture practice, heritage insurer,
+          council tourism body).</td></tr>
+          <tr><th>VR tour licensing</th><td>Licence the finished VR walkthrough
+          to Stonnington Council, National Trust, or a tourism body.</td></tr>
+          <tr><th>Membership / support</th><td>A small "Friends of Fawkner
+          Mansions" recurring-support list to fund ongoing archive work.</td></tr>
+          <tr><th>Heritage grants</th><td>Stonnington Council local history
+          grants, Public Record Office Victoria, National Trust grant
+          programs — worth checking current eligibility and rounds.</td></tr>
+          <tr><th>Talks &amp; licensing</th><td>Paid talks to local history
+          societies; licensing photography/3D assets to local media or
+          heritage publications.</td></tr>
+        </table>
+      </section>
+
+      <section id="audience">
+        <h2>6. Who would be interested</h2>
+        <div class="card-grid">
+          <div class="card"><h4>Stonnington Council</h4><p>Heritage/planning
+          team and the local history centre — owns HO448 and has a direct
+          interest in documentation of it.</p></div>
+          <div class="card"><h4>National Trust (Victoria)</h4><p>Natural
+          audience for a rare, well-documented Edwardian flats survival.</p></div>
+          <div class="card"><h4>Heritage Victoria</h4><p>Relevant given the
+          note that the place may be eligible for the state Heritage
+          Register.</p></div>
+          <div class="card"><h4>University architecture/heritage programs</h4>
+          <p>Melbourne, RMIT, Deakin — Edwardian Free Classical and early
+          Melbourne flats typology is a genuine research niche.</p></div>
+          <div class="card"><h4>State Library Victoria</h4><p>Picture
+          collection and local history holdings — a plausible archive partner
+          and source of earlier imagery.</p></div>
+          <div class="card"><h4>Local historical societies</h4><p>Prahran
+          Mechanics' Institute and similar groups — a built-in first
+          audience and distribution channel for the seeded copies.</p></div>
+          <div class="card"><h4>Local press</h4><p>Stonnington-area local
+          papers, ABC local heritage segments — "oldest surviving flats in the
+          municipality" is a genuine, specific hook.</p></div>
+          <div class="card"><h4>Former residents / descendants</h4><p>If
+          traceable through directories/rate books — a strong human-interest
+          layer for both the book and documentary.</p></div>
+          <div class="card"><h4>Heritage/architecture social audiences</h4>
+          <p>Niche but engaged — Instagram/TikTok heritage-building accounts,
+          urban-photography communities.</p></div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      Fawkner Mansions project dashboard · internal working document, not for
+      public distribution.
+    </footer>
+  </div>
+
+<script>
+  // NOTE: this is a client-side UX gate only, not real authentication.
+  // Everything below ships to the browser regardless of login state and is
+  // visible in "view source" / devtools. Do not rely on this for anything
+  // that actually needs to stay private — use a real server-side auth
+  // system for that.
+  (function(){
+    var USERNAME = "david";
+    var PASSWORD = "admin123";
+
+    var loginScreen = document.getElementById("login-screen");
+    var dashboard = document.getElementById("dashboard");
+    var loginBtn = document.getElementById("login-btn");
+    var logoutBtn = document.getElementById("logout-btn");
+    var userInput = document.getElementById("username");
+    var passInput = document.getElementById("password");
+    var errorEl = document.getElementById("login-error");
+
+    function showDashboard(){
+      loginScreen.style.display = "none";
+      dashboard.style.display = "block";
+    }
+    function showLogin(){
+      dashboard.style.display = "none";
+      loginScreen.style.display = "flex";
+      passInput.value = "";
+    }
+
+    function attemptLogin(){
+      if(userInput.value === USERNAME && passInput.value === PASSWORD){
+        sessionStorage.setItem("fm_dashboard_auth", "1");
+        errorEl.textContent = "";
+        showDashboard();
+      } else {
+        errorEl.textContent = "Incorrect username or password.";
+      }
+    }
+
+    loginBtn.addEventListener("click", attemptLogin);
+    passInput.addEventListener("keydown", function(e){
+      if(e.key === "Enter") attemptLogin();
+    });
+    userInput.addEventListener("keydown", function(e){
+      if(e.key === "Enter") attemptLogin();
+    });
+    logoutBtn.addEventListener("click", function(){
+      sessionStorage.removeItem("fm_dashboard_auth");
+      showLogin();
+    });
+
+    if(sessionStorage.getItem("fm_dashboard_auth") === "1"){
+      showDashboard();
+    }
+  })();
+</script>
+
+</body>
+</html>
