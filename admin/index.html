@@ -702,6 +702,181 @@
         </div>
       </section>
 
+      <section id="guest-mgmt">
+        <h2>4b. Guest Management &amp; Digital Check-in Coordination</h2>
+
+        <p><strong>Current state analysis:</strong> The building has no guest-coordination
+        layer. Booking engines (Booking.com, etc.) send a generic check-in message.
+        Guests must manually contact management to get a door code and room number.
+        Guest records are hand-written forms (inconsistently filled, filed, or available).
+        No identity verification. No real-time occupancy tracking. No compliance-ready
+        records if authorities need them.</p>
+
+        <h3>The current Booking.com message — what's working &amp; what's broken</h3>
+
+        <p style="background:#fff9e6;padding:1rem;border-left:3px solid #a9884f;margin-bottom:1rem;font-size:.9rem;">
+        <strong>Message received:</strong> "We do not have 24 hour reception but we do
+        have a keyless entry system and we ask you to contact us on booking com or by
+        phone to management (Jeff 0401183555) to get the code for the door and your room
+        number. We also ask that you advise us of arrival time so we can assist you with
+        check in... We do have a self check out system where we ask you to simply leave
+        the key in the door of your room on exit."
+        </p>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>What's working (the logic)</th>
+            <th>What's broken (the risk)</th>
+          </tr>
+          <tr>
+            <td><strong>Keyless entry (door code):</strong> Eliminates key pickup friction; guests get immediate access.</td>
+            <td><strong>No accountability:</strong> Code is generic or shared; no record of which guest opened which room on which date.</td>
+          </tr>
+          <tr>
+            <td><strong>Manual contact (phone/Booking.com):</strong> Allows management to communicate directly with the guest.</td>
+            <td><strong>Inconsistent experience:</strong> Some get personalized help, others don't. No automation or follow-up. Requires guest to take action.</td>
+          </tr>
+          <tr>
+            <td><strong>Self check-out:</strong> Reduces labour; guests leave at their own pace.</td>
+            <td><strong>No check-out verification:</strong> No record of departure; no damage inspection; no key return accountability.</td>
+          </tr>
+          <tr>
+            <td><strong>Arrival time notification:</strong> Helps management prepare / know when to expect guests.</td>
+            <td><strong>Optional & unverified:</strong> Not all guests provide it. No confirmation system. No occupancy tracking.</td>
+          </tr>
+          <tr>
+            <td><strong>Caretaker on-site:</strong> Provides emergency oversight and some accountability.</td>
+            <td><strong>No coordination:</strong> Caretaker has no digital system to know who's where, when they arrived, when they left, or if they're still on-site.</td>
+          </tr>
+          <tr>
+            <td><strong>Budget accommodation positioning:</strong> Sets expectations for cost-conscious guests.</td>
+            <td><strong>No guest vetting:</strong> No identity verification means potentially problematic guests (criminals, defaulters, etc.) may be accommodated with no record.</td>
+          </tr>
+        </table>
+
+        <h3>The core problems — operational &amp; legal</h3>
+
+        <ul style="margin-left:1.2rem;font-size:.85rem;">
+          <li><strong>No guest identity verification:</strong> Who is actually in the building? Are guests who they claim to be? Is the establishment catering to people it shouldn't be? No photo ID check means no way to know.</li>
+          <li><strong>No occupancy tracking:</strong> No real-time view of which rooms are occupied, who's in them, when they arrived/left. Management is essentially blind.</li>
+          <li><strong>No check-in verification:</strong> Guest "arrives" but there's no official check-in record, no photo ID capture, no acknowledgement that they received keys or understood house rules.</li>
+          <li><strong>No guest ledger:</strong> Hand-written forms (if filled at all) are not filed consistently, not digitized, not available for reference, and not usable if authorities ask "who was staying here on date X?"</li>
+          <li><strong>No check-out accountability:</strong> Guest leaves, key goes in door. No inspection of room condition, no damage assessment, no confirmation of departure.</li>
+          <li><strong>Compliance &amp; liability risk:</strong> If a serious incident occurs (guest arrested on-site, theft involving a guest, medical emergency, etc.), the establishment cannot produce a consistent, digitized guest ledger. Authorities may have questions the building cannot answer.</li>
+          <li><strong>Bad guest experience:</strong> Guests must manually contact management, wait for response, remember a door code, remember their room number. No personalized communication, no confirmation, no clarity.</li>
+        </ul>
+
+        <h3>The better approach — digital check-in coordination layer</h3>
+
+        <p>Integrate guest management with the WiFi system and booking engine to create a
+        seamless, accountability-rich coordination layer:</p>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>Step</th>
+            <th>Current</th>
+            <th>Better (Digital Coordination)</th>
+          </tr>
+          <tr>
+            <td><strong>1. Booking confirmation</strong></td>
+            <td>Generic Booking.com message + manual follow-up required</td>
+            <td>Automated personalized email/SMS with check-in instructions, QR link to digital check-in form</td>
+          </tr>
+          <tr>
+            <td><strong>2. Pre-arrival verification</strong></td>
+            <td>None (guest is a name on a booking)</td>
+            <td>Guest uploads photo ID during booking or via pre-check-in link; system verifies match (against booking name)</td>
+          </tr>
+          <tr>
+            <td><strong>3. Arrival &amp; room assignment</strong></td>
+            <td>Manual phone call; guest told room number verbally; code is generic or shared</td>
+            <td>Guest checks in via digital form (arrives at X time); system auto-assigns room based on availability; generates personalized room-specific door code (valid only for that guest/room/date range)</td>
+          </tr>
+          <tr>
+            <td><strong>4. Guest record</strong></td>
+            <td>Paper form (hand-written, filed haphazardly, lost/incomplete)</td>
+            <td>Automated digital ledger: name, ID photo, booking dates, room number, check-in time, check-in signature (digital), house rules acknowledgement</td>
+          </tr>
+          <tr>
+            <td><strong>5. WiFi integration</strong></td>
+            <td>N/A</td>
+            <td><strong>Guest WiFi access = verified guest.</strong> Guest must authenticate via WiFi to access internet; authentication is tied to their guest record. Provides additional verification layer and real-time occupancy visibility.</td>
+          </tr>
+          <tr>
+            <td><strong>6. Check-out</strong></td>
+            <td>Key in door; no inspection, no checkout record</td>
+            <td>Digital checkout form: guest confirms departure time, caretaker/manager does room walkthrough, photos of condition, system records checkout time and signs off</td>
+          </tr>
+          <tr>
+            <td><strong>7. Compliance &amp; record</strong></td>
+            <td>Incomplete hand-written forms; no searchable ledger; cannot answer "who was here on date X?"</td>
+            <td>Complete digital ledger: all guest records automatically filed, searchable, exportable, ready for authorities if needed. Audit trail of every check-in/out.</td>
+          </tr>
+        </table>
+
+        <h3>The WiFi link — accountability multiplier</h3>
+
+        <p>The WiFi system becomes the check-in verification engine:</p>
+
+        <ul style="margin-left:1.2rem;font-size:.85rem;">
+          <li><strong>Verified guest = WiFi access:</strong> A guest's personalized door code works ONLY if they've completed digital check-in and uploaded ID. No check-in form? No WiFi code generated. No WiFi access without verification.</li>
+          <li><strong>Real-time occupancy:</strong> WiFi dashboard shows which room codes are active right now, which guests are currently online, when they connected. Management can see occupancy at a glance.</li>
+          <li><strong>Departure detection:</strong> Guest disconnects from WiFi or checks out digitally → room is marked vacant. Management knows instantly when to inspect.</li>
+          <li><strong>Guest contact trail:</strong> WiFi portal has guest's phone number/email from booking; if something goes wrong (room damage, missing keys, etc.), management can reach out immediately with proof of who was where.</li>
+        </ul>
+
+        <h3>Implementation roadmap</h3>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>Phase</th>
+            <th>Deliverable</th>
+            <th>Timeline</th>
+            <th>Tech stack</th>
+          </tr>
+          <tr>
+            <td><strong>Phase 1: Digital check-in form</strong></td>
+            <td>Web form (guest fills: name, ID upload, arrival time, contact). Form data → Google Sheets or simple database. Auto-generates room assignment + room-specific door code. Sends SMS/email to guest with code &amp; room #.</td>
+            <td>Week 1–2 (can use no-code tools: Typeform + Zapier, or simple PHP/Node.js form)</td>
+            <td>No-code (Typeform + Zapier) OR lightweight (Node.js + MongoDB)</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 1b: Guest ledger integration</strong></td>
+            <td>All check-ins auto-populate a digital ledger (spreadsheet or simple database). Exportable, searchable, compliance-ready.</td>
+            <td>Week 1–2 (same as Phase 1)</td>
+            <td>Google Sheets OR simple SQL database</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2: WiFi + check-in link</strong></td>
+            <td>Captive portal checks against check-in ledger before granting access. Only guests who've checked in can get WiFi codes. Real-time occupancy dashboard in admin.</td>
+            <td>Week 3–4 (requires openNDS FAS integration &amp; ledger API)</td>
+            <td>openNDS FAS + backend API (Node.js or Python)</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3: Check-out workflow</strong></td>
+            <td>Guest submits digital checkout form; caretaker/manager inspects room via form (photos, condition notes); system archives checkout record.</td>
+            <td>Month 2 (after Phase 1–2 stable)</td>
+            <td>Extended check-in form OR separate checkout form</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3b: ID verification (advanced)</strong></td>
+            <td>Photo ID upload → OCR + face-matching to confirm guest identity. (Optional; adds security but requires compliance review.)</td>
+            <td>Month 2+ (after core flow proven)</td>
+            <td>Third-party API (AWS Rekognition, etc.) OR manual verification flag</td>
+          </tr>
+        </table>
+
+        <p class="note" style="margin-top:1rem;"><strong>Why this matters to Dr. Nguyen:</strong>
+        You currently have no visibility into who's in the building, when they arrived, or if
+        they're still here. The paper-based guest ledger is a compliance liability. A digital
+        check-in system isn't a luxury — it's a operational necessity and a risk mitigation
+        essential. The WiFi system becomes the accountability mechanism: no verified check-in,
+        no internet access. Guest experience improves (clear, personalized communication), and
+        the building gains a complete, compliance-ready audit trail that protects you legally.</p>
+
+        <p style="margin-top:1rem;"><a href="#monetise">→ Continue to monetisation ideas</a></p>
+      </section>
+
       <section id="monetise">
         <h2>5. Monetisation ideas</h2>
         <table class="simple">
