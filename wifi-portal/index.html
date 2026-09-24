@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1624">
+  <meta name="description" content="Guest Wi-Fi access at Fawkner Mansions, Prahran.">
+  <title>Fawkner Mansions — Guest Wi-Fi</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23263a49'/%3E%3Cpath d='M15 45V19h16v6h-9v5h8v6h-8v9zm20 0V19h14v6h-7v5h6v6h-6v9z' fill='%23ead9ae'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #15181b;
+      --navy: #263a49;
+      --navy-soft: #314b5e;
+      --brick: #9a4634;
+      --brick-deep: #6e2d23;
+      --brass: #c9a460;
+      --brass-light: #ead9ae;
+      --cream: #f5ead7;
+      --muted: #b8c1c6;
+      --line: rgba(201, 164, 96, .34);
+      --success: #7fd6ae;
+      --danger: #f1a49a;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-height: 100%; background: var(--ink); }
+
+    body {
+      min-height: 100svh;
+      margin: 0;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 50% -15%, rgba(132, 80, 58, .34), transparent 42%),
+        linear-gradient(160deg, #2c4252 0%, var(--ink) 78%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .52;
+      background-image:
+        linear-gradient(30deg, transparent 48%, rgba(245, 234, 215, .075) 49%, rgba(245, 234, 215, .075) 51%, transparent 52%),
+        linear-gradient(150deg, transparent 48%, rgba(154, 70, 52, .13) 49%, rgba(154, 70, 52, .13) 51%, transparent 52%);
+      background-size: 64px 110px;
+    }
+
+    button, input { font: inherit; }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: max(20px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
+    }
+
+    .portal {
+      width: min(100%, 480px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(38, 58, 73, .99), rgba(18, 27, 34, .99));
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .46), inset 0 1px 0 rgba(255, 255, 255, .05);
+    }
+
+    .portal__top {
+      padding: 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(214, 179, 106, .14);
+    }
+
+    .building-hero {
+      position: relative;
+      height: clamp(220px, 58vw, 310px);
+      margin: 0;
+      overflow: hidden;
+      background: #6e372b;
+    }
+
+    .building-hero img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+
+    .building-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(20, 29, 36, .9) 100%);
+    }
+
+    .building-hero figcaption {
+      position: absolute;
+      z-index: 1;
+      right: 16px;
+      bottom: 12px;
+      color: rgba(245, 234, 215, .86);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .portal__intro {
+      position: relative;
+      z-index: 2;
+      margin-top: -35px;
+      padding: 0 34px 25px;
+    }
+
+    .monogram {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 22px;
+      border: 4px solid #243744;
+      border-radius: 50%;
+      color: var(--brick-deep);
+      background: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.08em;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, .35), 0 0 0 1px var(--brass);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--brass-light);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.95rem, 8vw, 2.75rem);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -.035em;
+    }
+
+    .intro {
+      max-width: 33ch;
+      margin: 16px auto 0;
+      color: #ced4db;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .network-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 20px;
+      padding: 8px 12px;
+      border: 1px solid rgba(214, 179, 106, .25);
+      border-radius: 999px;
+      color: var(--cream);
+      background: rgba(154, 70, 52, .28);
+      font-size: .86rem;
+      font-weight: 650;
+    }
+
+    .network-chip svg { width: 17px; height: 17px; }
+
+    .portal__body { padding: 27px 30px 30px; }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 0 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .benefits li {
+      min-width: 0;
+      padding: 13px 8px 12px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 14px;
+      color: #cbd2da;
+      background: rgba(255, 255, 255, .025);
+      font-size: .78rem;
+      line-height: 1.25;
+    }
+
+    .benefits strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--cream);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    .agree {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 2px;
+      cursor: pointer;
+    }
+
+    .agree input {
+      width: 21px;
+      height: 21px;
+      margin: 1px 0 0;
+      accent-color: var(--brass);
+    }
+
+    .agree span {
+      color: #d7dce1;
+      font-size: .94rem;
+      line-height: 1.45;
+    }
+
+    .terms-link {
+      color: var(--brass-light);
+      text-decoration: underline;
+      text-decoration-color: rgba(239, 220, 174, .4);
+      text-underline-offset: 3px;
+    }
+
+    .connect {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 22px;
+      border: 1px solid var(--brass);
+      border-radius: 13px;
+      color: #0a1522;
+      background: linear-gradient(180deg, #ead9ae, var(--brass));
+      font-weight: 800;
+      letter-spacing: .01em;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(214, 179, 106, .18);
+      transition: transform .18s ease, filter .18s ease, opacity .18s ease;
+    }
+
+    .connect:enabled:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .connect:enabled:active { transform: translateY(1px); }
+    .connect:disabled { cursor: not-allowed; filter: saturate(.35); opacity: .44; }
+    .connect:focus-visible, .terms-link:focus-visible, .agree input:focus-visible, dialog button:focus-visible {
+      outline: 3px solid rgba(239, 220, 174, .78);
+      outline-offset: 3px;
+    }
+
+    .privacy {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: .79rem;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .support {
+      margin: 20px 0 0;
+      color: #8996a5;
+      font-size: .76rem;
+      text-align: center;
+    }
+
+    .success {
+      display: none;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .success[aria-hidden="false"] { display: block; }
+
+    .checkmark {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      border: 1px solid rgba(127, 214, 174, .55);
+      border-radius: 50%;
+      color: var(--success);
+      background: rgba(127, 214, 174, .08);
+    }
+
+    .checkmark svg { width: 36px; height: 36px; }
+
+    .success h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .success p {
+      margin: 12px auto 0;
+      color: #c7d0d9;
+      line-height: 1.55;
+    }
+
+    .success .connect { display: inline-grid; place-items: center; text-decoration: none; }
+
+    dialog {
+      width: min(calc(100% - 32px), 480px);
+      max-height: min(78svh, 680px);
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      color: var(--cream);
+      background: #101e2f;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .65);
+    }
+
+    dialog::backdrop { background: rgba(2, 8, 15, .78); backdrop-filter: blur(5px); }
+    .dialog-content { padding: 28px; }
+    dialog h2 { margin: 0 0 16px; font-family: Georgia, serif; font-size: 1.65rem; font-weight: 500; }
+    dialog p, dialog li { color: #cbd2da; font-size: .95rem; line-height: 1.55; }
+    dialog ul { padding-left: 1.2rem; }
+    dialog button {
+      width: 100%; min-height: 48px; margin-top: 12px; border: 1px solid var(--brass);
+      border-radius: 12px; color: var(--cream); background: transparent; font-weight: 700; cursor: pointer;
+    }
+
+    .is-loading .connect { color: transparent; position: relative; }
+    .is-loading .connect::after {
+      content: "";
+      position: absolute;
+      width: 21px;
+      height: 21px;
+      border: 3px solid rgba(10, 21, 34, .28);
+      border-top-color: #0a1522;
+      border-radius: 50%;
+      animation: spin .75s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 390px) {
+      .portal { border-radius: 22px; }
+      .building-hero { height: 215px; }
+      .portal__intro { padding-inline: 22px; }
+      .portal__body { padding: 24px 20px 25px; }
+      .benefits { gap: 7px; }
+      .benefits li { padding-inline: 5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation-duration: .001ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="portal" aria-labelledby="portal-title">
+      <div id="access-panel">
+        <header class="portal__top">
+          <figure class="building-hero">
+            <img src="./fawkner-mansions-illustration.webp" alt="Architectural illustration of the red-brick Fawkner Mansions in Prahran">
+            <figcaption>Established 1910–11</figcaption>
+          </figure>
+          <div class="portal__intro">
+            <div class="monogram" aria-hidden="true">FM</div>
+            <p class="eyebrow">250 Punt Road · Prahran</p>
+            <h1 id="portal-title">Welcome to<br>Fawkner Mansions</h1>
+            <p class="intro">Guest Wi-Fi in one of Victoria’s earliest purpose-built apartment buildings.</p>
+            <div class="network-chip" aria-label="Network Mansion WiFi">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M4.8 9.4a11 11 0 0 1 14.4 0M7.8 12.6a6.6 6.6 0 0 1 8.4 0M10.5 15.8a2.4 2.4 0 0 1 3 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+              Mansion WiFi
+            </div>
+          </div>
+        </header>
+
+        <div class="portal__body">
+          <ul class="benefits" aria-label="Access details">
+            <li><strong>Guest</strong>network</li>
+            <li><strong>Private</strong>devices</li>
+            <li><strong>Fair use</strong>access</li>
+          </ul>
+
+          <label class="agree">
+            <input id="agree" type="checkbox">
+            <span>I agree to use this network lawfully and respectfully, and accept the <a class="terms-link" href="#terms" id="open-terms">access terms</a>.</span>
+          </label>
+
+          <button class="connect" id="connect" type="button" disabled>Connect to Mansion WiFi</button>
+          <p class="privacy">No marketing sign-up. Basic connection details may be logged for security and troubleshooting.</p>
+          <p class="support">Having trouble? Turn Wi-Fi off and on, then reconnect.</p>
+        </div>
+      </div>
+
+      <div class="success" id="success-panel" aria-hidden="true" aria-live="polite">
+        <div class="checkmark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>
+        </div>
+        <p class="eyebrow">Fawkner Mansions · Mansion WiFi</p>
+        <h2>You’re connected</h2>
+        <p>Your device now has guest Internet access at Fawkner Mansions. This window may close automatically.</p>
+        <a class="connect" href="http://neverssl.com">Continue online</a>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="terms">
+    <div class="dialog-content">
+      <h2>Fawkner Mansions guest access</h2>
+      <p>By connecting, you agree to use Mansion WiFi responsibly and at your own risk.</p>
+      <ul>
+        <li>Do not use the service for unlawful, harmful or abusive activity.</li>
+        <li>Do not attempt to access other guests’ devices or the Mansion’s private systems.</li>
+        <li>Access may be limited, monitored for network security, or withdrawn at any time.</li>
+        <li>Use encrypted websites and services when handling sensitive information.</li>
+      </ul>
+      <p>The network records technical connection information such as device address, session time and data usage for operation and security. It does not ask for marketing information.</p>
+      <button type="button" id="close-terms">Close terms</button>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const agree = document.getElementById('agree');
+      const connect = document.getElementById('connect');
+      const access = document.getElementById('access-panel');
+      const success = document.getElementById('success-panel');
+      const terms = document.getElementById('terms');
+
+      agree.addEventListener('change', () => { connect.disabled = !agree.checked; });
+      document.getElementById('open-terms').addEventListener('click', (event) => {
+        event.preventDefault();
+        terms.showModal();
+      });
+      document.getElementById('close-terms').addEventListener('click', () => terms.close());
+
+      connect.addEventListener('click', () => {
+        if (!agree.checked) return;
+        access.classList.add('is-loading');
+        connect.disabled = true;
+        window.setTimeout(() => {
+          access.hidden = true;
+          success.setAttribute('aria-hidden', 'false');
+        }, 700);
+      });
+    })();
+  </script>
+</body>
+</html>

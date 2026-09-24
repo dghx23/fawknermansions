@@ -1,0 +1,54 @@
+# Project Brief
+
+## Personal context
+
+- Moved into Fawkner Mansions on **11 September 2026** and have lived there
+  continuously since.
+- Found the room via Booking.com; initial rate was **$75/night**.
+- Now on a standing arrangement at **$440/week**.
+- The Manager and Owner are consistently absent and hard to reach.
+- Other residents are rarely seen and their arrangement with the building is
+  unclear — worth investigating as part of the building's contemporary story,
+  not just its 1910s origin.
+- Two authentic photographs of the building are currently held: one from the
+  1960s, and one taken in **mid-September 2026** showing a tram in front (both
+  in a "Fawkner Mansions" PDF, not yet added to this repo). Other reference
+  images used in early concept work were AI-generated placeholders, not the
+  real building, and should not be presented as authentic.
+
+## The proposal (to part-owner Jeff Nguyen)
+
+Offer to research, document, and digitally preserve the building in exchange for
+a rent discount or a rent-free period (e.g. 3 months), during which the project
+would:
+
+1. Thoroughly research the building's history (architect, original residents,
+   later alterations, present-day condition).
+2. Produce a 3D model of the building for preservation purposes, including a
+   future VR walkthrough — framed explicitly as a hedge against the building
+   being altered or demolished.
+3. Produce a hardcover A5 book, print-on-demand via Amazon, with a small
+   pre-printed run for distribution to heritage groups and universities.
+4. Build a companion website showcasing the building and its history, subject
+   to owner agreement.
+5. Produce a 15–20 minute history documentary for social media/web.
+
+## Open questions to resolve before pitching Jeff Nguyen
+
+- What access is actually needed (common areas, roof, individual flats,
+  archives) and who can authorise it?
+- Is the 3D/VR scan being pitched as a service to the owners (they keep the
+  asset) or as the author's own IP with a licence back to the owners?
+- What does "part owner" mean structurally — is Jeff Nguyen able to approve a
+  rent concession unilaterally, or does this need the other owner(s) and the
+  absent manager?
+- Any restriction from the heritage overlay (HO448) on filming, drone use, or
+  physical alterations for scanning equipment?
+- Insurance/liability for filming or 3D-scanning shared/common areas with other
+  residents present.
+
+## Related
+
+See [`docs/heritage-listing.md`](heritage-listing.md) for the primary heritage
+record, and [`docs/ideas.md`](ideas.md) for brainstormed structure and format
+ideas for the book, documentary, website, and pitch.

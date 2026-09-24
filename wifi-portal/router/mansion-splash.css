@@ -1,0 +1,201 @@
+:root {
+  color-scheme: dark;
+  --ink: #15181b;
+  --navy: #263a49;
+  --navy-soft: #314b5e;
+  --brick: #9a4634;
+  --brick-deep: #6e2d23;
+  --brass: #c9a460;
+  --brass-light: #ead9ae;
+  --cream: #f5ead7;
+  --muted: #b8c1c6;
+  --line: rgba(201, 164, 96, .34);
+}
+
+* { box-sizing: border-box; }
+
+html { min-height: 100%; background: var(--ink); }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 18px;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 50% -15%, rgba(132, 80, 58, .34), transparent 42%),
+    linear-gradient(160deg, #2c4252 0%, var(--ink) 78%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body::before {
+  content: "FM";
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin: 22px auto 24px;
+  border: 1px solid var(--brass);
+  border-radius: 50%;
+  color: var(--brick-deep);
+  background: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -.08em;
+  line-height: 1;
+  box-shadow: 0 0 0 6px rgba(214, 179, 106, .08);
+}
+
+hr {
+  display: block;
+  width: 54px;
+  margin: 18px auto;
+  border: 0;
+  border-top: 1px solid var(--brass);
+}
+
+.offset {
+  width: 100%;
+  min-width: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--brick);
+  border-radius: 28px;
+  color: var(--cream);
+  background: linear-gradient(180deg, rgba(38, 58, 73, .99), rgba(18, 27, 34, .99));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .05);
+}
+
+.offset::before {
+  content: "FAWKNER MANSIONS · 250 PUNT ROAD";
+  display: block;
+  margin-bottom: 10px;
+  color: var(--brass);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-align: center;
+}
+
+.insert {
+  min-width: 0;
+  max-width: 100%;
+  padding: 22px 18px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 16px;
+  color: #d7dce1;
+  background: rgba(255, 255, 255, .025);
+  text-align: center;
+}
+
+.insert > h1,
+h1 {
+  margin: 0 0 16px;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+}
+
+h2, h3 { color: var(--cream); font-family: Georgia, "Times New Roman", serif; font-weight: 500; }
+p { color: #cbd2da; }
+a { color: var(--brass-light); text-underline-offset: 3px; }
+
+img {
+  width: auto;
+  max-width: 160px;
+  max-height: 96px;
+  margin: 0 auto 18px;
+  border-radius: 8px;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number],
+input[type=tel] {
+  width: 100%;
+  min-height: 48px;
+  margin: 5px 0 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(214, 179, 106, .32);
+  border-radius: 10px;
+  color: var(--cream);
+  background: #0a1725;
+  font-size: 16px;
+}
+
+input[type=submit],
+input[type=button] {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: 1px solid var(--brass);
+  border-radius: 13px;
+  color: #0a1522;
+  background: linear-gradient(180deg, #ead39c, var(--brass));
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.25;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(214, 179, 106, .18);
+}
+
+input:focus-visible, a:focus-visible {
+  outline: 3px solid rgba(239, 220, 174, .78);
+  outline-offset: 3px;
+}
+
+med-blue {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--brass-light);
+  font-size: 18px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+big-red {
+  color: #f1a49a;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+italic-black {
+  display: block;
+  margin-bottom: 12px;
+  color: #d7dce1;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+copy-right {
+  display: block;
+  margin-top: 18px;
+  color: #8996a5;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  text-align: center;
+}
+
+@media (max-width: 390px) {
+  body { padding: 18px 12px 24px; }
+  body::before { width: 64px; height: 64px; margin-top: 12px; font-size: 32px; }
+  .offset { padding: 22px 17px; border-radius: 22px; }
+  .insert { padding: 19px 14px; }
+  .insert > h1, h1 { font-size: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
