@@ -30,6 +30,13 @@ the book concept, the preservation/VR plan, and an early, parked concept for a
   a **soft, client-side-only login gate** — see [`admin/README.md`](admin/README.md)
   for what that does and doesn't protect.
 
+## Research & Development
+
+- [`research/README.md`](research/README.md) — versioned research register, with every major research pass retained as an immutable run.
+- [`admin/research.html`](admin/research.html) — dashboard view: latest run by default, older runs selectable, new revelations/contradictions, source library and quantified risk matrix.
+- [`research/sources.md`](research/sources.md) — source library with context, relevance and authority class.
+- [`research/risk-register.md`](research/risk-register.md) — actionable risk register with likelihood, impact, evidence confidence, priority, controls and interventions.
+
 ## Project goals
 
 1. A hardcover A5 book on the building's history, architecture, and residents —
