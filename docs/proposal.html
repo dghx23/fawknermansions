@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fawkner Mansions — Proposal</title>
+<style>
+  @page{ size: A4; margin: 20mm 18mm; }
+  :root{
+    --paper:#f4efe0; --ink:#1a1a1a; --rule:#1a1a1a; --muted:#4a453a;
+    --brass:#a9884f; --oxblood:#6b1f22;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family: Georgia, 'Times New Roman', serif;
+    color:var(--ink); font-size:11pt; line-height:1.55;
+  }
+  .cover{
+    height:257mm; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    page-break-after:always;
+  }
+  .cover .monogram{
+    width:90px;height:90px;border:2px solid var(--oxblood);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:2rem;color:var(--oxblood);margin-bottom:2rem;
+  }
+  .cover h1{font-size:2.6rem;font-variant-caps:small-caps;margin:0 0 .5rem;}
+  .cover .addr{font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;}
+  .cover .tagline{font-size:1.15rem;font-style:italic;color:var(--muted);max-width:420px;margin-bottom:3rem;}
+  .cover .meta{font-size:.85rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;}
+
+  section{page-break-before:always;}
+  section:first-of-type{page-break-before:avoid;}
+  h2{
+    font-size:1.4rem;font-variant-caps:small-caps;color:var(--oxblood);
+    border-bottom:2px solid var(--brass);padding-bottom:.3rem;margin:0 0 1rem;
+  }
+  h3{font-size:1.05rem;margin:1.3rem 0 .5rem;}
+  p{margin:0 0 .8rem;}
+  .lede{font-size:1.05rem;font-style:italic;color:var(--muted);}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin:.5rem 0 1rem;}
+  th,td{border:1px solid #c9bfa7;padding:.5rem .6rem;text-align:left;vertical-align:top;}
+  th{background:#eee2c8;width:28%;}
+  .badge-row{display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0 1rem;}
+  .badge{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--rule);padding:.2rem .55rem;}
+  .note{font-size:.8rem;color:var(--muted);background:#eee2c8;border:1px dashed #a9884f;padding:.6rem .8rem;margin:.8rem 0;}
+  .footer-note{font-size:.7rem;color:var(--muted);text-align:center;margin-top:2rem;}
+
+  .postcard-row{display:flex;gap:1rem;margin:1rem 0;}
+  .postcard{width:48%;border:1.5px solid var(--rule);padding:.7rem;background:var(--paper);}
+  .postcard .pc-title{font-size:.85rem;font-variant-caps:small-caps;text-align:center;margin-bottom:.4rem;}
+  .postcard .pc-photo{
+    aspect-ratio:4/3;background:linear-gradient(160deg,#d8cdb2,#c7baa0 55%,#b7a98d);
+    border:1px solid #00000022;display:flex;align-items:center;justify-content:center;
+    font-size:.6rem;color:#4a4438;text-align:center;padding:.5rem;
+  }
+  .postcard .pc-back-line{border-bottom:1px solid #00000030;height:1.3em;}
+
+  .arch-svg{width:100%;height:auto;border:1px solid #c9bfa7;background:#fff;padding:.5rem;margin:1rem 0;}
+  .book-render{text-align:center;margin:1rem 0;}
+  .book-render .mini-cover{
+    display:inline-block;width:220px;border:2px solid var(--rule);padding:1rem;
+    background:var(--paper);text-align:center;
+  }
+  .book-render .mini-cover h4{font-variant-caps:small-caps;margin:.3rem 0;}
+</style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="monogram">FM</div>
+    <h1>Fawkner Mansions</h1>
+    <div class="addr">250 Punt Road, Prahran, Victoria &middot; Heritage Overlay HO448</div>
+    <div class="tagline">A proposal for the research, digital preservation, and public
+    documentation of a heritage-listed building &mdash; and what it can
+    mean for the people who own it.</div>
+    <div class="meta">Prepared by David Hough &middot; September 2026</div>
+  </div>
+
+  <section>
+    <h2>1. The opportunity</h2>
+    <p class="lede">Fawkner Mansions is, on the current heritage record, the
+    oldest surviving residential flats in the City of Stonnington, and one
+    of the oldest in Victoria.</p>
+    <p>Designed by Ernest H. Willis and built in 1910&ndash;11, the building
+    has stood for 116 years with almost no public documentation beyond its
+    council heritage citation (Heritage Overlay HO448). This proposal is an
+    offer to change that &mdash; at no financial cost to the owners &mdash;
+    in exchange for a modest, defined rent concession during the research
+    period.</p>
+    <div class="badge-row">
+      <span class="badge">Heritage Overlay HO448</span>
+      <span class="badge">Edwardian Free Classical, 1910&ndash;11</span>
+      <span class="badge">Oldest surviving flats, City of Stonnington</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. The value I bring</h2>
+    <p>An evidence-trained researcher already living in the building is
+    offering to do, essentially for free, work that would otherwise cost the
+    owners real money to commission: professional-grade digital
+    preservation, archival research, and a public-facing history &mdash;
+    with an audit-style discipline applied to make sure every claim is
+    sourced and defensible. On top of the core research and 3D/VR capture,
+    I bring drone piloting and 3D mapping (photogrammetry) skills directly,
+    plus documentary film-making, so the same capture work produces both
+    the preservation record and a short history documentary at no extra
+    cost.</p>
+
+    <h3>What a drone-captured 3D model and VR record actually means</h3>
+    <svg class="arch-svg" viewBox="0 0 760 200">
+      <rect x="10" y="70" width="150" height="60" fill="#fff" stroke="#1a1a1a"/>
+      <text x="85" y="95" text-anchor="middle" font-size="12" font-family="Georgia,serif">Drone flight</text>
+      <text x="85" y="112" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">hundreds of overlapping photos</text>
+      <line x1="160" y1="100" x2="215" y2="100" stroke="#6b6558" stroke-width="1.5"/>
+      <polygon points="215,100 205,95 205,105" fill="#6b6558"/>
+      <rect x="220" y="70" width="150" height="60" fill="#fff" stroke="#1a1a1a"/>
+      <text x="295" y="95" text-anchor="middle" font-size="12" font-family="Georgia,serif">Photogrammetry</text>
+      <text x="295" y="112" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">software builds a 3D mesh</text>
+      <line x1="370" y1="100" x2="425" y2="100" stroke="#6b6558" stroke-width="1.5"/>
+      <polygon points="425,100 415,95 415,105" fill="#6b6558"/>
+      <rect x="430" y="70" width="150" height="60" fill="#fff" stroke="#1a1a1a"/>
+      <text x="505" y="95" text-anchor="middle" font-size="12" font-family="Georgia,serif">3D digital model</text>
+      <text x="505" y="112" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">an exact digital twin</text>
+      <line x1="580" y1="100" x2="635" y2="100" stroke="#6b6558" stroke-width="1.5"/>
+      <polygon points="635,100 625,95 625,105" fill="#6b6558"/>
+      <rect x="640" y="70" width="110" height="60" fill="#f4efe0" stroke="#a9884f"/>
+      <text x="695" y="95" text-anchor="middle" font-size="12" font-family="Georgia,serif">VR headset</text>
+      <text x="695" y="112" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">walk through it</text>
+    </svg>
+    <p>In plain terms: a drone photographs the building from hundreds of
+    angles; software stitches those photos into an exact 3D digital replica;
+    that replica can then be explored in <strong>virtual reality</strong>
+    &mdash; putting on a headset (or using a web browser) and looking around
+    as if physically standing inside or outside the building. If the
+    building is ever altered or demolished, this record still exists,
+    permanently, independent of the physical structure.</p>
+  </section>
+
+  <section>
+    <h2>3. How this creates a legacy</h2>
+    <p>This project turns Fawkner Mansions' rare heritage status into
+    something permanent: a properly researched book, and a full digital VR
+    record that heritage bodies, historians, and the public can reference
+    indefinitely. Doing this now, while the building still stands largely
+    intact, is a meaningfully time-sensitive opportunity. A well-produced
+    documentary and a genuine "heritage building saved digitally" story is
+    also a plausible media hook &mdash; local and potentially international
+    press coverage that promotes the book, the documentary, and Fawkner
+    Mansions itself simultaneously.</p>
+    <p>Beyond self-publishing, there is a real path to reach academic and
+    publishing networks in Australia, Europe, the USA, and further afield
+    &mdash; heritage and local-history titles are a genuine niche for
+    university presses and specialist publishers, and university interest
+    (see &sect;6) makes a co-publishing or distribution conversation
+    plausible, not just individual library sales.</p>
+  </section>
+
+  <section>
+    <h2>4. Why I'm suited to do it</h2>
+    <p>This isn't a hobbyist project. My background is in assurance and risk
+    research &mdash; PwC Australia, Deloitte South Africa, Philip Morris
+    International &mdash; plus a Master of Public Health that trained a
+    systems-level, evidence-first way of thinking. I've built and run
+    independent research systems (Sentrix Digital, RiskAtlas) and
+    co-founded software companies (One1 Digital, PostNow, AfterDuty). I
+    already live in the building, so access, motivation, and timeline all
+    line up naturally.</p>
+    <table>
+      <tr><th>Research discipline</th><td>Audit-trained evidence methodology &mdash; every historical claim sourced and traceable.</td></tr>
+      <tr><th>Technical capability</th><td>Drone piloting, photogrammetry, web development, documentary editing.</td></tr>
+      <tr><th>Academic grounding</th><td>Master of Public Health (Macquarie University); Bachelor of Business Systems (Bond University).</td></tr>
+      <tr><th>Track record</th><td>Founder/co-founder of multiple working systems and platforms, not a first attempt.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>5. What I want in exchange</h2>
+    <table>
+      <tr><th>The ask</th><td>A defined research period (e.g. 3 months) in exchange for a rent discount or rent-free period.</td></tr>
+      <tr><th>The give</th><td>A professionally produced 3D/VR scan and digital record of the building, delivered regardless of whether the book is ever published, plus the heritage/publicity upside and a promotional documentary.</td></tr>
+      <tr><th>Owner risk</th><td>Low &mdash; deliverables are staged, with a checkpoint (e.g. 6 weeks) before the arrangement continues.</td></tr>
+      <tr><th>Owner cost</th><td>Defined and capped: the agreed rent concession only.</td></tr>
+      <tr><th>Fallback</th><td>If a rent concession isn't approved, a simple access/permission agreement with no rent change.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>6. Public-interest distribution potential</h2>
+    <p>Victoria has on the order of ~2,250 schools (government, Catholic,
+    independent &mdash; approximate, for pitch purposes) and eight
+    Victoria-headquartered universities, each with library budgets and
+    relevant architecture/heritage departments. Because the trade edition is
+    print-on-demand, these are standing, ongoing orders, not a one-off run.
+    Draft German, French, Spanish, and Chinese editions extend this to
+    international schools and diaspora/heritage audiences.</p>
+  </section>
+
+  <section>
+    <h2>7. Example postcard templates</h2>
+    <p>A promotional/fundraising item, printable now or mailed directly to
+    a recipient anywhere in the world via a future print-and-post
+    integration:</p>
+    <div class="postcard-row">
+      <div class="postcard">
+        <div class="pc-title">Front</div>
+        <div class="pc-photo">1960s photograph placeholder</div>
+      </div>
+      <div class="postcard">
+        <div class="pc-title">Back</div>
+        <p style="font-size:.7rem;">Fawkner Mansions &middot; 250 Punt Road, Prahran<br>
+        Edwardian Free Classical, 1910&ndash;11 &middot; Heritage Overlay HO448</p>
+        <div class="pc-back-line"></div>
+        <div class="pc-back-line"></div>
+        <div class="pc-back-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>8. Paid guest WiFi &mdash; a separate value-add</h2>
+    <p>Not part of the book pitch, but worth raising at the same time:
+    there is no free WiFi at the building today. A Starlink connection
+    (~$75/month) plus a captive-portal router &mdash; reusing the "Mansion
+    WiFi" design already built &mdash; could offer paid guest access ($5/day,
+    $20/week, $50/month) via voucher tokens or card payment. Even light
+    uptake clears the monthly connectivity cost.</p>
+  </section>
+
+  <div class="footer-note">Fawkner Mansions &middot; 250 Punt Road, Prahran VIC 3181 &middot; Heritage Overlay HO448<br>
+  Prepared by David Hough &middot; github.com/dghx23/fawknermansions</div>
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 # Fawkner Mansions Mansion WiFi — Grok Code package
 
-**Status: parked.** This is early concept/design work — the router has not
-actually been configured or deployed yet. Kept here for reference and for the
-heritage design language it establishes (see `GROK_CODE_PROMPT.md`), not as a
-description of a live system.
+**Status: proposed business, not deployed.** The router hasn't been
+configured yet, but this design now has a real business case behind it —
+paid guest WiFi via Starlink, see `admin/index.html` &sect;5 for pricing
+and the technical architecture. Still not a description of a live system.
 
 This is a clean handoff package for Grok Code. It contains the complete visual preview and the router-ready OpenWrt/openNDS implementation files without deployment credentials or platform-specific metadata.
 

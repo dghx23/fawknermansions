@@ -7,14 +7,11 @@
 <meta name="description" content="Fawkner Mansions, 250 Punt Road, Prahran — heritage-listed 1910–11 Edwardian Free Classical flats, believed to be the oldest surviving residential flats in the City of Stonnington.">
 <style>
   :root{
-    --oxblood:#6b1f22;
-    --oxblood-dark:#4a1517;
-    --bluestone:#4a5560;
-    --bluestone-dark:#333c44;
-    --cream:#f2ead9;
-    --iron:#1a1a1a;
-    --brass:#a9884f;
-    --paper:#faf6ee;
+    --paper:#f4efe0;
+    --ink:#1a1a1a;
+    --rule:#1a1a1a;
+    --muted:#6b6558;
+    --page:#e9dfc4;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -22,22 +19,21 @@
     margin:0;
     font-family: Georgia, 'Times New Roman', serif;
     background:var(--paper);
-    color:var(--iron);
+    color:var(--ink);
     line-height:1.6;
   }
 
   header.site-header{
-    background:var(--iron);
-    color:var(--cream);
+    background:var(--paper);
     position:sticky;
     top:0;
     z-index:10;
-    border-bottom:4px solid var(--brass);
+    border-bottom:1px solid var(--rule);
   }
   .header-inner{
     max-width:960px;
     margin:0 auto;
-    padding:.85rem 1.5rem;
+    padding:.75rem 1.5rem;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -45,101 +41,120 @@
     gap:.75rem;
   }
   .brand{display:flex;align-items:center;gap:.6rem;}
-  .monogram-sm{
-    font-size:1rem;
-    border:1.5px solid var(--brass);
-    color:var(--brass);
-    border-radius:50%;
-    width:32px;height:32px;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
+  .brand span{
+    font-size:.85rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-variant-caps: small-caps;
   }
-  .brand span{font-size:.95rem;letter-spacing:.02em;}
-  nav.site-nav{display:flex;gap:1rem;flex-wrap:wrap;}
-  nav.site-nav a{color:var(--cream);text-decoration:none;font-size:.8rem;opacity:.85;}
-  nav.site-nav a:hover{opacity:1;color:var(--brass);}
+  nav.site-nav{display:flex;gap:1.2rem;flex-wrap:wrap;}
+  nav.site-nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:.72rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    opacity:.75;
+  }
+  nav.site-nav a:hover{opacity:1;}
 
   .hero{
-    background:linear-gradient(180deg, var(--bluestone-dark), var(--iron));
-    color:var(--cream);
     text-align:center;
-    padding:4.5rem 1.5rem 3.5rem;
+    padding:3rem 1.5rem 2.5rem;
+    border-bottom:2px solid var(--rule);
   }
-  .hero .monogram{
-    font-size:2rem;
-    letter-spacing:.15em;
-    border:2px solid var(--brass);
-    color:var(--brass);
-    border-radius:50%;
-    width:72px;height:72px;
-    display:flex;align-items:center;justify-content:center;
-    margin:0 auto 1.25rem;
+  .hero .eyebrow{
+    font-size:.65rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:.75rem;
   }
   .hero h1{
-    font-size:2.1rem;
-    margin:0 0 .5rem;
-    letter-spacing:.01em;
+    font-size:3rem;
+    margin:0 0 .4rem;
+    font-variant-caps: small-caps;
+    letter-spacing:.02em;
   }
-  .hero .addr{font-size:.9rem;color:#c9bfa7;margin-bottom:1.5rem;}
+  .hero .addr{
+    font-size:.85rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:.6rem;
+  }
+  .hero .facts{
+    font-size:.68rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.6rem;
+    margin-bottom:1.5rem;
+  }
+  .hero .facts .dash{width:20px;height:1px;background:var(--muted);}
   .hero .claim{
-    max-width:560px;
+    max-width:520px;
     margin:0 auto;
     font-size:1.05rem;
-    color:#e8dfc9;
+    font-style:italic;
+    color:var(--ink);
   }
   .badges{
     display:flex;
     justify-content:center;
     gap:.6rem;
     flex-wrap:wrap;
-    margin-top:1.75rem;
+    margin-top:1.5rem;
   }
   .badge{
-    font-size:.68rem;
+    font-size:.62rem;
     text-transform:uppercase;
-    letter-spacing:.06em;
-    border:1px solid var(--brass);
-    color:var(--brass);
+    letter-spacing:.07em;
+    border:1px solid var(--rule);
+    color:var(--ink);
     padding:.3rem .7rem;
-    border-radius:999px;
   }
 
   main{max-width:760px;margin:0 auto;padding:0 1.5rem;}
-  section{padding:3rem 0;border-bottom:1px solid #e0d7c0;}
+  section{padding:3rem 0;border-bottom:1px solid var(--rule);}
   section:last-of-type{border-bottom:none;}
   section h2{
-    color:var(--oxblood);
-    font-size:1.4rem;
+    color:var(--ink);
+    font-size:1.3rem;
+    font-variant-caps: small-caps;
+    letter-spacing:.03em;
     margin:0 0 1rem;
+    padding-bottom:.6rem;
+    border-bottom:1px solid var(--rule);
   }
   section p{font-size:.98rem;color:#2a2a2a;}
-  .lede{font-size:1.05rem;color:var(--bluestone-dark);}
+  .lede{font-size:1.05rem;color:var(--muted);}
 
   .pull{
-    border-left:3px solid var(--brass);
+    border-left:2px solid var(--rule);
     padding-left:1rem;
     margin:1.5rem 0;
     font-style:italic;
-    color:var(--bluestone-dark);
+    color:var(--muted);
   }
 
   .book-card{
     background:#fff;
-    border:1px solid #d8ccac;
-    border-top:3px solid var(--oxblood);
-    border-radius:3px;
+    border:1px solid var(--rule);
     padding:1.5rem;
     margin-top:1rem;
   }
   .book-card .status{
     display:inline-block;
-    font-size:.68rem;
+    font-size:.62rem;
     text-transform:uppercase;
-    letter-spacing:.06em;
-    background:var(--bluestone);
-    color:#fff;
+    letter-spacing:.07em;
+    border:1px solid var(--rule);
+    color:var(--ink);
     padding:.15rem .5rem;
-    border-radius:2px;
     margin-bottom:.6rem;
   }
 
@@ -176,11 +191,13 @@
 
   footer.site-footer{
     text-align:center;
-    font-size:.75rem;
-    color:#8a8370;
+    font-size:.72rem;
+    letter-spacing:.04em;
+    color:var(--muted);
     padding:2.5rem 1.5rem 3rem;
+    border-top:1px solid var(--rule);
   }
-  footer.site-footer a{color:var(--bluestone-dark);}
+  footer.site-footer a{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -188,7 +205,6 @@
   <header class="site-header">
     <div class="header-inner">
       <div class="brand">
-        <div class="monogram-sm">FM</div>
         <span>Fawkner Mansions</span>
       </div>
       <nav class="site-nav">
@@ -202,9 +218,14 @@
   </header>
 
   <div class="hero">
-    <div class="monogram">FM</div>
+    <div class="eyebrow">History &middot; Architecture &middot; Community</div>
     <h1>Fawkner Mansions</h1>
-    <div class="addr">250 Punt Road, Prahran, Victoria · Est. 1910–11</div>
+    <div class="addr">250 Punt Road, Prahran, Victoria</div>
+    <div class="facts">
+      <span class="dash"></span>
+      <span>Est. 1910&ndash;1911 &middot; Designed by Ernest H. Willis</span>
+      <span class="dash"></span>
+    </div>
     <p class="claim">Believed to be the oldest surviving residential flats in the
     City of Stonnington, and one of the oldest in Victoria.</p>
     <div class="badges">
@@ -260,6 +281,9 @@
           <span class="label">Buy on Amazon</span>
           <span class="status">Coming soon</span>
         </div>
+        <p class="note">In the meantime, you can <a href="docs/send-postcard.html">send
+        a virtual postcard</a> of Fawkner Mansions to someone, anywhere in
+        the world.</p>
       </div>
     </section>
 
@@ -277,13 +301,15 @@
       and policy, now turns toward Fawkner Mansions — a building whose
       century-long history had, until now, gone almost entirely undocumented.</p>
       <p>David is also a co-founder of <a href="https://www.one1.digital/">One1
-      Digital</a>, a Sydney-based studio building custom software and
+      Digital</a>, an Adelaide-founded studio building custom software and
       automation — CRMs, workflow tools, branded client portals, and system
       integrations — for service-based organisations across education,
       healthcare, aged care, and community services. His sister now leads the
-      company day to day; David's early contribution focused on strategy,
-      risk, and business-development groundwork. Since returning to
-      Melbourne, his current work runs through his own independent practice,
+      company day to day, having relocated to the Western Cape, South Africa,
+      since most clients are in Europe or America; David's early contribution
+      focused on strategy, risk, and business-development groundwork. Since
+      returning to Melbourne, his current work runs through his own
+      independent practice,
       Sentrix Digital, where RiskAtlas — a structured source-governance
       system for tracking legislative, regulatory, and policy material across
       jurisdictions — is the flagship project.</p>
@@ -291,11 +317,21 @@
       and access — making complex institutional information more
       transparent, navigable, and usable for the people it actually affects,
       whether that's someone navigating a benefits system, or a reader trying
-      to understand the history of the building they live in. David brings
-      that same advanced research methodology, rigorous source verification,
-      and hands-on technical capability — from 3D capture to web development
-      — to documenting, modelling, and preserving Fawkner Mansions for the
-      long term.</p>
+      to understand the history of the building they live in.</p>
+      <p>In concrete terms, that's meant things like: a City of Gold Coast
+      Open Data capstone project whose recommendations the city actually
+      adopted, implementing an Open Data Access Project from it; a POPIA-
+      compliant document-dispatch platform, <a href="https://postnow.co.za">PostNow</a>,
+      now running across South Africa, Botswana, and Namibia; an import
+      cost-calculator, <a href="https://afterduty.co.za">AfterDuty</a>, that
+      shows shoppers the real landed cost of buying from overseas; and
+      RiskAtlas, a source-governance system that tracks the currency and
+      authority of legislative and regulatory material across jurisdictions
+      so conclusions stay traceable back to their source. For Fawkner
+      Mansions, that same capability shows up as 3D capture and photogrammetry,
+      web development, and an audit-style research discipline — every
+      historical claim in this project is meant to trace back to a specific,
+      checkable source, the same standard applied to the systems above.</p>
       <p class="note">Draft bio — check the wording and level of detail
       before this goes live, and add or remove anything you'd like.</p>
     </section>
@@ -317,7 +353,8 @@
   <footer class="site-footer">
     Fawkner Mansions · 250 Punt Road, Prahran VIC 3181 · Heritage Overlay HO448<br>
     Source: Victorian Heritage Database. Project repository:
-    <a href="https://github.com/dghx23/fawknermansions">github.com/dghx23/fawknermansions</a>
+    <a href="https://github.com/dghx23/fawknermansions">github.com/dghx23/fawknermansions</a><br>
+    <a href="admin/index.html" style="font-size:.75rem;">Project team login</a>
   </footer>
 
 </body>

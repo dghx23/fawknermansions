@@ -195,6 +195,71 @@
     font-size:.78rem;
     color:var(--muted);
   }
+
+  .design-gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:.8rem;
+    margin-bottom:1.5rem;
+  }
+  .design-option{
+    cursor:pointer;
+    border:2px solid transparent;
+    padding:.4rem;
+    text-align:center;
+    border-radius:2px;
+  }
+  .design-option.selected{border-color:var(--oxblood);}
+  .design-option .swatch{
+    aspect-ratio:4/3;
+    border:1px solid var(--rule);
+    margin-bottom:.4rem;
+  }
+  .swatch.classic{background:linear-gradient(160deg, #d8cdb2, #c7baa0 55%, #b7a98d);}
+  .swatch.skyline{
+    background:var(--ink);
+    background-image:
+      linear-gradient(0deg, var(--ink) 60%, transparent 60%),
+      repeating-linear-gradient(90deg, #55503f 0 10%, transparent 10% 16%);
+  }
+  .swatch.lineart{
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(90deg, transparent 0 18%, var(--rule) 18% 19%, transparent 19% 40%),
+      linear-gradient(0deg, transparent 70%, var(--rule) 70% 72%);
+  }
+  .design-option .name{font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  .design-option.selected .name{color:var(--ink);font-weight:bold;}
+
+  .delivery-toggle{
+    display:flex;
+    gap:.6rem;
+    margin-bottom:1.2rem;
+  }
+  .delivery-option{
+    flex:1;
+    border:1px solid var(--rule);
+    padding:.7rem .8rem;
+    cursor:pointer;
+    font-size:.78rem;
+  }
+  .delivery-option.selected{background:var(--page);border-color:var(--oxblood);}
+  .delivery-option .dtitle{font-weight:bold;margin-bottom:.2rem;}
+  .delivery-option .dsub{color:var(--muted);font-size:.68rem;}
+
+  .address-block{
+    display:none;
+    border:1px dashed var(--rule);
+    padding:1rem;
+    margin-bottom:1rem;
+    background:var(--page);
+  }
+  .address-block.show{display:block;}
+  .address-block .provider-note{
+    font-size:.72rem;
+    color:var(--muted);
+    margin-top:.7rem;
+  }
 </style>
 </head>
 <body>
@@ -208,6 +273,34 @@
     </div>
 
     <div class="step active" id="step-form">
+      <label style="margin-top:0;">Choose a design</label>
+      <div class="design-gallery" id="design-gallery">
+        <div class="design-option selected" data-design="classic">
+          <div class="swatch classic"></div>
+          <div class="name">Classic photo</div>
+        </div>
+        <div class="design-option" data-design="skyline">
+          <div class="swatch skyline"></div>
+          <div class="name">Skyline</div>
+        </div>
+        <div class="design-option" data-design="lineart">
+          <div class="swatch lineart"></div>
+          <div class="name">Line art</div>
+        </div>
+      </div>
+
+      <label style="margin-top:0;">How should it be delivered?</label>
+      <div class="delivery-toggle" id="delivery-toggle">
+        <div class="delivery-option selected" data-delivery="virtual">
+          <div class="dtitle">Virtual only</div>
+          <div class="dsub">Instant, free — this demo's flight animation.</div>
+        </div>
+        <div class="delivery-option" data-delivery="physical">
+          <div class="dtitle">Physical postcard</div>
+          <div class="dsub">Printed and mailed to them for real — provider integration not yet connected.</div>
+        </div>
+      </div>
+
       <div class="form-row">
         <div>
           <label for="sender-name">Your name</label>
@@ -230,6 +323,26 @@
       </div>
       <label for="message">Your message</label>
       <textarea id="message">Wish you could see this place — Fawkner Mansions, built 1910, still standing on Punt Road, Prahran.</textarea>
+
+      <div class="address-block" id="address-block">
+        <label style="margin-top:0;">Recipient's mailing address</label>
+        <div class="form-row">
+          <div><input type="text" id="addr-street" placeholder="Street address"></div>
+        </div>
+        <div class="form-row" style="margin-top:.6rem;">
+          <div><input type="text" id="addr-city" placeholder="City"></div>
+          <div><input type="text" id="addr-postcode" placeholder="Postal code"></div>
+        </div>
+        <div class="form-row" style="margin-top:.6rem;">
+          <div><input type="text" id="addr-country" placeholder="Country"></div>
+        </div>
+        <p class="provider-note">Physical printing and mailing isn't connected
+        to a real provider yet. In a real version, this would call a
+        print-and-mail API (candidates: PostGrid, Prodigi, or a similar
+        service with international dispatch) to print this design and post
+        it directly to the address above — see the admin Fulfilment
+        section for the full plan.</p>
+      </div>
 
       <div class="submit-row">
         <button class="primary" type="button" id="send-btn">Send postcard</button>
@@ -260,11 +373,37 @@
       </div>
     </div>
 
-    <a class="back-link" href="book-mockup.html">&larr; Back to the book mockup</a>
+    <a class="back-link" href="../index.html">&larr; Back to Fawkner Mansions</a>
+    <a class="back-link" href="book-mockup.html">See the book mockup &rarr;</a>
   </div>
 
 <script>
   (function(){
+    var selectedDesign = "classic";
+    var selectedDelivery = "virtual";
+
+    document.querySelectorAll("#design-gallery .design-option").forEach(function(el){
+      el.addEventListener("click", function(){
+        document.querySelectorAll("#design-gallery .design-option").forEach(function(o){ o.classList.remove("selected"); });
+        el.classList.add("selected");
+        selectedDesign = el.getAttribute("data-design");
+      });
+    });
+
+    document.querySelectorAll("#delivery-toggle .delivery-option").forEach(function(el){
+      el.addEventListener("click", function(){
+        document.querySelectorAll("#delivery-toggle .delivery-option").forEach(function(o){ o.classList.remove("selected"); });
+        el.classList.add("selected");
+        selectedDelivery = el.getAttribute("data-delivery");
+        var addrBlock = document.getElementById("address-block");
+        if(selectedDelivery === "physical"){
+          addrBlock.classList.add("show");
+        } else {
+          addrBlock.classList.remove("show");
+        }
+      });
+    });
+
     var cities = [
       {name:"London", country:"United Kingdom", flag:"\u{1F1EC}\u{1F1E7}", x:350, y:75},
       {name:"Paris", country:"France", flag:"\u{1F1EB}\u{1F1F7}", x:355, y:80},
@@ -398,10 +537,18 @@
           "Your virtual postcard travelled from Prahran to " + dest.name + ", " + dest.country + ".";
 
         var noteEl = document.getElementById("email-note");
-        if(senderEmail){
-          noteEl.textContent = "This concept demo doesn't actually send email yet — in a real version, a confirmation would go to " + senderEmail + " once a backend email service is connected.";
+        var emailLine = senderEmail
+          ? "This concept demo doesn't actually send email yet — in a real version, a confirmation would go to " + senderEmail + " once a backend email service is connected."
+          : "No email address was entered, and this concept demo doesn't send real email yet regardless — that needs a backend service to be connected first.";
+
+        if(selectedDelivery === "physical"){
+          var street = document.getElementById("addr-street").value.trim();
+          var city = document.getElementById("addr-city").value.trim();
+          noteEl.textContent = emailLine + " Physical printing/mailing to "
+            + (street || city ? (street + (city ? ", " + city : "")) : "the address entered")
+            + " also isn't connected to a real print-and-mail provider yet — nothing has actually been printed or posted.";
         } else {
-          noteEl.textContent = "No email address was entered, and this concept demo doesn't send real email yet regardless — that needs a backend service to be connected first.";
+          noteEl.textContent = emailLine;
         }
 
         showStep(stepDone);

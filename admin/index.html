@@ -7,21 +7,20 @@
 <meta name="robots" content="noindex, nofollow">
 <style>
   :root{
-    --oxblood:#6b1f22;
-    --oxblood-dark:#4a1517;
-    --bluestone:#4a5560;
-    --bluestone-dark:#333c44;
-    --cream:#f2ead9;
-    --iron:#1a1a1a;
-    --brass:#a9884f;
-    --paper:#faf6ee;
+    --paper:#f4efe0;
+    --ink:#1a1a1a;
+    --rule:#1a1a1a;
+    --muted:#6b6558;
+    --page:#e9dfc4;
+    --accent:#6b1f22;
+    --accent-dark:#4a1517;
   }
   *{box-sizing:border-box;}
   body{
     margin:0;
     font-family: Georgia, 'Times New Roman', serif;
-    background:var(--cream);
-    color:var(--iron);
+    background:var(--page);
+    color:var(--ink);
     line-height:1.5;
   }
   /* ---------- Login screen ---------- */
@@ -30,11 +29,11 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(180deg, var(--bluestone-dark), var(--iron));
+    background:linear-gradient(180deg, var(--ink), var(--ink));
   }
   .login-card{
     background:var(--paper);
-    border:2px solid var(--brass);
+    border:2px solid var(--rule);
     border-radius:4px;
     padding:2.5rem 2.5rem 2rem;
     width:min(340px, 90vw);
@@ -45,8 +44,8 @@
     font-family: Georgia, serif;
     font-size:2.2rem;
     letter-spacing:.15em;
-    color:var(--oxblood);
-    border:2px solid var(--oxblood);
+    color:var(--accent);
+    border:2px solid var(--accent);
     border-radius:50%;
     width:64px;
     height:64px;
@@ -58,7 +57,7 @@
   .login-card h1{
     font-size:1.1rem;
     margin:.25rem 0 .1rem;
-    color:var(--bluestone-dark);
+    color:var(--ink);
   }
   .login-card p.sub{
     font-size:.8rem;
@@ -78,7 +77,7 @@
   .login-card button{
     width:100%;
     padding:.65rem;
-    background:var(--oxblood);
+    background:var(--accent);
     color:#fff;
     border:none;
     border-radius:3px;
@@ -87,9 +86,9 @@
     cursor:pointer;
     letter-spacing:.03em;
   }
-  .login-card button:hover{background:var(--oxblood-dark);}
+  .login-card button:hover{background:var(--accent-dark);}
   #login-error{
-    color:var(--oxblood);
+    color:var(--accent);
     font-size:.8rem;
     min-height:1.2em;
     margin-top:.5rem;
@@ -106,21 +105,21 @@
   /* ---------- Dashboard ---------- */
   #dashboard{display:none;}
   header.topbar{
-    background:var(--iron);
-    color:var(--cream);
+    background:var(--ink);
+    color:var(--page);
     padding:1.25rem 1.5rem;
     display:flex;
     align-items:center;
     justify-content:space-between;
     flex-wrap:wrap;
     gap:.75rem;
-    border-bottom:4px solid var(--brass);
+    border-bottom:4px solid var(--rule);
   }
   header.topbar .title{display:flex;align-items:center;gap:.75rem;}
   header.topbar .monogram-sm{
     font-size:1.1rem;
-    border:1.5px solid var(--brass);
-    color:var(--brass);
+    border:1.5px solid var(--rule);
+    color:var(--rule);
     border-radius:50%;
     width:34px;height:34px;
     display:flex;align-items:center;justify-content:center;
@@ -129,15 +128,15 @@
   header.topbar .addr{font-size:.75rem;color:#c9bfa7;margin-top:.15rem;}
   #logout-btn{
     background:transparent;
-    border:1px solid var(--brass);
-    color:var(--brass);
+    border:1px solid var(--rule);
+    color:var(--rule);
     padding:.4rem .9rem;
     border-radius:3px;
     cursor:pointer;
     font-family:inherit;
     font-size:.8rem;
   }
-  #logout-btn:hover{background:var(--brass);color:var(--iron);}
+  #logout-btn:hover{background:var(--rule);color:var(--ink);}
 
   nav.jump{
     display:flex;
@@ -152,32 +151,53 @@
   }
   nav.jump a{
     font-size:.75rem;
-    color:var(--bluestone-dark);
+    color:var(--ink);
     text-decoration:none;
     background:#fff;
     border:1px solid #d8ccac;
     padding:.3rem .7rem;
     border-radius:999px;
   }
-  nav.jump a:hover{border-color:var(--brass);}
+  nav.jump a:hover{border-color:var(--rule);}
+
+  .asset-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    padding:.75rem 1.5rem;
+    background:var(--iron);
+    border-bottom:1px solid var(--brass);
+  }
+  .asset-links a{
+    font-size:.72rem;
+    color:var(--brass);
+    text-decoration:none;
+    border:1px solid var(--brass);
+    padding:.25rem .6rem;
+    border-radius:999px;
+  }
+  .asset-links a:hover{background:var(--brass);color:var(--iron);}
+  .arch-diagram{margin-top:1rem;background:#fff;border:1px solid #d8ccac;padding:1rem;overflow-x:auto;}
+  .arch-diagram svg{width:100%;min-width:600px;height:auto;}
+  .payment-logos{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;background:#fff;border:1px solid #d8ccac;padding:.75rem 1rem;margin-top:.5rem;}
 
   main{max-width:920px;margin:0 auto;padding:2rem 1.5rem 4rem;}
   section{margin-bottom:3rem;scroll-margin-top:4.5rem;}
   section h2{
-    color:var(--oxblood);
+    color:var(--accent);
     font-size:1.3rem;
-    border-bottom:2px solid var(--brass);
+    border-bottom:2px solid var(--rule);
     padding-bottom:.4rem;
     margin-bottom:1rem;
   }
-  section h3{color:var(--bluestone-dark);font-size:1rem;margin:1.25rem 0 .4rem;}
+  section h3{color:var(--ink);font-size:1rem;margin:1.25rem 0 .4rem;}
   section p, section li{font-size:.92rem;color:#2a2a2a;}
   .tag{
     display:inline-block;
     font-size:.65rem;
     text-transform:uppercase;
     letter-spacing:.06em;
-    background:var(--bluestone);
+    background:var(--muted);
     color:#fff;
     padding:.15rem .5rem;
     border-radius:2px;
@@ -194,7 +214,7 @@
     display:flex;
     gap:1rem;
     padding:1rem 0;
-    border-left:3px solid var(--brass);
+    border-left:3px solid var(--rule);
     padding-left:1.25rem;
     position:relative;
   }
@@ -205,7 +225,7 @@
     top:1rem;
     width:1.9rem;
     height:1.9rem;
-    background:var(--oxblood);
+    background:var(--accent);
     color:#fff;
     border-radius:50%;
     display:flex;
@@ -214,23 +234,33 @@
     font-size:.8rem;
     font-family:Georgia,serif;
   }
-  .story-step h4{margin:0 0 .3rem;color:var(--oxblood-dark);font-size:1rem;}
+  .story-step h4{margin:0 0 .3rem;color:var(--accent-dark);font-size:1rem;}
   .story-step p{margin:0;}
 
   table.simple{width:100%;border-collapse:collapse;font-size:.85rem;margin:.5rem 0 1rem;}
   table.simple th, table.simple td{border:1px solid #d8ccac;padding:.5rem .6rem;text-align:left;vertical-align:top;}
-  table.simple th{background:#eee2c8;color:var(--bluestone-dark);}
+  table.simple th{background:#eee2c8;color:var(--ink);}
 
   .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:.75rem;}
   .card{
     background:#fff;
     border:1px solid #d8ccac;
-    border-top:3px solid var(--oxblood);
+    border-top:3px solid var(--accent);
     border-radius:3px;
     padding:1rem;
   }
-  .card h4{margin:0 0 .4rem;font-size:.9rem;color:var(--oxblood-dark);}
+  .card h4{margin:0 0 .4rem;font-size:.9rem;color:var(--accent-dark);}
   .card p{margin:0;font-size:.82rem;}
+
+  .note{
+    font-size:.8rem;
+    color:var(--muted);
+    background:var(--page);
+    border:1px dashed var(--rule);
+    border-radius:3px;
+    padding:.75rem 1rem;
+    margin-top:1rem;
+  }
 
   footer.foot{
     text-align:center;
@@ -274,6 +304,7 @@
     </header>
 
     <nav class="jump">
+      <a href="#capabilities">Capabilities</a>
       <a href="#storyboard">Storyboard</a>
       <a href="#proposal">Proposal</a>
       <a href="#best-practice">Best practice</a>
@@ -284,7 +315,190 @@
       <a href="#fulfilment">Fulfilment</a>
     </nav>
 
+    <div class="asset-links">
+      <a href="../index.html">&rarr; Public site</a>
+      <a href="../docs/book-mockup.html">&rarr; Book cover mockup</a>
+      <a href="../docs/book-mockup-3d.html">&rarr; Interactive 3D book</a>
+      <a href="../docs/send-postcard.html">&rarr; Send a postcard</a>
+      <a href="../docs/project-brief.md">&rarr; Full pitch doc (.md)</a>
+      <a href="../wifi-portal/index.html">&rarr; WiFi portal design</a>
+    </div>
+
     <main>
+
+      <section id="capabilities">
+        <h2>0. Capabilities &amp; previous projects</h2>
+        <p>Private explainer — background and prior work that inform how this
+        project gets researched and built. Longer and more personal than the
+        public "About David Hough" on the website — this stays in the
+        back end.</p>
+
+        <h3>My story</h3>
+        <p>David moved to Australia at age 8. His family later returned to
+        South Africa, settling in the Groot Marico area near the Botswana
+        border, where they farmed with game — including zebra. That early
+        back-and-forth between countries set the pattern for a genuinely
+        international career: assurance and risk consulting at PwC Australia
+        and Deloitte South Africa, multinational audit work with Philip
+        Morris International across Amsterdam, Switzerland, and its
+        international affiliates, then a Master of Public Health that
+        shifted the lens from "is the control working" to "who is actually
+        affected, and how would they know."</p>
+        <p>He co-founded One1 Digital, Adelaide-founded, with his sister; she
+        now leads the company day to day, having relocated to the Western
+        Cape in South Africa since most of their clients are in Europe or
+        America. Around the same period, the pattern that defines his recent
+        work took shape — building structured systems that make complex,
+        fragmented information legible to the people it affects, rather than
+        only to the institutions that hold it.</p>
+        <p>That pattern continued through roughly 18 months based back on the
+        family's Groot Marico property, working independently on research
+        systems and technology concepts — the direct precursor to Sentrix
+        Digital and RiskAtlas. Returning to Melbourne and moving into Fawkner
+        Mansions in September 2026, the same instinct that built RiskAtlas —
+        that good evidence, properly organised, gives people back some
+        control over systems that otherwise run opaque — turned toward the
+        building itself: a heritage-listed property with almost no public
+        record, run by owners who are, by his own account of the tenancy,
+        hard to reach. Writing this book is that same discipline pointed at
+        a different kind of opacity: not a benefits system this time, but a
+        hundred-plus years of a building's history that nobody has bothered
+        to write down.</p>
+
+        <h3>An audit-style approach to the book</h3>
+        <p>The book's research applies a standard, textbook evidence-assurance
+        discipline — the same structure used in financial and controls audit
+        work generally, not any specific employer's proprietary methodology:</p>
+        <div class="card-grid">
+          <div class="card"><h4>1. Risk / scope assessment</h4><p>What's
+          actually knowable about the building, what's unverifiable, and
+          where the biggest gaps in the historical record are likely to
+          be.</p></div>
+          <div class="card"><h4>2. Evidence gathering</h4><p>Inspection
+          (archives, records, the building itself), observation (present-day
+          condition and use), and inquiry (residents, heritage bodies,
+          historians) — the three standard evidence-gathering methods.</p></div>
+          <div class="card"><h4>3. Testing &amp; corroboration</h4><p>Every
+          claim checked against a primary source where possible; conflicting
+          or unverifiable claims are flagged rather than smoothed over.</p></div>
+          <div class="card"><h4>4. Reporting</h4><p>Findings written up so
+          another person could trace any claim back to its source — the same
+          standard applied in <a href="#best-practice">&sect;3 Best
+          practice</a>.</p></div>
+        </div>
+
+        <h3>Professional background</h3>
+        <table class="simple">
+          <tr><th>PwC Australia</th><td>Senior Consultant, Risk Assurance
+          (Dec 2015–2019, Sydney) — portfolio included Commonwealth Bank of
+          Australia, Zurich Financial Services Australia, Citibank
+          Australia, and superannuation/insurance clients, across technology
+          controls, post-implementation reviews, data migration, third-party
+          assurance, AML/KYC, and regulatory attestation. Delivered 16
+          engagements in one financial year, including a three-month
+          Adelaide secondment covering nine engagements. Completed CISA
+          (ISACA) in June 2017. Prepared reports and evidence-based
+          recommendations for senior stakeholders and coached five direct
+          reports.</td></tr>
+          <tr><th>Philip Morris International</th><td>Information Systems
+          Auditor (2019) — multinational assurance work across Amsterdam,
+          Switzerland, and international affiliates: document review,
+          interviews, evidence testing, and translating complex findings for
+          senior stakeholders across professional and cultural
+          boundaries.</td></tr>
+          <tr><th>Deloitte South Africa</th><td>Joined 2013 in Technology
+          Advisory and Assurance (IT General Controls testing, Automated
+          Control Reviews, Data Assurance), promoted from Consultant to
+          Senior Consultant. Later returned as Assistant Manager, IT &amp;
+          Specialised Assurance — evidence assessment, controls analysis,
+          engagement planning, and team supervision. Also served as a Western
+          Cape Employment Equity Forum representative.</td></tr>
+          <tr><th>Financial Claims Scheme reporting</th><td>Annual controls
+          evaluation and Financial Claims Scheme readiness reporting for
+          Commonwealth Bank of Australia, under APRA's crisis-management
+          framework — senior-stakeholder reporting under a live regulatory
+          framework, not a training exercise.</td></tr>
+          <tr><th>Public health</th><td>Master of Public Health, Macquarie
+          University (conferred 17 August 2023, Higher Study Scholarship) —
+          policy design, health law and economics, systems science in
+          healthcare, global health, epidemiology/biostatistics.</td></tr>
+          <tr><th>Business/IT foundation</th><td>Bachelor of Business
+          Systems, Bond University (conferred 15 June 2013) — double major in
+          Information Systems and Management, Distinction GPA average,
+          Dean's List, Top Student Award for Business Processes and IT
+          Operations, partial scholarship. City of Gold Coast Open Data
+          capstone: his team's ~100-page report was adopted by the City,
+          which implemented an Open Data Access Project based on its
+          recommendations. Also Vice President, African Students Association
+          Think Tank.</td></tr>
+          <tr><th>Certifications</th><td>CISA (ISACA) — no longer active.
+          Microsoft: MCITP, MCTS, MCP, MCSA.</td></tr>
+          <tr><th>One1 Digital contribution</th><td>Funding-linked strategy
+          and business-development work, alongside risk-management guidance
+          associated with a reported 20% reduction in risk-related
+          costs.</td></tr>
+        </table>
+        <p class="note">Across 40+ assurance and consulting engagements,
+        the consistent thread has been identifying authoritative
+        requirements, locating reliable evidence, and distinguishing fact
+        from assumption — the same discipline this project applies to a
+        building's history instead of a set of financial statements.</p>
+
+        <h3>Current projects</h3>
+        <div class="card-grid">
+          <div class="card"><h4>Sentrix Digital</h4><p>Founded 2026, Melbourne
+          — "Evidence. Clearer systems. Practical capability." Consulting,
+          research, and digital systems for complex policy, regulatory, and
+          institutional environments — turning evidence, rules, and
+          workflows into clearer decisions and practical tools people can
+          actually use.</p></div>
+          <div class="card"><h4>RiskAtlas</h4><p>Source-governance system
+          tracking legislative, regulatory, employment, and policy material
+          across jurisdictions (South Africa and Australia), with a focus on
+          source authority, currency, and auditability over time.</p></div>
+          <div class="card"><h4>ClaimHub &amp; ClaimBuddy</h4><p>Tools built
+          around evidence organisation and claimant-authorised visibility —
+          keeping the affected person visible in policy/employment/medical
+          administrative processes.</p></div>
+          <div class="card"><h4>One1 Digital</h4><p>Founded 2020,
+          Adelaide — "Your systems shouldn't slow your team down." Co-founded
+          with his sister, Yvette Hough, who now runs it day to day, having
+          relocated to the Western Cape, South Africa, since most clients
+          are in Europe or America. Custom software/automation — CRMs,
+          workflow tools, client portals, integrations — for service-based
+          organisations in education, healthcare, aged care, and community
+          services.</p></div>
+          <div class="card"><h4>PostNow (postnow.co.za)</h4><p>Southern
+          African logistics platform — POPIA-compliant regulated document
+          dispatch for banks and law firms, WhatsApp-based courier booking,
+          cross-border duty calculation, and escrow-protected peer-to-peer
+          trading, across South Africa, Botswana, and Namibia, on a shared
+          payment and audit-logging backend.</p></div>
+          <div class="card"><h4>AfterDuty (afterduty.co.za)</h4><p>Import
+          cost-comparison tool for South African and Botswanan shoppers —
+          calculates the true landed cost of an overseas purchase (duty,
+          VAT, customs clearance, courier) against a real local listing, so
+          buyers can see whether importing actually saves money.</p></div>
+        </div>
+
+        <h3>Throughline</h3>
+        <p>Overall: a researcher, academic, and entrepreneur — a systems
+        thinker who consistently adds value by making complex, fragmented
+        information legible to the people it actually affects. That shows up
+        as a research/evidence discipline (PwC, Deloitte, MPH), as founder
+        or co-founder of several working systems (One1 Digital, PostNow,
+        AfterDuty, Sentrix Digital, RiskAtlas, ClaimHub/ClaimBuddy), and now
+        as the same instinct applied to a heritage-listed building that
+        nobody had bothered to document. A consistent commitment to equity
+        and access runs through all of it — applies equally to a benefits
+        claimant navigating a fragmented system and to a reader trying to
+        understand the history of the building they live in.</p>
+
+        <p class="note">Confidential note: this section intentionally does
+        not reproduce any specific employer's proprietary methodology
+        diagrams or internal materials — only generic, industry-standard
+        audit/assurance concepts are used above.</p>
+      </section>
 
       <section id="storyboard">
         <h2>1. Storyboard</h2>
@@ -330,13 +544,92 @@
       </section>
 
       <section id="proposal">
-        <h2>2. Proposal recap</h2>
+        <h2>2. Proposal to the Owners</h2>
+        <p>Full working detail lives in <code>docs/project-brief.md</code> —
+        this is the persuasive version, written to actually be said or sent
+        to Jeff Nguyen. A polished, print-ready version of this same
+        proposal — the one to actually hand over — is at
+        <a href="../docs/proposal.html">docs/proposal.html</a>
+        (<a href="../docs/Fawkner_Mansions_Proposal.pdf">PDF</a>).</p>
+
+        <h3>The value I bring</h3>
+        <p>An evidence-trained researcher already living in the building is
+        offering to do, essentially for free, work that would otherwise cost
+        the owners real money to commission: professional-grade digital
+        preservation, archival research, and a public-facing history — with
+        an audit-style discipline (see <a href="#capabilities">&sect;0</a>)
+        applied to make sure every claim is sourced and defensible, not
+        marketing fluff. On top of the core research and 3D/VR capture, I
+        bring drone piloting and 3D mapping (photogrammetry) skills directly,
+        plus documentary film-making — an interest of mine — so the same
+        capture work produces both the preservation record and a short
+        history documentary, at no extra cost to the owners.</p>
+
+        <h3>How this creates a legacy</h3>
+        <p>Fawkner Mansions is, on the current evidence, the oldest surviving
+        residential flats in the City of Stonnington and one of the oldest
+        in Victoria — a genuinely rare claim most owners of a 116-year-old
+        building never get the chance to make. This project turns that claim
+        into something permanent: a properly researched book, and a full
+        digital <strong>VR (virtual reality) record</strong> — a 3D model of
+        the building people can explore, headset or browser, as if walking
+        through it in person — that will still exist and be referenceable by
+        heritage bodies, historians, and the public even if the physical
+        building is ever altered or demolished. Given the building's
+        significance, doing this now, while it still stands largely intact,
+        is a meaningfully time-sensitive opportunity, not a someday project.
+        A well-produced documentary and a genuine "heritage building saved
+        digitally" story is also a plausible media hook — local and
+        potentially international press coverage that promotes the book,
+        the documentary, and Fawkner Mansions itself simultaneously, driving
+        both public interest and book sales. I can also engage directly with
+        universities on the owners' behalf — for research support, and to
+        explore funding or grant support, aligning this with how comparable
+        heritage-documentation projects are normally resourced (see
+        <a href="#universities">&sect;7</a>).</p>
+        <p class="note">This isn't hypothetical — a working <a href="../docs/book-mockup.html">book
+        cover mockup</a>, an <a href="../docs/book-mockup-3d.html">interactive
+        3D book</a>, and a functioning <a href="../docs/send-postcard.html">postcard
+        system</a> already exist as proof of concept (see the links above).
+        Jeff Nguyen can be shown something real, not just a description.</p>
+
+        <h3>Why I'm suited to do it</h3>
+        <p>This isn't a hobbyist project. My background is in assurance and
+        risk research — PwC, Deloitte, Philip Morris International — plus a
+        Master of Public Health that trained a systems-level, evidence-first
+        way of thinking. I've built and run independent research systems
+        (Sentrix Digital, RiskAtlas, ClaimHub/ClaimBuddy) and co-founded
+        three working businesses (One1 Digital, PostNow, AfterDuty). This
+        work already runs through a registered business — Sentrix Digital,
+        with its own ABN and the infrastructure (hosting, domains,
+        development tooling) already in place — so this isn't a standing
+        start or a hobby project without the professional backing to see it
+        through. I already live in the building, so access, motivation, and
+        timeline all line up naturally — this isn't an outside contractor
+        who has to be brought in and briefed. See
+        <a href="#capabilities">&sect;0</a> for the full background.</p>
+        <p>Timing matters too: I'm starting a PhD in mid-2027, which gives
+        me a genuine, bounded window of real capacity right now to commit to
+        this properly — not an open-ended promise, but a defined window
+        where I'm actively looking for exactly this kind of project. I
+        believe this is a once-in-a-lifetime opportunity for both of us: a
+        rare, well-documented heritage building and a researcher with the
+        time, skills, and motivation to do it justice, at the same
+        moment.</p>
+        <p>As part of the project, I'd also register a dedicated domain for
+        the building — <code>fawknermansions.com.au</code> or
+        <code>fawknerheritage.com.au</code> — giving the building a proper,
+        permanent web presence independent of any one platform.</p>
+
+        <h3>What I want in exchange</h3>
         <p><span class="tag">The ask</span> A defined research period (e.g. 3
         months) in exchange for a rent discount or rent-free period.</p>
-        <p><span class="tag">The give</span> A professionally produced 3D scan
-        and digital record of the building, delivered to the owners regardless
-        of whether the book is ever published — plus the heritage/publicity
-        upside of "oldest surviving flats in Stonnington."</p>
+        <p><span class="tag">The give</span> A professionally produced 3D/VR
+        scan and digital record of the building, delivered to the owners
+        regardless of whether the book is ever published — plus the
+        heritage/publicity upside of "oldest surviving flats in
+        Stonnington," and a documentary that promotes the building alongside
+        the book.</p>
         <table class="simple">
           <tr><th>Owner risk</th><td>Low — deliverables are staged, with a
           checkpoint (e.g. 6 weeks) before the arrangement continues.</td></tr>
@@ -346,7 +639,6 @@
           fall back to simply requesting access/permission (roof, common
           areas, archives, photography) with no rent change.</td></tr>
         </table>
-        <p>Full detail: <code>docs/project-brief.md</code> in the repo.</p>
       </section>
 
       <section id="best-practice">
@@ -414,6 +706,13 @@
           <tr><th>Book sales</th><td>KDP royalties (trade edition) + direct
           sales of the limited hardcover run. Treat as reputational income
           first, revenue second.</td></tr>
+          <tr><th>Publisher/academic networks</th><td>Beyond self-publishing,
+          worth reaching out through academic and publishing contacts in
+          Australia, Europe, the USA, and further afield — heritage and
+          local-history titles are a genuine niche for university presses
+          and specialist publishers, not just KDP. University interest (see
+          &sect;6, &sect;7) makes a co-publishing or distribution
+          conversation plausible, not just individual library sales.</td></tr>
           <tr><th>Documentary</th><td>YouTube ad revenue; sponsorship from a
           heritage-adjacent brand (architecture practice, heritage insurer,
           council tourism body).</td></tr>
@@ -428,6 +727,83 @@
           societies; licensing photography/3D assets to local media or
           heritage publications.</td></tr>
         </table>
+
+        <h3>WiFi hotspot — a separate, standalone revenue idea</h3>
+        <p>Not part of the book/heritage pitch — a distinct value-add worth
+        proposing to the owners on its own merits. There's no free WiFi at
+        the building today, and guests/residents would plausibly pay for
+        it. This reuses the "Mansion WiFi" captive-portal design already
+        built (<a href="../wifi-portal/index.html">see the existing
+        preview</a>) — previously parked, now with an actual business case
+        behind it.</p>
+
+        <table class="simple">
+          <tr><th>Connectivity cost</th><td>Starlink, ~$75/month — one
+          connection can plausibly service the whole building's guest
+          traffic.</td></tr>
+          <tr><th>Pricing</th><td>$5/day, $20/week, $50/month per guest.
+          Even a handful of paying users a day comfortably clears the $75
+          monthly connectivity cost.</td></tr>
+          <tr><th>Access method A — vouchers</th><td>Pre-generated voucher
+          tokens, sold/handed out manually, redeemed on the captive portal.
+          Low-tech, works immediately, no payment integration needed.</td></tr>
+          <tr><th>Access method B — card payment</th><td>Captive portal
+          collects payment directly (debit/credit card) and issues access
+          automatically — needs a payment gateway (e.g. Stripe) wired into
+          the portal; not built yet.</td></tr>
+          <tr><th>Effort</th><td>Low, once set up — the technical work is
+          router configuration and portal deployment, not ongoing labour.</td></tr>
+        </table>
+
+        <p class="note" style="margin-top:.75rem;">Planned accepted payment
+        methods once the card-payment option is built:</p>
+        <div class="payment-logos">
+          <img src="../assets/payment-logos/visa.svg" alt="Visa" height="24">
+          <img src="../assets/payment-logos/mastercard.svg" alt="Mastercard" height="24">
+          <img src="../assets/payment-logos/amex.svg" alt="American Express" height="24">
+          <img src="../assets/payment-logos/apple-pay.svg" alt="Apple Pay" height="24">
+          <img src="../assets/payment-logos/google-pay.svg" alt="Google Pay" height="24">
+          <img src="../assets/payment-logos/unionpay.svg" alt="UnionPay" height="24">
+          <img src="../assets/payment-logos/jcb.svg" alt="JCB" height="24">
+        </div>
+
+        <div class="arch-diagram">
+          <svg viewBox="0 0 780 260" role="img" aria-label="WiFi hotspot technical architecture diagram">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#6b6558"/>
+              </marker>
+            </defs>
+            <rect x="20" y="90" width="120" height="70" fill="#fff" stroke="#1a1a1a"/>
+            <text x="80" y="120" text-anchor="middle" font-size="12" fill="#1a1a1a" font-family="Georgia,serif">Starlink</text>
+            <text x="80" y="136" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">$75/mo dish</text>
+
+            <line x1="140" y1="125" x2="195" y2="125" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <rect x="200" y="90" width="140" height="70" fill="#fff" stroke="#1a1a1a"/>
+            <text x="270" y="115" text-anchor="middle" font-size="12" fill="#1a1a1a" font-family="Georgia,serif">Custom router</text>
+            <text x="270" y="131" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">OpenWrt + openNDS</text>
+            <text x="270" y="145" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">captive portal</text>
+
+            <line x1="340" y1="125" x2="395" y2="125" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <rect x="400" y="90" width="150" height="70" fill="#fff" stroke="#1a1a1a"/>
+            <text x="475" y="115" text-anchor="middle" font-size="12" fill="#1a1a1a" font-family="Georgia,serif">Guest device</text>
+            <text x="475" y="131" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">connects to</text>
+            <text x="475" y="145" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">"Mansion WiFi"</text>
+
+            <line x1="475" y1="160" x2="475" y2="195" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+            <rect x="330" y="195" width="290" height="55" fill="#f4efe0" stroke="#a9884f"/>
+            <text x="475" y="216" text-anchor="middle" font-size="11" fill="#1a1a1a" font-family="Georgia,serif">Access page: enter voucher code,</text>
+            <text x="475" y="232" text-anchor="middle" font-size="11" fill="#1a1a1a" font-family="Georgia,serif">or pay by card (not built yet)</text>
+
+            <line x1="330" y1="222" x2="240" y2="222" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <rect x="20" y="195" width="200" height="55" fill="#fff" stroke="#1a1a1a" stroke-dasharray="3 3"/>
+            <text x="120" y="216" text-anchor="middle" font-size="11" fill="#1a1a1a" font-family="Georgia,serif">Manual voucher sale</text>
+            <text x="120" y="232" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">(works today, no build needed)</text>
+          </svg>
+        </div>
       </section>
 
       <section id="audience">
@@ -512,27 +888,71 @@
 
       <section id="fulfilment">
         <h2>8. Fulfilment — print postcards</h2>
-        <p><span class="tag">Status</span> Not wired to a real print
-        provider yet. The button below just opens the postcard mockup in
-        print-ready view and triggers the browser's own print dialog —
-        useful for a one-off print run, not for order fulfilment.</p>
+        <p><span class="tag">Status</span> Neither flow below is wired to a
+        real provider yet. Both are specified so the actual API integration
+        is a later, defined decision rather than an open-ended someday.</p>
+
+        <h3>Flow A — bulk self-production</h3>
+        <p>For printing a batch of postcards to keep on hand (events,
+        heritage-group handouts, personal stock). A "Produce" action sends
+        a design + quantity to a print provider and has the batch shipped
+        back to us at cost.</p>
         <p style="margin:1rem 0;">
-          <a href="../docs/book-mockup.html#print" style="display:inline-block;background:var(--iron);color:var(--cream);padding:.5rem 1.1rem;text-decoration:none;font-size:.85rem;border-radius:3px;">
-            Open print-ready postcards
+          <a href="../docs/book-mockup.html#print" style="display:inline-block;background:var(--ink);color:var(--page);padding:.5rem 1.1rem;text-decoration:none;font-size:.85rem;border-radius:3px;">
+            Open print-ready postcards (manual, works today)
           </a>
         </p>
         <table class="simple">
           <tr><th>Now</th><td>Manual: open the print view, use the browser's
-          print dialog, print or save as PDF yourself.</td></tr>
-          <tr><th>Later</th><td>Wire this button to an actual print-on-demand
-          provider's API (e.g. Officeworks Print &amp; Create, Vistaprint, or
-          a general POD service) so an order can be placed and fulfilled
-          directly from here, with the recipient's address if it's being
-          mailed rather than picked up.</td></tr>
-          <tr><th>Open question</th><td>Which provider, and whether postcards
-          ship to the sender (to post themselves) or direct to the recipient
-          — affects what data this needs to collect and store.</td></tr>
+          print dialog, print or save as PDF, order prints yourself.</td></tr>
+          <tr><th>Later</th><td>A real "Produce" button calling a
+          print-on-demand API — candidates: Officeworks Print &amp; Create
+          (Australia, no public API found — would likely mean a manual
+          upload workflow, not true automation), or a POD service with an
+          actual API such as Prodigi or Printful, which support postcard
+          products and bulk ordering.</td></tr>
         </table>
+
+        <h3>Flow B — direct-to-recipient, worldwide</h3>
+        <p>The visitor-facing flow in <code>docs/send-postcard.html</code>:
+        pick a design, write a message, choose "Physical postcard," enter
+        the recipient's address — it's printed and mailed directly to them,
+        wherever they are, without ever passing through us physically.</p>
+        <table class="simple">
+          <tr><th>Now</th><td>Fully built UI (design gallery, delivery-method
+          toggle, address form) — but selecting "Physical" doesn't actually
+          print or post anything. Clearly labelled as such in the flow
+          itself.</td></tr>
+          <tr><th>Later</th><td>Candidate providers with real international
+          print-and-mail APIs: <strong>PostGrid</strong> and
+          <strong>Prodigi</strong> both do exactly this (print + direct
+          postal dispatch to an end address, various countries). Neither is
+          integrated — this is a shortlist to evaluate, not a decision.</td></tr>
+          <tr><th>Data implication</th><td>A real integration means
+          collecting and (briefly) storing a full postal address per
+          postcard sent — worth deciding a retention/deletion policy before
+          this goes live for real, not after.</td></tr>
+        </table>
+
+        <h3>Making postcards free — funding options</h3>
+        <div class="card-grid">
+          <div class="card"><h4>Provider sponsorship</h4><p>Approach the
+          eventual print/mail provider directly — they cover print+postage
+          cost in exchange for a small branding credit on the postcard back
+          or a case-study/PR mention. Providers running POD services often
+          have exactly this kind of co-marketing budget.</p></div>
+          <div class="card"><h4>Heritage/interest-group funding</h4><p>Same
+          funding conversation as the book (see <a href="#universities">&sect;7</a>
+          and <code>docs/project-brief.md</code>'s public-interest section)
+          — Stonnington Council, National Trust, or a university partner
+          could plausibly fund a batch of postcards as part of a wider
+          heritage-promotion grant.</p></div>
+          <div class="card"><h4>Self-funded as marketing spend</h4><p>The
+          postcard itself promotes the book, documentary, and building — so
+          its cost can reasonably be treated as marketing/PR spend rather
+          than pure overhead, especially if it drives book sales or press
+          attention (see &sect;2's legacy/media argument).</p></div>
+        </div>
       </section>
 
     </main>

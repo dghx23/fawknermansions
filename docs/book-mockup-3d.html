@@ -16,7 +16,9 @@
   body{
     margin:0;
     font-family: Georgia, 'Times New Roman', serif;
-    background:#ddd6c4;
+    background:
+      radial-gradient(ellipse at 50% 30%, #e8e0cd, #c9bfa5 75%),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.02) 0 2px, transparent 2px 6px);
     color:var(--ink);
     padding:2.5rem 1.5rem 3rem;
     display:flex;
@@ -52,6 +54,7 @@
     width:320px;
     height:460px;
     transform-style:preserve-3d;
+    filter:drop-shadow(0 25px 35px rgba(0,0,0,.35));
     will-change:transform;
   }
   .face{
@@ -314,6 +317,22 @@
     max-width:520px;
     font-family: Arial, sans-serif;
   }
+
+  .lang-switch{
+    display:flex;
+    gap:.4rem;
+    margin-top:1rem;
+  }
+  .lang-btn{
+    font-family:inherit;
+    font-size:.72rem;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    padding:.35rem .7rem;
+    cursor:pointer;
+  }
+  .lang-btn.selected{background:var(--ink);color:var(--paper);}
+  .lang-btn:hover:not(.selected){background:#e9dfc4;}
 </style>
 </head>
 <body>
@@ -324,19 +343,19 @@
     <div class="book" id="book">
 
       <div class="face face-front">
-        <div class="eyebrow">History &middot; Architecture &middot; Community</div>
+        <div class="eyebrow" id="t-eyebrow">History &middot; Architecture &middot; Community</div>
         <div class="front-title">
           <h1>Fawkner Mansions</h1>
           <div class="subtitle">250 Punt Road, Prahran</div>
-          <div class="facts">Est. 1910&ndash;1911 &middot; Ernest H. Willis</div>
+          <div class="facts" id="t-facts">Est. 1910&ndash;1911 &middot; Ernest H. Willis</div>
         </div>
         <div class="photo-mount">
           <div class="photo-placeholder"><span>1960s photograph &mdash; to be added</span></div>
         </div>
-        <div class="obi-band"><span class="years">116 years</span> of living history &mdash; captured, priceless</div>
-        <p class="front-blurb">The oldest surviving residential flats in the
+        <div class="obi-band" id="t-obi"><span class="years" id="t-obi-years">116 years</span> <span id="t-obi-rest">of living history &mdash; captured, priceless</span></div>
+        <p class="front-blurb" id="t-blurb">The oldest surviving residential flats in the
         City of Stonnington, and one of the oldest in Victoria.</p>
-        <div class="front-footer">Heritage Overlay HO448 &middot; City of Stonnington</div>
+        <div class="front-footer" id="t-footer">Heritage Overlay HO448 &middot; City of Stonnington</div>
         <div class="front-author">David Hough</div>
         <div class="skyline-strip">
           <svg viewBox="0 0 320 40" preserveAspectRatio="none" role="img" aria-label="Melbourne skyline motif, decorative">
@@ -377,13 +396,13 @@
           <div class="locator-label">Melbourne<br>Prahran</div>
         </div>
         <div class="eyebrow">Fawkner Mansions</div>
-        <p class="back-copy">On the corner of Punt and Commercial roads in
+        <p class="back-copy" id="t-back-copy">On the corner of Punt and Commercial roads in
         Prahran stands the oldest surviving block of flats in the City of
         Stonnington &mdash; and one of the oldest in Victoria. This book
         traces its Edwardian Free Classical architecture, a century of
         residents, and a present-day resident&rsquo;s own research and
         digital preservation of a building whose future is not guaranteed.</p>
-        <div class="back-badges">
+        <div class="back-badges" id="t-badges">
           <span>Heritage Overlay HO448</span>
           <span>Local History</span>
           <span>Architecture</span>
@@ -419,9 +438,18 @@
     <button id="spin-btn" type="button">Auto-spin: on</button>
   </div>
 
+  <div class="lang-switch" id="lang-switch">
+    <button type="button" class="lang-btn selected" data-lang="en">&#127468;&#127463; EN</button>
+    <button type="button" class="lang-btn" data-lang="de">&#127465;&#127466; DE</button>
+    <button type="button" class="lang-btn" data-lang="fr">&#127467;&#127479; FR</button>
+    <button type="button" class="lang-btn" data-lang="es">&#127466;&#127480; ES</button>
+    <button type="button" class="lang-btn" data-lang="zh">&#127464;&#127475; ZH</button>
+  </div>
+
   <p class="caption">Concept mockup only &mdash; title, author credit, blurb,
   imprint and ISBN are placeholders. The photo panel is a placeholder; drop
-  in the real 1960s photograph once it's ready to use.</p>
+  in the real 1960s photograph once it's ready to use. Draft machine-assisted
+  translations &mdash; have a native speaker review before real use.</p>
 
 <script>
   (function(){
@@ -494,6 +522,84 @@
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+  })();
+
+  (function(){
+    var translations = {
+      en: {
+        eyebrow: "History &middot; Architecture &middot; Community",
+        facts: "Est. 1910&ndash;1911 &middot; Ernest H. Willis",
+        obiYears: "116 years",
+        obiRest: "of living history &mdash; captured, priceless",
+        blurb: "The oldest surviving residential flats in the City of Stonnington, and one of the oldest in Victoria.",
+        footer: "Heritage Overlay HO448 &middot; City of Stonnington",
+        backCopy: "On the corner of Punt and Commercial roads in Prahran stands the oldest surviving block of flats in the City of Stonnington &mdash; and one of the oldest in Victoria. This book traces its Edwardian Free Classical architecture, a century of residents, and a present-day resident&rsquo;s own research and digital preservation of a building whose future is not guaranteed.",
+        badges: ["Heritage Overlay HO448", "Local History", "Architecture"]
+      },
+      de: {
+        eyebrow: "Geschichte &middot; Architektur &middot; Gemeinschaft",
+        facts: "Erb. 1910&ndash;1911 &middot; Ernest H. Willis",
+        obiYears: "116 Jahre",
+        obiRest: "gelebte Geschichte &mdash; festgehalten, unbezahlbar",
+        blurb: "Die &auml;lteste Wohnanlage der Stadt Stonnington &mdash; ein au&szlig;ergew&ouml;hnlich intaktes Beispiel edwardianischer Architektur.",
+        footer: "Denkmalschutz-Overlay HO448 &middot; Stadt Stonnington",
+        backCopy: "An der Ecke Punt Road und Commercial Road in Prahran steht die &auml;lteste erhaltene Wohnanlage der Stadt Stonnington &mdash; und eine der &auml;ltesten in Victoria. Dieses Buch zeichnet die edwardianische Free-Classical-Architektur, ein Jahrhundert von Bewohnern und die eigene Forschung und digitale Bewahrung eines Geb&auml;udes nach, dessen Zukunft nicht gesichert ist.",
+        badges: ["Denkmalschutz-Overlay HO448", "Lokalgeschichte", "Architektur"]
+      },
+      fr: {
+        eyebrow: "Histoire &middot; Architecture &middot; Communaut&eacute;",
+        facts: "Construit en 1910&ndash;1911 &middot; Ernest H. Willis",
+        obiYears: "116 ans",
+        obiRest: "d&rsquo;histoire vivante &mdash; captur&eacute;s, inestimables",
+        blurb: "Le plus ancien immeuble d&rsquo;appartements de la ville de Stonnington &mdash; un exemple remarquablement intact de l&rsquo;architecture &eacute;douardienne.",
+        footer: "Zone de protection patrimoniale HO448 &middot; Ville de Stonnington",
+        backCopy: "&Agrave; l&rsquo;angle de Punt Road et Commercial Road &agrave; Prahran se dresse le plus ancien immeuble d&rsquo;appartements de la ville de Stonnington &mdash; et l&rsquo;un des plus anciens de Victoria. Ce livre retrace son architecture &eacute;douardienne, un si&egrave;cle de r&eacute;sidents, et les recherches et la pr&eacute;servation num&eacute;rique men&eacute;es par un r&eacute;sident actuel d&rsquo;un b&acirc;timent dont l&rsquo;avenir n&rsquo;est pas garanti.",
+        badges: ["Zone patrimoniale HO448", "Histoire locale", "Architecture"]
+      },
+      es: {
+        eyebrow: "Historia &middot; Arquitectura &middot; Comunidad",
+        facts: "Construido en 1910&ndash;1911 &middot; Ernest H. Willis",
+        obiYears: "116 a&ntilde;os",
+        obiRest: "de historia viva &mdash; capturada, invaluable",
+        blurb: "El edificio de apartamentos m&aacute;s antiguo de la ciudad de Stonnington &mdash; un ejemplo excepcionalmente conservado de arquitectura eduardiana.",
+        footer: "Superposici&oacute;n Patrimonial HO448 &middot; Ciudad de Stonnington",
+        backCopy: "En la esquina de Punt Road y Commercial Road, en Prahran, se encuentra el edificio de apartamentos m&aacute;s antiguo de la ciudad de Stonnington &mdash; y uno de los m&aacute;s antiguos de Victoria. Este libro recorre su arquitectura eduardiana, un siglo de residentes, y la investigaci&oacute;n y preservaci&oacute;n digital realizadas por un residente actual de un edificio cuyo futuro no est&aacute; garantizado.",
+        badges: ["Superposici&oacute;n Patrimonial HO448", "Historia Local", "Arquitectura"]
+      },
+      zh: {
+        eyebrow: "&#21382;&#21490; &middot; &#24314;&#31569; &middot; &#31038;&#21306;",
+        facts: "&#24314;&#20110;1910&ndash;1911&#24180; &middot; &#27431;&#20869;&#26031;&#29305;&middot;H&middot;&#23041;&#21033;&#26031;&#35774;&#35745;",
+        obiYears: "116&#24180;",
+        obiRest: "&#40092;&#27963;&#21382;&#21490; &mdash; &#23450;&#26684;&#26080;&#20215;",
+        blurb: "&#26031;&#25176;&#23425;&#39030;&#24066;&#26368;&#21476;&#32769;&#30340;&#20844;&#23507;&#24314;&#31569;&mdash;&mdash;&#29233;&#24503;&#21326;&#26102;&#20195;&#24314;&#31569;&#20445;&#23384;&#23436;&#22909;&#30340;&#20856;&#33539;&#12290;",
+        footer: "&#36951;&#20135;&#20445;&#25252;&#21306; HO448 &middot; &#26031;&#25176;&#23425;&#39030;&#24066;",
+        backCopy: "&#22312;&#24222;&#20848;&#30340;&#24222;&#29305;&#36335;&#19982;&#21830;&#19994;&#36335;&#36335;&#21475;&#65292;&#31449;&#31435;&#30528;&#26031;&#25176;&#23425;&#39030;&#24066;&#26368;&#21476;&#32769;&#30340;&#20844;&#23507;&#24314;&#31569;&mdash;&mdash;&#20063;&#26159;&#32500;&#22810;&#21033;&#20122;&#24030;&#26368;&#21476;&#32769;&#30340;&#20844;&#23507;&#20043;&#19968;&#12290;&#26412;&#20070;&#36861;&#28034;&#20102;&#20854;&#29233;&#24503;&#21326;&#24314;&#31569;&#39118;&#26684;&#12289;&#19968;&#20010;&#19990;&#32426;&#30340;&#23621;&#27665;&#65292;&#20197;&#21450;&#19968;&#20301;&#29616;&#20219;&#23621;&#27665;&#23545;&#36825;&#26016;&#26410;&#26469;&#24460;&#26410;&#21487;&#30693;&#30340;&#24314;&#31569;&#25152;&#20570;&#30340;&#30740;&#31350;&#19982;&#25968;&#23383;&#20445;&#23384;&#12290;",
+        badges: ["&#36951;&#20135;&#20445;&#25252;&#21306; HO448", "&#22320;&#26041;&#21382;&#21490;", "&#24314;&#31569;"]
+      }
+    };
+
+    function applyLang(lang){
+      var t = translations[lang];
+      document.getElementById("t-eyebrow").innerHTML = t.eyebrow;
+      document.getElementById("t-facts").innerHTML = t.facts;
+      document.getElementById("t-obi-years").innerHTML = t.obiYears;
+      document.getElementById("t-obi-rest").innerHTML = t.obiRest;
+      document.getElementById("t-blurb").innerHTML = t.blurb;
+      document.getElementById("t-footer").innerHTML = t.footer;
+      document.getElementById("t-back-copy").innerHTML = t.backCopy;
+      var badgeSpans = document.querySelectorAll("#t-badges span");
+      t.badges.forEach(function(text, i){
+        if(badgeSpans[i]) badgeSpans[i].innerHTML = text;
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        document.querySelectorAll(".lang-btn").forEach(function(b){ b.classList.remove("selected"); });
+        btn.classList.add("selected");
+        applyLang(btn.getAttribute("data-lang"));
+      });
+    });
   })();
 </script>
 
