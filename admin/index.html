@@ -728,37 +728,323 @@
           heritage publications.</td></tr>
         </table>
 
-        <h3>WiFi hotspot — a separate, standalone revenue idea</h3>
-        <p>Not part of the book/heritage pitch — a distinct value-add worth
-        proposing to the owners on its own merits. There's no free WiFi at
-        the building today, and guests/residents would plausibly pay for
-        it. This reuses the "Mansion WiFi" captive-portal design already
-        built (<a href="../wifi-portal/index.html">see the existing
-        preview</a>) — previously parked, now with an actual business case
-        behind it. The payment/voucher logic itself still needs building —
-        see <a href="../wifi-portal/CHATGPT_HANDOFF_PROMPT.md">the ChatGPT
-        handoff prompt</a> for continuing that specific piece elsewhere.</p>
+        <h2>5. Paid guest WiFi — technical & business case</h2>
+
+        <p>Not part of the heritage pitch — a distinct, high-margin revenue
+        stream for the owners. The building currently has no guest WiFi, and
+        evidence (from the user's experiment repeating Alfred Hospital's guest
+        network without a password in the hotel foyer) shows substantial organic
+        demand: many guests connected immediately. With proper coverage,
+        payment options, and pricing, this becomes a reliable additional income
+        stream while solving a major service gap and enabling future security
+        infrastructure.</p>
+
+        <h3>Why this matters</h3>
+        <p>WiFi has become essential. Guests expect it; lack of it is a
+        competitive disadvantage. Beyond guest satisfaction, reliable building-wide
+        connectivity enables:</p>
+        <ul style="margin-left:1.2rem;font-size:.85rem;">
+          <li><strong>Security infrastructure:</strong> CCTV, motion sensors,
+            environmental monitors, and emergency systems requiring reliable
+            network connectivity can finally be deployed reliably.</li>
+          <li><strong>Operational efficiency:</strong> Property management,
+            guest services, and staff coordination benefit from consistent network
+            access.</li>
+          <li><strong>Revenue:</strong> At ~30 rooms, modest take-up rates
+            generate meaningful cash flow with minimal ongoing labour.</li>
+        </ul>
+
+        <h3>Connectivity model — Starlink backhaul</h3>
+        <p>The building has an existing Starlink satellite dish providing
+        primary WAN uplink. Starlink offers tiered residential plans for
+        Australian addresses:</p>
 
         <table class="simple">
-          <tr><th>Connectivity cost</th><td>Starlink, ~$75/month — one
-          connection can plausibly service the whole building's guest
-          traffic.</td></tr>
-          <tr><th>Pricing</th><td>$5/day, $20/week, $50/month per guest.
-          Even a handful of paying users a day comfortably clears the $75
-          monthly connectivity cost.</td></tr>
-          <tr><th>Access method A — vouchers</th><td>Pre-generated voucher
-          tokens, sold/handed out manually, redeemed on the captive portal.
-          Low-tech, works immediately, no payment integration needed.</td></tr>
-          <tr><th>Access method B — card payment</th><td>Captive portal
-          collects payment directly (debit/credit card) and issues access
-          automatically — needs a payment gateway (e.g. Stripe) wired into
-          the portal; not built yet.</td></tr>
-          <tr><th>Effort</th><td>Low, once set up — the technical work is
-          router configuration and portal deployment, not ongoing labour.</td></tr>
+          <tr style="background:#f4efe0;">
+            <th style="font-weight:bold;">Plan</th>
+            <th>Speed</th>
+            <th>Cost/month</th>
+            <th>Use case</th>
+          </tr>
+          <tr>
+            <td><strong>Residential — 100 Mbps</strong></td>
+            <td>~100 Mbps down</td>
+            <td><strong>A$75</strong></td>
+            <td>Essential WiFi for ~30 rooms; basic web, email, streaming.</td>
+          </tr>
+          <tr>
+            <td><strong>Residential — 200 Mbps</strong></td>
+            <td>~200 Mbps down</td>
+            <td><strong>A$110</strong></td>
+            <td>Recommended tier. Comfortable for multi-device guest use + IoT
+              sensors.</td>
+          </tr>
+          <tr>
+            <td><strong>Residential — Max</strong></td>
+            <td>~500+ Mbps down</td>
+            <td><strong>A$150</strong></td>
+            <td>Future-proof; supports video conferencing, media production,
+              large file transfers.</td>
+          </tr>
         </table>
 
-        <p class="note" style="margin-top:.75rem;">Planned accepted payment
-        methods once the card-payment option is built:</p>
+        <p class="note" style="margin-top:.75rem;"><strong>Recommendation:</strong>
+        Start with the 200 Mbps plan (A$110/month). With 30 rooms at typical
+        occupancy, even 25% concurrent usage (7-8 devices) sees no perceptible
+        latency. At 50% take-up and A$5/day, the Starlink cost is covered in
+        5 days of the month.</p>
+
+        <h3>Technical architecture — OpenWrt + openNDS captive portal</h3>
+
+        <p style="margin-bottom:1rem;">The network topology handles three traffic
+        flows: (1) Starlink WAN → (2) secure building LAN (property
+        management, security systems, resident IoT) → (3) guest WiFi with
+        authenticated, metered access.</p>
+
+        <div class="arch-diagram">
+          <svg viewBox="0 0 900 500" role="img" aria-label="WiFi hotspot technical architecture — Starlink backhaul, router mesh, captive portal">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#6b6558"/>
+              </marker>
+              <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#6b1f22"/>
+              </marker>
+            </defs>
+
+            <text x="450" y="25" text-anchor="middle" font-size="14" fill="#1a1a1a" font-weight="bold" font-family="Georgia,serif">Fawkner Mansions: Guest WiFi Network</text>
+
+            <rect x="20" y="60" width="140" height="80" fill="#f4efe0" stroke="#a9884f" stroke-width="2"/>
+            <text x="90" y="85" text-anchor="middle" font-size="12" fill="#1a1a1a" font-weight="bold" font-family="Georgia,serif">Starlink Dish</text>
+            <text x="90" y="103" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">Satellite WAN</text>
+            <text x="90" y="118" text-anchor="middle" font-size="9" fill="#6b6558" font-family="Georgia,serif">100–500 Mbps</text>
+            <text x="90" y="131" text-anchor="middle" font-size="9" fill="#6b6558" font-family="Georgia,serif">A$75–A$150/mo</text>
+
+            <line x1="160" y1="100" x2="220" y2="100" stroke="#6b6558" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <rect x="220" y="60" width="160" height="80" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+            <text x="300" y="85" text-anchor="middle" font-size="12" fill="#1a1a1a" font-weight="bold" font-family="Georgia,serif">Cudy M1200 Router</text>
+            <text x="300" y="103" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">OpenWrt 23.05.5</text>
+            <text x="300" y="118" text-anchor="middle" font-size="9" fill="#6b6558" font-family="Georgia,serif">openNDS captive portal</text>
+            <text x="300" y="131" text-anchor="middle" font-size="9" fill="#6b6558" font-family="Georgia,serif">FAS (Forwarding Auth)</text>
+
+            <line x1="380" y1="100" x2="440" y2="100" stroke="#6b6558" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <g>
+              <text x="450" y="50" text-anchor="middle" font-size="11" fill="#6b6558" font-weight="bold">Building LAN (br-lan)</text>
+              <rect x="440" y="60" width="80" height="80" fill="#fff" stroke="#6b1f22" stroke-width="2" stroke-dasharray="4 4"/>
+              <text x="480" y="85" text-anchor="middle" font-size="9" fill="#6b1f22">192.168.1.0/24</text>
+              <text x="480" y="101" text-anchor="middle" font-size="8" fill="#6b6558">Property mgmt</text>
+              <text x="480" y="113" text-anchor="middle" font-size="8" fill="#6b6558">Security systems</text>
+              <text x="480" y="125" text-anchor="middle" font-size="8" fill="#6b6558">Resident IoT</text>
+            </g>
+
+            <line x1="440" y1="100" x2="380" y2="100" stroke="#6b1f22" stroke-width="1" stroke-dasharray="2 2"/>
+
+            <line x1="300" y1="140" x2="300" y2="180" stroke="#6b6558" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <rect x="240" y="180" width="120" height="70" fill="#f4efe0" stroke="#a9884f" stroke-width="2"/>
+            <text x="300" y="203" text-anchor="middle" font-size="11" fill="#1a1a1a" font-weight="bold" font-family="Georgia,serif">Guest WiFi SSID:</text>
+            <text x="300" y="220" text-anchor="middle" font-size="12" fill="#1a1a1a" font-family="Georgia,serif">"Mansion WiFi"</text>
+            <text x="300" y="235" text-anchor="middle" font-size="9" fill="#6b6558">(Open, captive-portal redirect)</text>
+
+            <text x="450" y="50" text-anchor="start" font-size="10" fill="#6b6558" font-weight="bold">Guest WiFi (br-guest)</text>
+            <line x1="540" y1="100" x2="620" y2="100" stroke="#6b6558" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <g>
+              <rect x="620" y="60" width="140" height="80" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+              <text x="690" y="85" text-anchor="middle" font-size="11" fill="#1a1a1a" font-weight="bold" font-family="Georgia,serif">Mesh WiFi APs</text>
+              <text x="690" y="103" text-anchor="middle" font-size="9" fill="#6b6558">(x3–4 units)</text>
+              <text x="690" y="118" text-anchor="middle" font-size="9" fill="#6b6558">192.168.20.0/24</text>
+              <text x="690" y="131" text-anchor="middle" font-size="8" fill="#6b6558">Guest isolation</text>
+            </g>
+
+            <line x1="690" y1="140" x2="690" y2="180" stroke="#6b6558" stroke-width="2" marker-end="url(#arrow)"/>
+            <rect x="630" y="180" width="120" height="70" fill="#fff" stroke="#1a1a1a" stroke-width="1"/>
+            <text x="690" y="203" text-anchor="middle" font-size="10" fill="#1a1a1a" font-weight="bold" font-family="Georgia,serif">Guest devices</text>
+            <text x="690" y="220" text-anchor="middle" font-size="9" fill="#6b6558">(phones, laptops,</text>
+            <text x="690" y="232" text-anchor="middle" font-size="9" fill="#6b6558">tablets)</text>
+
+            <text x="450" y="290" text-anchor="middle" font-size="11" fill="#1a1a1a" font-weight="bold" font-family="Georgia,serif">Guest authentication flow</text>
+
+            <line x1="140" y1="320" x2="200" y2="320" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <rect x="20" y="300" width="120" height="40" fill="#fff" stroke="#1a1a1a"/>
+            <text x="80" y="325" text-anchor="middle" font-size="9" fill="#1a1a1a">1. Guest connects</text>
+
+            <line x1="320" y1="320" x2="380" y2="320" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <rect x="200" y="300" width="120" height="40" fill="#fff" stroke="#1a1a1a"/>
+            <text x="260" y="318" text-anchor="middle" font-size="9" fill="#1a1a1a">2. Captive portal</text>
+            <text x="260" y="330" text-anchor="middle" font-size="8" fill="#6b6558">redirects HTTP</text>
+
+            <line x1="500" y1="320" x2="560" y2="320" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <rect x="380" y="300" width="120" height="40" fill="#f4efe0" stroke="#a9884f"/>
+            <text x="440" y="318" text-anchor="middle" font-size="9" fill="#1a1a1a">3. Auth page:</text>
+            <text x="440" y="330" text-anchor="middle" font-size="8" fill="#6b6558">voucher or card</text>
+
+            <line x1="680" y1="320" x2="740" y2="320" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <rect x="560" y="300" width="120" height="40" fill="#fff" stroke="#1a1a1a"/>
+            <text x="620" y="318" text-anchor="middle" font-size="9" fill="#1a1a1a">4. OpenNDS grants</text>
+            <text x="620" y="330" text-anchor="middle" font-size="8" fill="#6b6558">access token</text>
+
+            <rect x="740" y="300" width="140" height="40" fill="#fff" stroke="#1a1a1a"/>
+            <text x="810" y="318" text-anchor="middle" font-size="9" fill="#1a1a1a">5. Full internet access</text>
+            <text x="810" y="330" text-anchor="middle" font-size="8" fill="#6b6558">(metered by plan)</text>
+
+            <text x="20" y="400" font-size="9" fill="#6b6558" font-family="Georgia,serif"><tspan x="20" dy="0"><strong>Key security attributes:</strong></tspan><tspan x="20" dy="13">• Guest traffic isolated on 192.168.20.0/24 (br-guest) — no access to building LAN (192.168.1.0/24)</tspan><tspan x="20" dy="13">• Firewall: guest-to-WAN only; guest-to-LAN blocked explicitly</tspan><tspan x="20" dy="13">• Client isolation: guests cannot see or communicate with each other's devices</tspan><tspan x="20" dy="13">• DHCP/DNS: guest devices receive addresses and DNS via gateway at 192.168.20.1</tspan><tspan x="20" dy="13">• openNDS handles FAS (Forwarding Authentication Service) — real authentication, not just a browser flag</tspan></text>
+          </svg>
+        </div>
+
+        <h3>Mesh WiFi deployment — coverage strategy</h3>
+
+        <p>The Cudy M1200 serves as the primary gateway and captive-portal
+        host, but cannot reliably cover the full building (3 storeys, brick
+        construction). Deploy 3–4 additional mesh access points (APs) to extend
+        guest WiFi throughout common areas and guest rooms:</p>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>Location</th>
+            <th>Device</th>
+            <th>Role</th>
+            <th>Network</th>
+          </tr>
+          <tr>
+            <td>Router room / junction point</td>
+            <td>Cudy M1200</td>
+            <td>Primary gateway, captive-portal server, firewall, DHCP, openNDS</td>
+            <td>br-lan + br-guest</td>
+          </tr>
+          <tr>
+            <td>Ground floor foyer / common area</td>
+            <td>Mesh AP (TP-Link Deco, Netgear Orbi, etc.)</td>
+            <td>Extend br-guest coverage to entry, reception, seating</td>
+            <td>br-guest backhaul</td>
+          </tr>
+          <tr>
+            <td>First floor hallway</td>
+            <td>Mesh AP</td>
+            <td>Extend to upper rooms</td>
+            <td>br-guest backhaul</td>
+          </tr>
+          <tr>
+            <td>Second/third floor hallway</td>
+            <td>Mesh AP</td>
+            <td>Extend to top floors</td>
+            <td>br-guest backhaul</td>
+          </tr>
+        </table>
+
+        <p class="note" style="margin-top:.75rem;"><strong>Setup note:</strong>
+        Mesh APs should bridge to the Cudy M1200 via 5GHz backhaul (if available)
+        to preserve guest-facing 2.4GHz capacity. All APs broadcast the same
+        SSID ("Mansion WiFi") for seamless roaming.</p>
+
+        <h3>Access methods</h3>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>Method</th>
+            <th>Flow</th>
+            <th>Status</th>
+            <th>Effort</th>
+          </tr>
+          <tr>
+            <td><strong>Manual voucher (pre-printed tokens)</strong></td>
+            <td>Guest pays cash/card at front desk → manager hands over printed
+              token with unique 6-digit code → guest enters code on captive
+              portal → openNDS grants access for time period (24h, 7d, 30d)</td>
+            <td><span style="background:#fff9e6;padding:.1rem .3rem;border-radius:2px;">Live today</span></td>
+            <td>Low (no software build needed)</td>
+          </tr>
+          <tr>
+            <td><strong>Direct card payment (Stripe integration)</strong></td>
+            <td>Guest selects plan on captive portal → payment form (Stripe
+              embedded) → payment processed → openNDS FAS endpoint receives
+              success callback → access token auto-generated and granted
+              → immediate internet access</td>
+            <td><span style="background:#f4efe0;padding:.1rem .3rem;border-radius:2px;">To be built</span></td>
+            <td>Medium (see <a href="../wifi-portal/CHATGPT_HANDOFF_PROMPT.md">WiFi payment handoff prompt</a>)</td>
+          </tr>
+        </table>
+
+        <h3>Pricing & revenue model (30-room occupancy basis)</h3>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>Tier</th>
+            <th>Duration</th>
+            <th>Price</th>
+            <th>Use case</th>
+          </tr>
+          <tr>
+            <td><strong>Day pass</strong></td>
+            <td>24 hours</td>
+            <td><strong>A$6</strong></td>
+            <td>Short stay, visitors, one-off access</td>
+          </tr>
+          <tr>
+            <td><strong>Weekly pass</strong></td>
+            <td>7 days</td>
+            <td><strong>A$18</strong></td>
+            <td>~A$2.57/day; better value for extended guests</td>
+          </tr>
+          <tr>
+            <td><strong>Monthly pass</strong></td>
+            <td>30 days</td>
+            <td><strong>A$50</strong></td>
+            <td>~A$1.67/day; residents, long-term tenants</td>
+          </tr>
+        </table>
+
+        <p class="note" style="margin-top:.75rem;"><strong>Revenue conservative case:</strong>
+        Assume 15% of room-nights in a month generate WiFi sales (a low
+        estimate given demand evidence). With 30 rooms × 25 nights/month × 15% = ~112 room-nights.
+        If 60% of those buy day passes and 40% weekly: (67 × A$6) + (45 × A$18) = <strong>A$810–900/month
+        gross revenue</strong>. Starlink cost (A$110) is covered in 2 days; remainder is operational
+        margin.</p>
+
+        <h3>Implementation roadmap</h3>
+
+        <table class="simple">
+          <tr style="background:#f4efe0;">
+            <th>Phase</th>
+            <th>Deliverable</th>
+            <th>Timeline</th>
+          </tr>
+          <tr>
+            <td><strong>Phase 1: Gateway setup</strong></td>
+            <td>Starlink dish + Cudy M1200 OpenWrt config; guest VLAN + firewall rules; openNDS portal deployment</td>
+            <td>Week 1–2</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 1b: Manual voucher system (live)</strong></td>
+            <td>Print voucher tokens; train front desk; begin A$6/day sales via cash exchange</td>
+            <td>Week 2 (immediate revenue)</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2: Mesh deployment</strong></td>
+            <td>Install 3–4 APs; verify coverage in foyers and hallways; test roaming</td>
+            <td>Week 3–4</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3: Card payment (outsourced)</strong></td>
+            <td>Build Stripe integration + openNDS FAS callback; test end-to-end; go live</td>
+            <td>Month 2 (handed to ChatGPT for build)</td>
+          </tr>
+        </table>
+
+        <p class="note" style="margin-top:.75rem;"><strong>Why this matters to Dr. Nguyen:</strong>
+        Given your networking background, you'll recognize this as a straightforward
+        WAN-to-guest-isolation pattern common in enterprise WiFi. The Cudy M1200
+        is industrial-grade hardware; OpenWrt gives full control over VLAN
+        segmentation, firewall policy, and NDS (DNS redirection) without vendor
+        lock-in. openNDS is mature, stable code — used by ISPs and venues
+        globally. The FAS (Forwarding Auth Service) integrates naturally with
+        Stripe webhooks for programmatic voucher issuance. This is low-cost
+        infrastructure with immediate ROI and zero operational complexity once
+        deployed.</p>
+
+        <p class="note" style="margin-top:.75rem;"><strong>Planned accepted payment methods:</strong></p>
         <div class="payment-logos">
           <img src="../assets/payment-logos/visa.svg" alt="Visa" height="24">
           <img src="../assets/payment-logos/mastercard.svg" alt="Mastercard" height="24">
@@ -769,43 +1055,9 @@
           <img src="../assets/payment-logos/jcb.svg" alt="JCB" height="24">
         </div>
 
-        <div class="arch-diagram">
-          <svg viewBox="0 0 780 260" role="img" aria-label="WiFi hotspot technical architecture diagram">
-            <defs>
-              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                <path d="M0,0 L6,3 L0,6 Z" fill="#6b6558"/>
-              </marker>
-            </defs>
-            <rect x="20" y="90" width="120" height="70" fill="#fff" stroke="#1a1a1a"/>
-            <text x="80" y="120" text-anchor="middle" font-size="12" fill="#1a1a1a" font-family="Georgia,serif">Starlink</text>
-            <text x="80" y="136" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">$75/mo dish</text>
-
-            <line x1="140" y1="125" x2="195" y2="125" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-            <rect x="200" y="90" width="140" height="70" fill="#fff" stroke="#1a1a1a"/>
-            <text x="270" y="115" text-anchor="middle" font-size="12" fill="#1a1a1a" font-family="Georgia,serif">Custom router</text>
-            <text x="270" y="131" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">OpenWrt + openNDS</text>
-            <text x="270" y="145" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">captive portal</text>
-
-            <line x1="340" y1="125" x2="395" y2="125" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-            <rect x="400" y="90" width="150" height="70" fill="#fff" stroke="#1a1a1a"/>
-            <text x="475" y="115" text-anchor="middle" font-size="12" fill="#1a1a1a" font-family="Georgia,serif">Guest device</text>
-            <text x="475" y="131" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">connects to</text>
-            <text x="475" y="145" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">"Mansion WiFi"</text>
-
-            <line x1="475" y1="160" x2="475" y2="195" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-            <rect x="330" y="195" width="290" height="55" fill="#f4efe0" stroke="#a9884f"/>
-            <text x="475" y="216" text-anchor="middle" font-size="11" fill="#1a1a1a" font-family="Georgia,serif">Access page: enter voucher code,</text>
-            <text x="475" y="232" text-anchor="middle" font-size="11" fill="#1a1a1a" font-family="Georgia,serif">or pay by card (not built yet)</text>
-
-            <line x1="330" y1="222" x2="240" y2="222" stroke="#6b6558" stroke-width="1.5" marker-end="url(#arrow)"/>
-            <rect x="20" y="195" width="200" height="55" fill="#fff" stroke="#1a1a1a" stroke-dasharray="3 3"/>
-            <text x="120" y="216" text-anchor="middle" font-size="11" fill="#1a1a1a" font-family="Georgia,serif">Manual voucher sale</text>
-            <text x="120" y="232" text-anchor="middle" font-size="10" fill="#6b6558" font-family="Georgia,serif">(works today, no build needed)</text>
-          </svg>
-        </div>
+        <p style="margin-top:1rem;"><a href="../wifi-portal/index.html">View
+        the captive-portal design →</a> | <a href="../wifi-portal/CHATGPT_HANDOFF_PROMPT.md">WiFi
+        payment build handoff (ChatGPT) →</a></p>
       </section>
 
       <section id="audience">
