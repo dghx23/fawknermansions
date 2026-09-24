@@ -16,6 +16,10 @@ portal built for the building's router.
   No. 31143), report generated 16 September 2026.
 - [`docs/project-brief.md`](docs/project-brief.md) — the book concept, tenancy context,
   and the proposal being put to part-owner Jeff Nguyen.
+- [`docs/ideas.md`](docs/ideas.md) — brainstormed ideas for the pitch, book structure,
+  research sources, 3D/VR capture, documentary, and website.
+- [`docs/website-proposal.md`](docs/website-proposal.md) — skeleton proposal for the
+  companion history website (sitemap, content plan, design language, phased build).
 - [`wifi-portal/`](wifi-portal/) — an existing "Mansion WiFi" captive-portal splash
   page and OpenWrt/openNDS router configuration built for the building, with a
   heritage-grounded design (oxblood brick, bluestone, cream render, black iron).
