@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fawkner Mansions — Interactive 3D Book Mockup</title>
+<style>
+  :root{
+    --paper:#f4efe0;
+    --ink:#1a1a1a;
+    --rule:#1a1a1a;
+    --muted:#6b6558;
+    --page:#e9dfc4;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background:#ddd6c4;
+    color:var(--ink);
+    padding:2.5rem 1.5rem 3rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .page-title{
+    text-align:center;
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--muted);
+    margin-bottom:2.5rem;
+  }
+
+  .scene{
+    width:520px;
+    height:520px;
+    max-width:90vw;
+    perspective:1800px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:grab;
+    touch-action:none;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+  .scene.dragging{cursor:grabbing;}
+
+  .book{
+    position:relative;
+    width:320px;
+    height:460px;
+    transform-style:preserve-3d;
+    will-change:transform;
+  }
+  .face{
+    position:absolute;
+    background:var(--paper);
+    border:1px solid #00000030;
+    box-shadow:0 0 0 1px rgba(0,0,0,.05) inset;
+    overflow:hidden;
+  }
+
+  .face-front, .face-back{
+    width:320px; height:460px; top:0; left:0; padding:1.15rem 1.1rem;
+    outline:1px solid #a9884f;
+    outline-offset:-7px;
+  }
+  .face-front{ transform: translateZ(23px); display:flex; flex-direction:column; }
+  .face-back{ transform: rotateY(180deg) translateZ(23px); display:flex; flex-direction:column; }
+
+  .face-spine{
+    width:46px; height:460px; top:0; left:137px;
+    transform: rotateY(-90deg) translateZ(160px);
+    background:
+      repeating-linear-gradient(180deg, var(--paper), var(--paper) 3px, #e9dfc4 3px, #e9dfc4 4px);
+    display:flex; align-items:center; justify-content:center;
+    padding:1rem 0;
+  }
+  .headband{
+    position:absolute;
+    left:0; right:0;
+    height:6px;
+    background:repeating-linear-gradient(90deg, #a9884f, #a9884f 3px, #6b1f22 3px, #6b1f22 6px);
+  }
+  .headband.top{top:0;}
+  .headband.bottom{bottom:0;}
+  .face-pages{
+    width:46px; height:460px; top:0; left:137px;
+    transform: rotateY(90deg) translateZ(160px);
+    background:
+      repeating-linear-gradient(180deg, #fbf8f0, #fbf8f0 2px, #e3d8bd 2px, #e3d8bd 3px);
+  }
+  .face-top{
+    width:320px; height:46px; top:207px; left:0;
+    transform: rotateX(90deg) translateZ(230px);
+    background:
+      repeating-linear-gradient(90deg, #fbf8f0, #fbf8f0 2px, #e3d8bd 2px, #e3d8bd 3px);
+  }
+  .face-bottom{
+    width:320px; height:46px; top:207px; left:0;
+    transform: rotateX(-90deg) translateZ(230px);
+    background: var(--page);
+  }
+  .locator-badge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.4rem;
+    margin-bottom:.5rem;
+  }
+  .locator-label{
+    font-size:.5rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    line-height:1.3;
+  }
+
+  .skyline-strip{
+    margin:.7rem -1.1rem -1.15rem;
+    background:var(--page);
+    border-top:1px solid var(--rule);
+  }
+  .skyline-strip svg{display:block;width:100%;height:30px;}
+
+  .scene-shadow{
+    width:260px;
+    height:36px;
+    margin:0 auto;
+    border-radius:50%;
+    background:radial-gradient(ellipse, rgba(0,0,0,.28), rgba(0,0,0,0) 70%);
+    transform:translateY(-18px);
+  }
+
+  .eyebrow{
+    font-size:.58rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+  }
+  .front-title{
+    text-align:center;
+    padding-bottom:.9rem;
+    margin-bottom:.9rem;
+    border-bottom:1px solid var(--rule);
+  }
+  .front-title h1{
+    margin:.3rem 0;
+    font-size:1.9rem;
+    font-variant-caps: small-caps;
+    letter-spacing:.03em;
+    line-height:1;
+  }
+  .front-title .subtitle{
+    font-size:.66rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:.4rem;
+  }
+  .front-title .facts{
+    font-size:.56rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .photo-mount{
+    background:#fff;
+    padding:8px 8px 0;
+    box-shadow:0 3px 8px rgba(0,0,0,.18);
+    margin-bottom:.9rem;
+  }
+  .photo-placeholder{
+    width:100%;
+    aspect-ratio:4/3;
+    background:linear-gradient(160deg, #d8cdb2, #c7baa0 55%, #b7a98d);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:.7rem;
+  }
+  .photo-placeholder span{
+    font-size:.6rem;
+    letter-spacing:.04em;
+    color:#4a4438;
+    background:rgba(244,239,224,.9);
+    padding:.25rem .5rem;
+    border:1px solid #4a443855;
+  }
+
+  .front-blurb{
+    font-size:.68rem;
+    line-height:1.5;
+    text-align:center;
+    margin:0 0 auto;
+  }
+  .front-footer{
+    text-align:center;
+    font-size:.54rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding-top:.7rem;
+    border-top:1px solid var(--rule);
+  }
+  .front-author{
+    text-align:center;
+    margin-top:.6rem;
+    font-size:.68rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+
+  .back-copy{
+    font-size:.72rem;
+    line-height:1.55;
+    text-align:justify;
+    margin:.5rem 0 1rem;
+  }
+  .back-badges{
+    display:flex;
+    justify-content:center;
+    gap:.35rem;
+    flex-wrap:wrap;
+    margin-bottom:auto;
+  }
+  .back-badges span{
+    font-size:.52rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    border:1px solid var(--rule);
+    padding:.15rem .45rem;
+  }
+  .back-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-top:1px solid var(--rule);
+    padding-top:.6rem;
+    font-size:.5rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .obi-band{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    padding:.4rem .3rem;
+    margin:0 -1.1rem .7rem;
+    font-size:.56rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-variant-caps: small-caps;
+  }
+  .obi-band .years{font-size:.78rem;letter-spacing:.12em;}
+
+  .buy-cta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#FF9900;
+    color:#111;
+    padding:.4rem .6rem;
+    margin-top:.6rem;
+    font-family: Arial, sans-serif;
+  }
+  .buy-cta .label{font-size:.62rem;font-weight:bold;}
+  .buy-cta .status{
+    font-size:.48rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    background:rgba(0,0,0,.15);
+    padding:.1rem .35rem;
+    border-radius:2px;
+  }
+
+  .spine-title{
+    writing-mode:vertical-rl;
+    font-variant-caps: small-caps;
+    font-size:.85rem;
+    letter-spacing:.06em;
+  }
+
+  .hint{
+    margin-top:1.5rem;
+    font-size:.78rem;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .hint button{
+    font-family:inherit;
+    font-size:.72rem;
+    letter-spacing:.04em;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    padding:.35rem .8rem;
+    cursor:pointer;
+  }
+  .hint button:hover{background:#e9dfc4;}
+
+  .caption{
+    text-align:center;
+    font-size:.72rem;
+    color:#8a8370;
+    margin-top:1.5rem;
+    max-width:520px;
+    font-family: Arial, sans-serif;
+  }
+</style>
+</head>
+<body>
+
+  <div class="page-title">Fawkner Mansions — interactive 3D book mockup (drag to rotate)</div>
+
+  <div class="scene" id="scene">
+    <div class="book" id="book">
+
+      <div class="face face-front">
+        <div class="eyebrow">History &middot; Architecture &middot; Community</div>
+        <div class="front-title">
+          <h1>Fawkner Mansions</h1>
+          <div class="subtitle">250 Punt Road, Prahran</div>
+          <div class="facts">Est. 1910&ndash;1911 &middot; Ernest H. Willis</div>
+        </div>
+        <div class="photo-mount">
+          <div class="photo-placeholder"><span>1960s photograph &mdash; to be added</span></div>
+        </div>
+        <div class="obi-band"><span class="years">116 years</span> of living history &mdash; captured, priceless</div>
+        <p class="front-blurb">The oldest surviving residential flats in the
+        City of Stonnington, and one of the oldest in Victoria.</p>
+        <div class="front-footer">Heritage Overlay HO448 &middot; City of Stonnington</div>
+        <div class="front-author">David Hough</div>
+        <div class="skyline-strip">
+          <svg viewBox="0 0 320 40" preserveAspectRatio="none" role="img" aria-label="Melbourne skyline motif, decorative">
+            <rect x="0" y="20" width="18" height="20" fill="#1a1a1a"/>
+            <rect x="20" y="12" width="14" height="28" fill="#1a1a1a"/>
+            <rect x="36" y="24" width="16" height="16" fill="#1a1a1a"/>
+            <rect x="54" y="6" width="16" height="34" fill="#1a1a1a"/>
+            <rect x="54" y="2" width="16" height="4" fill="#a9884f"/>
+            <rect x="72" y="18" width="12" height="22" fill="#1a1a1a"/>
+            <rect x="86" y="10" width="18" height="30" fill="#1a1a1a"/>
+            <rect x="106" y="22" width="14" height="18" fill="#1a1a1a"/>
+            <rect x="122" y="14" width="16" height="26" fill="#1a1a1a"/>
+            <rect x="140" y="24" width="12" height="16" fill="#1a1a1a"/>
+            <rect x="154" y="8" width="20" height="32" fill="#1a1a1a"/>
+            <rect x="176" y="20" width="14" height="20" fill="#1a1a1a"/>
+            <rect x="192" y="12" width="16" height="28" fill="#1a1a1a"/>
+            <rect x="210" y="22" width="12" height="18" fill="#1a1a1a"/>
+            <rect x="224" y="4" width="18" height="36" fill="#1a1a1a"/>
+            <rect x="224" y="0" width="18" height="4" fill="#a9884f"/>
+            <rect x="244" y="18" width="14" height="22" fill="#1a1a1a"/>
+            <rect x="260" y="24" width="16" height="16" fill="#1a1a1a"/>
+            <rect x="278" y="10" width="14" height="30" fill="#1a1a1a"/>
+            <rect x="294" y="20" width="16" height="20" fill="#1a1a1a"/>
+            <rect x="118" y="33" width="34" height="7" rx="1.5" fill="#1a1a1a"/>
+            <circle cx="126" cy="40" r="2" fill="#1a1a1a"/>
+            <circle cx="146" cy="40" r="2" fill="#1a1a1a"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="face face-back">
+        <div class="locator-badge">
+          <svg width="46" height="46" viewBox="0 0 46 46" role="img" aria-label="Locator motif, decorative">
+            <circle cx="23" cy="23" r="21" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+            <circle cx="23" cy="23" r="13" fill="none" stroke="#1a1a1a" stroke-width="0.6"/>
+            <circle cx="29" cy="18" r="2.6" fill="#6b1f22"/>
+          </svg>
+          <div class="locator-label">Melbourne<br>Prahran</div>
+        </div>
+        <div class="eyebrow">Fawkner Mansions</div>
+        <p class="back-copy">On the corner of Punt and Commercial roads in
+        Prahran stands the oldest surviving block of flats in the City of
+        Stonnington &mdash; and one of the oldest in Victoria. This book
+        traces its Edwardian Free Classical architecture, a century of
+        residents, and a present-day resident&rsquo;s own research and
+        digital preservation of a building whose future is not guaranteed.</p>
+        <div class="back-badges">
+          <span>Heritage Overlay HO448</span>
+          <span>Local History</span>
+          <span>Architecture</span>
+        </div>
+        <div class="buy-cta">
+          <span class="label">Buy on Amazon</span>
+          <span class="status">Coming soon</span>
+        </div>
+        <div class="back-footer">
+          <div>Fawkner Mansions Press<br>fawknermansions.org (concept)</div>
+          <div>ISBN placeholder</div>
+        </div>
+      </div>
+
+      <div class="face face-spine">
+        <div class="headband top"></div>
+        <div class="spine-title">Fawkner Mansions</div>
+        <div class="headband bottom"></div>
+      </div>
+
+      <div class="face face-pages"></div>
+      <div class="face face-top"></div>
+      <div class="face face-bottom"></div>
+
+    </div>
+  </div>
+
+  <div class="scene-shadow"></div>
+
+  <div class="hint">
+    <span>Drag to rotate</span>
+    <button id="reset-btn" type="button">Reset view</button>
+    <button id="spin-btn" type="button">Auto-spin: on</button>
+  </div>
+
+  <p class="caption">Concept mockup only &mdash; title, author credit, blurb,
+  imprint and ISBN are placeholders. The photo panel is a placeholder; drop
+  in the real 1960s photograph once it's ready to use.</p>
+
+<script>
+  (function(){
+    var scene = document.getElementById("scene");
+    var book = document.getElementById("book");
+    var resetBtn = document.getElementById("reset-btn");
+    var spinBtn = document.getElementById("spin-btn");
+
+    var rotY = -25, rotX = -8;
+    var dragging = false;
+    var lastX = 0, lastY = 0;
+    var autoSpin = true;
+
+    function apply(){
+      book.style.transform = "rotateX(" + rotX + "deg) rotateY(" + rotY + "deg)";
+    }
+    apply();
+
+    function pointerDown(x, y){
+      dragging = true;
+      autoSpin = false;
+      spinBtn.textContent = "Auto-spin: off";
+      lastX = x; lastY = y;
+      scene.classList.add("dragging");
+    }
+    function pointerMove(x, y){
+      if(!dragging) return;
+      var dx = x - lastX;
+      var dy = y - lastY;
+      rotY += dx * 0.4;
+      rotX -= dy * 0.4;
+      if(rotX > 25) rotX = 25;
+      if(rotX < -25) rotX = -25;
+      lastX = x; lastY = y;
+      apply();
+    }
+    function pointerUp(){
+      dragging = false;
+      scene.classList.remove("dragging");
+    }
+
+    scene.addEventListener("mousedown", function(e){ pointerDown(e.clientX, e.clientY); });
+    window.addEventListener("mousemove", function(e){ pointerMove(e.clientX, e.clientY); });
+    window.addEventListener("mouseup", pointerUp);
+
+    scene.addEventListener("touchstart", function(e){
+      var t = e.touches[0];
+      pointerDown(t.clientX, t.clientY);
+    }, {passive:true});
+    scene.addEventListener("touchmove", function(e){
+      var t = e.touches[0];
+      pointerMove(t.clientX, t.clientY);
+    }, {passive:true});
+    scene.addEventListener("touchend", pointerUp);
+
+    resetBtn.addEventListener("click", function(){
+      rotY = -25; rotX = -8;
+      apply();
+    });
+    spinBtn.addEventListener("click", function(){
+      autoSpin = !autoSpin;
+      spinBtn.textContent = "Auto-spin: " + (autoSpin ? "on" : "off");
+    });
+
+    function tick(){
+      if(autoSpin && !dragging){
+        rotY += 0.15;
+        apply();
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+
+</body>
+</html>

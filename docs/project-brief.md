@@ -33,6 +33,42 @@ would:
    to owner agreement.
 5. Produce a 15–20 minute history documentary for social media/web.
 
+## Public-interest distribution potential (for the pitch)
+
+Part of the case to Jeff Nguyen: given the building's heritage significance
+— oldest surviving residential flats in the City of Stonnington, one of the
+oldest in Victoria — this isn't just a vanity project with one print run.
+There's a plausible standing public-interest audience:
+
+- **Victorian schools.** Victoria has on the order of ~2,250 schools in
+  total (roughly 1,530 government, ~500 Catholic, ~220 independent). That's
+  a rough, unverified order-of-magnitude figure for pitch purposes — check
+  the actual current count (Victorian Department of Education / VCAA)
+  before quoting a specific number to anyone. Local-history and Victorian
+  studies curriculum units, plus school libraries generally, are a
+  plausible low-take-up-rate but real standing market.
+- **Victorian universities.** Eight Victoria-headquartered universities
+  (Melbourne, Monash, RMIT, Deakin, La Trobe, Swinburne, Victoria
+  University, Federation University), each with library acquisitions
+  budgets and relevant architecture/heritage/history departments — see
+  [`docs/ideas.md`](ideas.md) §7 for the Monash-specific approach, which
+  extends to the others.
+- **Standing orders, not a one-off run.** Because the trade edition is
+  print-on-demand (see the proposal above), schools and universities can
+  order on an ongoing basis rather than being limited to the initial seeded
+  copies — a rolling distribution channel rather than a fixed print run.
+- **Foreign-language editions.** Draft German, French, Spanish, and Chinese
+  covers already exist as a concept (see `book-mockup.html`) — international
+  schools, language-immersion programs, and diaspora/heritage-interest
+  groups (particularly relevant given Melbourne's international student
+  population) are a plausible secondary audience once those editions are
+  properly translated and produced.
+
+**Caveat:** the school/university figures above are order-of-magnitude
+estimates for pitch purposes only, not verified market research — confirm
+actual current counts before presenting specific numbers to Jeff Nguyen or
+anyone else.
+
 ## Open questions to resolve before pitching Jeff Nguyen
 
 - What access is actually needed (common areas, roof, individual flats,

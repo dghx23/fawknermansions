@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fawkner Mansions — Send a Virtual Postcard</title>
+<style>
+  :root{
+    --paper:#f4efe0;
+    --ink:#1a1a1a;
+    --rule:#1a1a1a;
+    --muted:#6b6558;
+    --page:#e9dfc4;
+    --brass:#a9884f;
+    --oxblood:#6b1f22;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background:#ddd6c4;
+    color:var(--ink);
+    padding:2.5rem 1.5rem 4rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .page-title{
+    text-align:center;
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--muted);
+    margin-bottom:2rem;
+  }
+  .panel{
+    width:100%;
+    max-width:760px;
+    background:var(--paper);
+    border:2px solid var(--rule);
+    outline:1px solid var(--rule);
+    outline-offset:-5px;
+    padding:2rem 2.2rem;
+  }
+  .masthead{
+    text-align:center;
+    padding-bottom:1rem;
+    margin-bottom:1.5rem;
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead .eyebrow{
+    font-size:.6rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:.5rem;
+  }
+  .masthead h1{
+    margin:0;
+    font-size:1.7rem;
+    font-variant-caps: small-caps;
+    letter-spacing:.03em;
+  }
+
+  .step{display:none;}
+  .step.active{display:block;}
+
+  label{
+    display:block;
+    font-size:.68rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:1rem 0 .3rem;
+  }
+  label:first-of-type{margin-top:0;}
+  input[type=text], input[type=email], select, textarea{
+    width:100%;
+    font-family:inherit;
+    font-size:.9rem;
+    padding:.5rem .6rem;
+    border:1px solid var(--rule);
+    background:#fff;
+    color:var(--ink);
+  }
+  textarea{resize:vertical;min-height:80px;}
+  .form-row{display:flex;gap:1rem;}
+  .form-row > div{flex:1;}
+
+  .submit-row{
+    margin-top:1.5rem;
+    text-align:center;
+  }
+  button.primary{
+    font-family:inherit;
+    font-size:.85rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    padding:.7rem 1.6rem;
+    cursor:pointer;
+  }
+  button.primary:hover{background:#333;}
+  button.ghost{
+    font-family:inherit;
+    font-size:.78rem;
+    background:transparent;
+    border:1px solid var(--rule);
+    padding:.5rem 1.1rem;
+    cursor:pointer;
+    margin-top:1rem;
+  }
+  button.ghost:hover{background:var(--page);}
+
+  .map-wrap{text-align:center;}
+  .map-wrap svg{width:100%;height:auto;max-width:640px;}
+  .flight-status{
+    text-align:center;
+    font-size:.85rem;
+    margin-top:1rem;
+    font-variant-caps: small-caps;
+  }
+  .flight-status .dest{font-weight:bold;}
+  .progress-track{
+    width:100%;
+    max-width:400px;
+    height:3px;
+    background:var(--page);
+    margin:.8rem auto 0;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--oxblood);
+    transition:width 3.4s linear;
+  }
+
+  .grid-line{stroke:#00000014;stroke-width:1;}
+  .arc-path{
+    fill:none;
+    stroke:var(--oxblood);
+    stroke-width:1.5;
+    stroke-dasharray:5 4;
+  }
+  .city-dot{fill:var(--ink);}
+  .city-label{
+    font-family: Georgia, serif;
+    font-size:11px;
+    fill:var(--muted);
+  }
+  .origin-label{
+    font-family: Georgia, serif;
+    font-size:11px;
+    font-weight:bold;
+    fill:var(--ink);
+  }
+
+  .confirm-card{
+    text-align:center;
+  }
+  .confirm-card .big{
+    font-size:1.3rem;
+    font-variant-caps: small-caps;
+    margin:.5rem 0;
+  }
+  .confirm-card p{font-size:.85rem;color:var(--muted);}
+  .mini-postcard{
+    width:260px;
+    margin:1.2rem auto;
+    border:1px solid var(--rule);
+    background:#fff;
+    padding:.9rem;
+    text-align:left;
+  }
+  .mini-postcard .to{font-size:.7rem;color:var(--muted);margin-bottom:.3rem;}
+  .mini-postcard .msg{font-size:.8rem;line-height:1.5;}
+  .mini-postcard .from{font-size:.7rem;color:var(--muted);margin-top:.6rem;text-align:right;}
+
+  .email-note{
+    font-size:.72rem;
+    color:var(--muted);
+    background:var(--page);
+    border:1px dashed var(--rule);
+    padding:.7rem .9rem;
+    margin-top:1.2rem;
+    text-align:left;
+  }
+
+  .back-link{
+    display:block;
+    text-align:center;
+    margin-top:1.5rem;
+    font-size:.78rem;
+    color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+  <div class="page-title">Fawkner Mansions — send a virtual postcard (concept)</div>
+
+  <div class="panel">
+    <div class="masthead">
+      <div class="eyebrow">Fawkner Mansions &middot; 250 Punt Road, Prahran</div>
+      <h1>Send a postcard</h1>
+    </div>
+
+    <div class="step active" id="step-form">
+      <div class="form-row">
+        <div>
+          <label for="sender-name">Your name</label>
+          <input type="text" id="sender-name" placeholder="Your name">
+        </div>
+        <div>
+          <label for="sender-email">Your email</label>
+          <input type="email" id="sender-email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label for="recipient-name">Recipient's name</label>
+          <input type="text" id="recipient-name" placeholder="Who is this for?">
+        </div>
+        <div>
+          <label for="destination">Where are they?</label>
+          <select id="destination"></select>
+        </div>
+      </div>
+      <label for="message">Your message</label>
+      <textarea id="message">Wish you could see this place — Fawkner Mansions, built 1910, still standing on Punt Road, Prahran.</textarea>
+
+      <div class="submit-row">
+        <button class="primary" type="button" id="send-btn">Send postcard</button>
+      </div>
+    </div>
+
+    <div class="step" id="step-flying">
+      <div class="map-wrap">
+        <svg id="map-svg" viewBox="0 0 700 350"></svg>
+      </div>
+      <div class="flight-status">
+        Flying to <span class="dest" id="flight-dest">&mdash;</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="step" id="step-done">
+      <div class="confirm-card">
+        <div class="big" id="confirm-headline">Your postcard has landed</div>
+        <p id="confirm-sub">Delivered, virtually, to your recipient.</p>
+        <div class="mini-postcard">
+          <div class="to" id="mini-to">To: &mdash;</div>
+          <div class="msg" id="mini-msg"></div>
+          <div class="from" id="mini-from">&mdash; Fawkner Mansions, Prahran</div>
+        </div>
+        <div class="email-note" id="email-note"></div>
+        <button class="ghost" type="button" id="reset-btn">Send another postcard</button>
+      </div>
+    </div>
+
+    <a class="back-link" href="book-mockup.html">&larr; Back to the book mockup</a>
+  </div>
+
+<script>
+  (function(){
+    var cities = [
+      {name:"London", country:"United Kingdom", flag:"\u{1F1EC}\u{1F1E7}", x:350, y:75},
+      {name:"Paris", country:"France", flag:"\u{1F1EB}\u{1F1F7}", x:355, y:80},
+      {name:"Berlin", country:"Germany", flag:"\u{1F1E9}\u{1F1EA}", x:376, y:73},
+      {name:"Reykjavik", country:"Iceland", flag:"\u{1F1EE}\u{1F1F8}", x:307, y:50},
+      {name:"Moscow", country:"Russia", flag:"\u{1F1F7}\u{1F1FA}", x:423, y:67},
+      {name:"New York", country:"USA", flag:"\u{1F1FA}\u{1F1F8}", x:206, y:96},
+      {name:"Los Angeles", country:"USA", flag:"\u{1F1FA}\u{1F1F8}", x:120, y:109},
+      {name:"Toronto", country:"Canada", flag:"\u{1F1E8}\u{1F1E6}", x:196, y:90},
+      {name:"Vancouver", country:"Canada", flag:"\u{1F1E8}\u{1F1E6}", x:111, y:79},
+      {name:"São Paulo", country:"Brazil", flag:"\u{1F1E7}\u{1F1F7}", x:259, y:221},
+      {name:"Buenos Aires", country:"Argentina", flag:"\u{1F1E6}\u{1F1F7}", x:237, y:242},
+      {name:"Cape Town", country:"South Africa", flag:"\u{1F1FF}\u{1F1E6}", x:386, y:241},
+      {name:"Nairobi", country:"Kenya", flag:"\u{1F1F0}\u{1F1EA}", x:422, y:178},
+      {name:"Dubai", country:"UAE", flag:"\u{1F1E6}\u{1F1EA}", x:457, y:126},
+      {name:"Mumbai", country:"India", flag:"\u{1F1EE}\u{1F1F3}", x:492, y:138},
+      {name:"Singapore", country:"Singapore", flag:"\u{1F1F8}\u{1F1EC}", x:552, y:172},
+      {name:"Hong Kong", country:"China", flag:"\u{1F1ED}\u{1F1F0}", x:572, y:132},
+      {name:"Tokyo", country:"Japan", flag:"\u{1F1EF}\u{1F1F5}", x:622, y:106},
+      {name:"Auckland", country:"New Zealand", flag:"\u{1F1F3}\u{1F1FF}", x:690, y:247},
+      {name:"Wellington", country:"New Zealand", flag:"\u{1F1F3}\u{1F1FF}", x:690, y:255}
+    ];
+    var origin = {name:"Prahran", country:"Melbourne, Australia", flag:"\u{1F1E6}\u{1F1FA}", x:632, y:248};
+
+    var select = document.getElementById("destination");
+    cities.forEach(function(c, i){
+      var opt = document.createElement("option");
+      opt.value = i;
+      opt.textContent = c.flag + " " + c.name + ", " + c.country;
+      select.appendChild(opt);
+    });
+    select.selectedIndex = 5;
+
+    var stepForm = document.getElementById("step-form");
+    var stepFlying = document.getElementById("step-flying");
+    var stepDone = document.getElementById("step-done");
+
+    function showStep(el){
+      [stepForm, stepFlying, stepDone].forEach(function(s){ s.classList.remove("active"); });
+      el.classList.add("active");
+    }
+
+    function buildGrid(svg){
+      var ns = "http://www.w3.org/2000/svg";
+      for(var gx = 0; gx <= 700; gx += 70){
+        var l = document.createElementNS(ns, "line");
+        l.setAttribute("x1", gx); l.setAttribute("y1", 0);
+        l.setAttribute("x2", gx); l.setAttribute("y2", 350);
+        l.setAttribute("class", "grid-line");
+        svg.appendChild(l);
+      }
+      for(var gy = 0; gy <= 350; gy += 50){
+        var l2 = document.createElementNS(ns, "line");
+        l2.setAttribute("x1", 0); l2.setAttribute("y1", gy);
+        l2.setAttribute("x2", 700); l2.setAttribute("y2", gy);
+        l2.setAttribute("class", "grid-line");
+        svg.appendChild(l2);
+      }
+    }
+
+    function addDot(svg, c, isOrigin){
+      var ns = "http://www.w3.org/2000/svg";
+      var dot = document.createElementNS(ns, "circle");
+      dot.setAttribute("cx", c.x); dot.setAttribute("cy", c.y);
+      dot.setAttribute("r", isOrigin ? 4 : 3);
+      dot.setAttribute("fill", isOrigin ? "#6b1f22" : "#1a1a1a");
+      svg.appendChild(dot);
+      var label = document.createElementNS(ns, "text");
+      label.setAttribute("x", c.x + 7);
+      label.setAttribute("y", c.y - 6);
+      label.setAttribute("class", isOrigin ? "origin-label" : "city-label");
+      label.textContent = c.name;
+      svg.appendChild(label);
+    }
+
+    function runFlight(dest){
+      var svg = document.getElementById("map-svg");
+      svg.innerHTML = "";
+      var ns = "http://www.w3.org/2000/svg";
+      buildGrid(svg);
+
+      var midX = (origin.x + dest.x) / 2;
+      var midY = Math.min(origin.y, dest.y) - 60;
+      var d = "M " + origin.x + "," + origin.y + " Q " + midX + "," + midY + " " + dest.x + "," + dest.y;
+
+      var path = document.createElementNS(ns, "path");
+      path.setAttribute("d", d);
+      path.setAttribute("class", "arc-path");
+      path.setAttribute("id", "flight-path");
+      svg.appendChild(path);
+
+      addDot(svg, origin, true);
+      addDot(svg, dest, false);
+
+      var plane = document.createElementNS(ns, "text");
+      plane.setAttribute("font-size", "16");
+      plane.textContent = "✈";
+      svg.appendChild(plane);
+
+      var anim = document.createElementNS(ns, "animateMotion");
+      anim.setAttribute("dur", "3.4s");
+      anim.setAttribute("fill", "freeze");
+      anim.setAttribute("rotate", "auto");
+      anim.setAttribute("path", d);
+      plane.appendChild(anim);
+
+      document.getElementById("flight-dest").textContent = dest.flag + " " + dest.name + ", " + dest.country;
+      document.getElementById("progress-fill").style.width = "0%";
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          document.getElementById("progress-fill").style.width = "100%";
+        });
+      });
+    }
+
+    document.getElementById("send-btn").addEventListener("click", function(){
+      var senderName = document.getElementById("sender-name").value.trim() || "A friend";
+      var senderEmail = document.getElementById("sender-email").value.trim();
+      var recipientName = document.getElementById("recipient-name").value.trim() || "you";
+      var message = document.getElementById("message").value.trim();
+      var dest = cities[parseInt(select.value, 10)];
+
+      showStep(stepFlying);
+      runFlight(dest);
+
+      setTimeout(function(){
+        document.getElementById("mini-to").textContent = "To: " + recipientName + " — " + dest.flag + " " + dest.name + ", " + dest.country;
+        document.getElementById("mini-msg").textContent = message;
+        document.getElementById("mini-from").textContent = "— " + senderName + ", Fawkner Mansions, Prahran";
+        document.getElementById("confirm-sub").textContent =
+          "Your virtual postcard travelled from Prahran to " + dest.name + ", " + dest.country + ".";
+
+        var noteEl = document.getElementById("email-note");
+        if(senderEmail){
+          noteEl.textContent = "This concept demo doesn't actually send email yet — in a real version, a confirmation would go to " + senderEmail + " once a backend email service is connected.";
+        } else {
+          noteEl.textContent = "No email address was entered, and this concept demo doesn't send real email yet regardless — that needs a backend service to be connected first.";
+        }
+
+        showStep(stepDone);
+      }, 3500);
+    });
+
+    document.getElementById("reset-btn").addEventListener("click", function(){
+      document.getElementById("sender-name").value = "";
+      document.getElementById("sender-email").value = "";
+      document.getElementById("recipient-name").value = "";
+      showStep(stepForm);
+    });
+  })();
+</script>
+
+</body>
+</html>

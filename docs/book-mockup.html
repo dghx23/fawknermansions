@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fawkner Mansions — Book Cover Mockup</title>
+<style>
+  :root{
+    --paper:#f4efe0;
+    --ink:#1a1a1a;
+    --rule:#1a1a1a;
+    --muted:#6b6558;
+    --placeholder-bg:#e6ded0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background:#ddd6c4;
+    color:var(--ink);
+    padding:2.5rem 1.5rem 4rem;
+  }
+  .page-title{
+    text-align:center;
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--muted);
+    margin-bottom:2rem;
+  }
+  .row{
+    display:flex;
+    justify-content:center;
+    gap:1.5rem;
+    flex-wrap:wrap;
+    align-items:flex-start;
+  }
+
+  .cover{
+    width:380px;
+    background:var(--paper);
+    border:2px solid var(--rule);
+    outline:1px solid var(--rule);
+    outline-offset:-5px;
+    padding:1.6rem 1.5rem 1.4rem;
+  }
+  .masthead{
+    text-align:center;
+    padding-bottom:1rem;
+    margin-bottom:1rem;
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead .eyebrow{
+    font-size:.6rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:.5rem;
+  }
+  .masthead h1{
+    margin:0 0 .3rem;
+    font-size:2.1rem;
+    font-variant-caps: small-caps;
+    letter-spacing:.03em;
+    line-height:1;
+  }
+  .masthead .subtitle{
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    margin-bottom:.5rem;
+  }
+  .masthead .facts{
+    font-size:.62rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5rem;
+  }
+  .masthead .facts .dash{width:16px;height:1px;background:var(--muted);}
+
+  .photo-block{margin-bottom:1rem;}
+  .photo-mount{
+    background:#fff;
+    padding:10px 10px 0;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+    transform:rotate(-0.6deg);
+    position:relative;
+  }
+  .photo-mount::before, .photo-mount::after,
+  .photo-mount .corner-b::before, .photo-mount .corner-b::after{
+    content:"";
+    position:absolute;
+    width:16px;height:16px;
+    background:#e2d8bd;
+    clip-path:polygon(0 0, 100% 0, 0 100%);
+    z-index:2;
+  }
+  .photo-mount::before{top:8px;left:8px;}
+  .photo-mount::after{top:8px;right:8px;transform:rotate(90deg);}
+  .photo-mount .corner-b{position:absolute;inset:0;}
+  .photo-mount .corner-b::before{bottom:2px;left:8px;top:auto;transform:rotate(-90deg);}
+  .photo-mount .corner-b::after{bottom:2px;right:8px;top:auto;transform:rotate(180deg);}
+  .photo-placeholder{
+    width:100%;
+    aspect-ratio:4/3;
+    background:
+      linear-gradient(160deg, #d8cdb2, #c7baa0 55%, #b7a98d);
+    border:1px solid #00000022;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:1rem;
+    filter:sepia(.15) contrast(.95);
+  }
+  .photo-placeholder span{
+    font-family: Georgia, serif;
+    font-size:.68rem;
+    letter-spacing:.05em;
+    color:#4a4438;
+    background:rgba(244,239,224,.9);
+    padding:.3rem .6rem;
+    border:1px solid #4a443855;
+  }
+  .photo-caption{
+    text-align:center;
+    margin-top:.5rem;
+  }
+  .photo-caption .year{
+    font-size:.95rem;
+    font-variant-caps: small-caps;
+  }
+  .photo-caption .loc{
+    font-size:.6rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:.1rem;
+  }
+
+  .blurb{
+    font-size:.78rem;
+    line-height:1.55;
+    text-align:center;
+    margin:1.1rem 0;
+    padding:1rem 0;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+
+  .cover-footer{
+    text-align:center;
+    font-size:.6rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .cover-footer .dot{margin:0 .4em;}
+
+  .author-line{
+    text-align:center;
+    margin-top:1rem;
+    font-size:.75rem;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+
+  .back-cover{
+    width:380px;
+    background:var(--paper);
+    border:2px solid var(--rule);
+    outline:1px solid var(--rule);
+    outline-offset:-5px;
+    padding:1.6rem 1.5rem 1.4rem;
+    display:flex;
+    flex-direction:column;
+  }
+  .back-cover .eyebrow{
+    font-size:.6rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+    margin-bottom:.6rem;
+  }
+  .back-cover p.copy{
+    font-size:.8rem;
+    line-height:1.6;
+    text-align:justify;
+    margin:0 0 1rem;
+  }
+  .back-cover .badge-row{
+    display:flex;
+    justify-content:center;
+    gap:.4rem;
+    flex-wrap:wrap;
+    margin-bottom:1.2rem;
+  }
+  .back-cover .badge{
+    font-size:.58rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border:1px solid var(--rule);
+    padding:.2rem .55rem;
+  }
+  .back-cover .spacer{flex:1;}
+  .buy-cta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#FF9900;
+    color:#111;
+    padding:.55rem .9rem;
+    margin-bottom:1rem;
+    font-family: Arial, sans-serif;
+  }
+  .buy-cta .label{font-size:.78rem;font-weight:bold;}
+  .buy-cta .status{
+    font-size:.6rem;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    background:rgba(0,0,0,.15);
+    padding:.15rem .5rem;
+    border-radius:2px;
+  }
+  .back-cover .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-top:1px solid var(--rule);
+    padding-top:.8rem;
+  }
+  .back-cover .imprint{font-size:.58rem;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;}
+  .barcode{
+    background:#fff;
+    padding:.35rem .5rem .2rem;
+    border:1px solid var(--rule);
+  }
+  .barcode svg{display:block;}
+  .barcode .isbn{
+    font-size:.52rem;
+    text-align:center;
+    letter-spacing:.02em;
+    margin-top:.15rem;
+    font-family:'Courier New', monospace;
+  }
+
+  .caption{
+    text-align:center;
+    font-size:.72rem;
+    color:#8a8370;
+    margin-top:1.5rem;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+    font-family: Arial, sans-serif;
+  }
+
+  .section-label{
+    text-align:center;
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    color:var(--muted);
+    margin:3rem 0 1.25rem;
+    padding-top:2rem;
+    border-top:1px solid #00000022;
+  }
+
+  .obi-band{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    padding:.5rem .5rem;
+    margin:0 -1.5rem 1rem;
+    font-size:.68rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    font-variant-caps: small-caps;
+  }
+  .obi-band .years{
+    font-size:.95rem;
+    letter-spacing:.15em;
+  }
+
+  .mini-cover-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1rem;
+    max-width:960px;
+    margin:0 auto;
+  }
+  .mini-cover{
+    background:var(--paper);
+    border:2px solid var(--rule);
+    outline:1px solid var(--rule);
+    outline-offset:-4px;
+    padding:.9rem .8rem .8rem;
+  }
+  .mini-cover .lang-tag{
+    font-size:.55rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+    margin-bottom:.4rem;
+  }
+  .mini-cover .eyebrow{
+    font-size:.45rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+    margin-bottom:.3rem;
+  }
+  .mini-cover h3{
+    margin:0 0 .15rem;
+    font-size:1rem;
+    font-variant-caps: small-caps;
+    text-align:center;
+    letter-spacing:.02em;
+  }
+  .mini-cover .cjk-gloss{
+    text-align:center;
+    font-size:.62rem;
+    color:var(--muted);
+    margin-bottom:.3rem;
+  }
+  .mini-cover .subtitle{
+    text-align:center;
+    font-size:.5rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:.15rem;
+  }
+  .mini-cover .facts{
+    text-align:center;
+    font-size:.44rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:.5rem;
+  }
+  .mini-cover .mini-photo{
+    aspect-ratio:4/3;
+    background:linear-gradient(160deg, #d8cdb2, #c7baa0 55%, #b7a98d);
+    border:1px solid #00000022;
+    margin-bottom:.5rem;
+  }
+  .mini-cover .mini-obi{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    font-size:.42rem;
+    letter-spacing:.04em;
+    padding:.25rem .2rem;
+    margin-bottom:.5rem;
+  }
+  .mini-cover p.mini-blurb{
+    font-size:.56rem;
+    line-height:1.4;
+    text-align:center;
+    margin:0 0 .5rem;
+  }
+  .mini-cover .mini-footer{
+    text-align:center;
+    font-size:.4rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding-top:.4rem;
+    border-top:1px solid var(--rule);
+  }
+
+  .postcard{
+    width:400px;
+    background:var(--paper);
+    border:2px solid var(--rule);
+    outline:1px solid var(--rule);
+    outline-offset:-4px;
+    padding:.9rem;
+  }
+  .postcard-front .photo-placeholder{aspect-ratio:14/9;position:relative;}
+  .postcard-front .title-band{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    background:rgba(26,26,26,.82);
+    color:#f4efe0;
+    text-align:center;
+    font-size:.68rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:.4rem 0;
+  }
+  .postcard-back{
+    display:flex;
+    height:230px;
+  }
+  .postcard-back .msg-side{
+    flex:1;
+    padding:.5rem .9rem .5rem 0;
+    border-right:1px solid var(--rule);
+    display:flex;
+    flex-direction:column;
+  }
+  .postcard-back .msg-side .note{
+    font-size:.68rem;
+    line-height:1.6;
+    color:var(--muted);
+    margin-bottom:auto;
+  }
+  .postcard-back .msg-side .rule-line{
+    border-bottom:1px solid #00000030;
+    height:1.4em;
+  }
+  .postcard-back .addr-side{
+    width:150px;
+    padding:.5rem 0 .5rem .9rem;
+    position:relative;
+  }
+  .postcard-back .stamp-box{
+    width:52px;height:64px;
+    border:1px dashed var(--rule);
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.5rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+  }
+  .postcard-back .postmark{
+    width:44px;height:44px;
+    border:1px solid var(--muted);
+    border-radius:50%;
+    position:absolute;
+    top:12px;
+    right:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.4rem;
+    text-align:center;
+    color:var(--muted);
+    transform:rotate(-12deg);
+    line-height:1.15;
+  }
+  .postcard-back .addr-lines{margin-top:1.6rem;}
+  .postcard-back .addr-lines div{
+    border-bottom:1px solid #00000030;
+    height:1.5em;
+  }
+
+  .bookmark{
+    width:90px;
+    height:380px;
+    background:var(--paper);
+    border:2px solid var(--rule);
+    outline:1px solid var(--rule);
+    outline-offset:-4px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:1rem .5rem;
+  }
+  .bookmark .hole{
+    width:12px;height:12px;
+    border:1px solid var(--rule);
+    border-radius:50%;
+    margin-bottom:1rem;
+    flex-shrink:0;
+  }
+  .bookmark .vtitle{
+    writing-mode:vertical-rl;
+    font-variant-caps: small-caps;
+    font-size:1.05rem;
+    letter-spacing:.08em;
+    flex:1;
+  }
+  .bookmark .vfoot{
+    writing-mode:vertical-rl;
+    font-size:.55rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:1rem;
+  }
+
+  .print-bar{
+    text-align:center;
+    margin:1.5rem 0 0;
+  }
+  .print-bar button{
+    font-family:inherit;
+    font-size:.78rem;
+    letter-spacing:.04em;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    padding:.5rem 1.1rem;
+    cursor:pointer;
+  }
+  .print-bar button:hover{background:#e9dfc4;}
+
+  @media print{
+    body{background:#fff;padding:0;}
+    .page-title, .section-label, .caption, .print-bar,
+    .row:first-of-type, .bookmark, .send-postcard-link, .mini-cover-grid{
+      display:none !important;
+    }
+    .row{gap:0;justify-content:flex-start;}
+    .postcard{
+      width:6in;
+      height:4in;
+      border:2px solid #000;
+      outline:none;
+      box-shadow:none;
+      page-break-after:always;
+      margin:0;
+    }
+    .postcard-back{height:auto;}
+    .photo-mount{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="page-title">Fawkner Mansions — A5 hardcover mockup (concept, editorial style)</div>
+
+  <div class="row">
+
+    <div class="cover">
+      <div class="masthead">
+        <div class="eyebrow">History &middot; Architecture &middot; Community</div>
+        <h1>Fawkner Mansions</h1>
+        <div class="subtitle">250 Punt Road, Prahran</div>
+        <div class="facts">
+          <span class="dash"></span>
+          <span>Est. 1910&ndash;1911 &middot; Designed by Ernest H. Willis</span>
+          <span class="dash"></span>
+        </div>
+      </div>
+
+      <div class="photo-block">
+        <div class="photo-mount">
+          <div class="corner-b"></div>
+          <div class="photo-placeholder">
+            <span>1960s photograph &mdash; to be added</span>
+          </div>
+        </div>
+        <div class="photo-caption">
+          <div class="year">c. 1960</div>
+          <div class="loc">Fawkner Mansions, Punt Road, Prahran</div>
+        </div>
+      </div>
+
+      <div class="obi-band"><span class="years">116 years</span> of living history &mdash; captured, priceless</div>
+
+      <p class="blurb">Fawkner Mansions, at 250 Punt Road, Prahran, designed
+      by Ernest H. Willis and constructed in 1910&ndash;11, is the oldest
+      residential flats in the City of Stonnington and one of the oldest in
+      Victoria. A fine and highly intact example of Edwardian Free Classical
+      architecture, Fawkner Mansions remains a distinctive part of
+      Melbourne&rsquo;s built heritage.</p>
+
+      <div class="cover-footer">
+        Heritage Overlay HO448 <span class="dot">&middot;</span> City of Stonnington
+      </div>
+      <div class="author-line">David Hough</div>
+    </div>
+
+    <div class="back-cover">
+      <div class="eyebrow">Fawkner Mansions</div>
+      <p class="copy">On the corner of Punt and Commercial roads in Prahran
+      stands the oldest surviving block of flats in the City of Stonnington
+      &mdash; and one of the oldest in Victoria. This book traces its
+      Edwardian Free Classical architecture, a century of residents, and a
+      present-day resident&rsquo;s own research and digital preservation of
+      a building whose future is not guaranteed.</p>
+      <div class="badge-row">
+        <span class="badge">Heritage Overlay HO448</span>
+        <span class="badge">Local History</span>
+        <span class="badge">Architecture</span>
+      </div>
+      <div class="spacer"></div>
+      <div class="buy-cta">
+        <span class="label">Buy on Amazon</span>
+        <span class="status">Coming soon</span>
+      </div>
+      <div class="footer-row">
+        <div class="imprint">Fawkner Mansions Press<br>fawknermansions.org (concept)</div>
+        <div class="barcode">
+          <svg width="70" height="34" viewBox="0 0 70 34">
+            <rect x="0" y="0" width="2" height="26" fill="#1a1a1a"/>
+            <rect x="4" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="7" y="0" width="3" height="26" fill="#1a1a1a"/>
+            <rect x="12" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="15" y="0" width="2" height="26" fill="#1a1a1a"/>
+            <rect x="19" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="22" y="0" width="3" height="26" fill="#1a1a1a"/>
+            <rect x="27" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="30" y="0" width="2" height="26" fill="#1a1a1a"/>
+            <rect x="34" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="37" y="0" width="3" height="26" fill="#1a1a1a"/>
+            <rect x="42" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="45" y="0" width="2" height="26" fill="#1a1a1a"/>
+            <rect x="49" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="52" y="0" width="3" height="26" fill="#1a1a1a"/>
+            <rect x="57" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="60" y="0" width="2" height="26" fill="#1a1a1a"/>
+            <rect x="64" y="0" width="1" height="26" fill="#1a1a1a"/>
+            <rect x="67" y="0" width="2" height="26" fill="#1a1a1a"/>
+          </svg>
+          <div class="isbn">ISBN placeholder</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="caption">Concept mockup only &mdash; title, author credit, blurb,
+  imprint and ISBN are placeholders. The photo panel is a placeholder, not an
+  actual image &mdash; drop in the real 1960s photograph once it's ready to
+  use. The 2026 photograph has been left out of this design by request.</p>
+
+  <div class="section-label">Promotional ephemera &mdash; postcard and bookmark</div>
+
+  <div class="row">
+    <div class="postcard">
+      <div class="postcard-front">
+        <div class="photo-mount">
+          <div class="corner-b"></div>
+          <div class="photo-placeholder">
+            <span>1960s photograph &mdash; to be added</span>
+            <div class="title-band">Fawkner Mansions &middot; c. 1960</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="postcard">
+      <div class="postcard-back">
+        <div class="msg-side">
+          <div class="note">Fawkner Mansions &middot; 250 Punt Road, Prahran<br>
+          Edwardian Free Classical, 1910&ndash;11 &middot; Heritage Overlay HO448</div>
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+          <div class="rule-line"></div>
+        </div>
+        <div class="addr-side">
+          <div class="stamp-box">Stamp</div>
+          <div class="postmark">Prahran<br>Vic.</div>
+          <div class="addr-lines">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bookmark">
+      <div class="hole"></div>
+      <div class="vtitle">Fawkner Mansions</div>
+      <div class="vfoot">Est. 1910 &middot; HO448</div>
+    </div>
+  </div>
+
+  <p class="caption">Postcard front uses the same photo-mount placeholder as
+  the book cover &mdash; both will take the real 1960s photograph once
+  supplied. Bookmark and postcard back are ready as-is; no photography
+  required for those.</p>
+
+  <div class="section-label">International editions &mdash; draft translations</div>
+
+  <div class="mini-cover-grid">
+
+    <div class="mini-cover">
+      <div class="lang-tag">Deutsche Ausgabe</div>
+      <div class="eyebrow">Geschichte &middot; Architektur &middot; Gemeinschaft</div>
+      <h3>Fawkner Mansions</h3>
+      <div class="subtitle">250 Punt Road, Prahran</div>
+      <div class="facts">Erb. 1910&ndash;1911 &middot; Ernest H. Willis</div>
+      <div class="mini-photo"></div>
+      <div class="mini-obi">116 Jahre gelebte Geschichte &mdash; festgehalten, unbezahlbar</div>
+      <p class="mini-blurb">Die &auml;lteste Wohnanlage der Stadt Stonnington
+      &mdash; ein au&szlig;ergew&ouml;hnlich intaktes Beispiel edwardianischer
+      Architektur.</p>
+      <div class="mini-footer">Denkmalschutz-Overlay HO448 &middot; Stadt Stonnington</div>
+    </div>
+
+    <div class="mini-cover">
+      <div class="lang-tag">&Eacute;dition fran&ccedil;aise</div>
+      <div class="eyebrow">Histoire &middot; Architecture &middot; Communaut&eacute;</div>
+      <h3>Fawkner Mansions</h3>
+      <div class="subtitle">250 Punt Road, Prahran</div>
+      <div class="facts">Construit en 1910&ndash;1911 &middot; Ernest H. Willis</div>
+      <div class="mini-photo"></div>
+      <div class="mini-obi">116 ans d&rsquo;histoire vivante &mdash; captur&eacute;s, inestimables</div>
+      <p class="mini-blurb">Le plus ancien immeuble d&rsquo;appartements de la
+      ville de Stonnington &mdash; un exemple remarquablement intact de
+      l&rsquo;architecture &eacute;douardienne.</p>
+      <div class="mini-footer">Zone de protection patrimoniale HO448 &middot; Ville de Stonnington</div>
+    </div>
+
+    <div class="mini-cover">
+      <div class="lang-tag">Edici&oacute;n en espa&ntilde;ol</div>
+      <div class="eyebrow">Historia &middot; Arquitectura &middot; Comunidad</div>
+      <h3>Fawkner Mansions</h3>
+      <div class="subtitle">250 Punt Road, Prahran</div>
+      <div class="facts">Construido en 1910&ndash;1911 &middot; Ernest H. Willis</div>
+      <div class="mini-photo"></div>
+      <div class="mini-obi">116 a&ntilde;os de historia viva &mdash; capturada, invaluable</div>
+      <p class="mini-blurb">El edificio de apartamentos m&aacute;s antiguo de
+      la ciudad de Stonnington &mdash; un ejemplo excepcionalmente conservado
+      de arquitectura eduardiana.</p>
+      <div class="mini-footer">Superposici&oacute;n Patrimonial HO448 &middot; Ciudad de Stonnington</div>
+    </div>
+
+    <div class="mini-cover">
+      <div class="lang-tag">&#20013;&#25991;&#29256; &middot; Chinese Edition</div>
+      <div class="eyebrow">&#21382;&#21490; &middot; &#24314;&#31569; &middot; &#31038;&#21306;</div>
+      <h3>Fawkner Mansions</h3>
+      <div class="cjk-gloss">&#33539;&#20811;&#32435;&#22823;&#21414;</div>
+      <div class="subtitle">250 Punt Road, Prahran</div>
+      <div class="facts">&#24314;&#20110;1910&ndash;1911&#24180; &middot; &#27431;&#20869;&#26031;&#29305;&middot;H&middot;&#23041;&#21033;&#26031;&#35774;&#35745;</div>
+      <div class="mini-photo"></div>
+      <div class="mini-obi">116&#24180;&#40092;&#27963;&#21382;&#21490; &mdash; &#23450;&#26684;&#26080;&#20215;</div>
+      <p class="mini-blurb">&#26031;&#25176;&#23425;&#39030;&#24066;&#26368;&#21476;&#32769;&#30340;&#20844;&#23507;&#24314;&#31569;&mdash;&mdash;&#29233;&#24503;&#21326;&#26102;&#20195;&#24314;&#31569;&#20445;&#23384;&#23436;&#22909;&#30340;&#20856;&#33539;&#12290;</p>
+      <div class="mini-footer">&#36951;&#20135;&#20445;&#25252;&#21306; HO448 &middot; &#26031;&#25176;&#23425;&#39030;&#24066;</div>
+    </div>
+
+  </div>
+
+  <p class="caption">Draft machine-assisted translations only &mdash; have a
+  native speaker in each language review before these are used in any real
+  edition. Building name and street address are kept untranslated, as is
+  standard practice for proper nouns.</p>
+
+  <div class="print-bar">
+    <span class="send-postcard-link">
+      <a href="send-postcard.html" style="color:var(--muted);font-size:.78rem;">Send a virtual postcard &rarr;</a>
+    </span>
+  </div>
+  <script>
+    if(location.hash === "#print"){
+      window.addEventListener("load", function(){ window.print(); });
+    }
+  </script>
+
+</body>
+</html>
