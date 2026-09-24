@@ -6,8 +6,8 @@ Classical block of flats designed by Ernest H. Willis, and believed to be the ol
 surviving residential flats in the City of Stonnington.
 
 This repository is the working store of context for the project: the heritage record,
-the book concept, the preservation/VR plan, and the existing "Mansion WiFi" guest
-portal built for the building's router.
+the book concept, the preservation/VR plan, and an early, parked concept for a
+"Mansion WiFi" guest portal for the building's router.
 
 ## Contents
 
@@ -20,9 +20,11 @@ portal built for the building's router.
   research sources, 3D/VR capture, documentary, and website.
 - [`docs/website-proposal.md`](docs/website-proposal.md) — skeleton proposal for the
   companion history website (sitemap, content plan, design language, phased build).
-- [`wifi-portal/`](wifi-portal/) — an existing "Mansion WiFi" captive-portal splash
-  page and OpenWrt/openNDS router configuration built for the building, with a
-  heritage-grounded design (oxblood brick, bluestone, cream render, black iron).
+- [`wifi-portal/`](wifi-portal/) — **parked, not deployed.** An early "Mansion WiFi"
+  captive-portal splash page and OpenWrt/openNDS router configuration concept for
+  the building, with a heritage-grounded design (oxblood brick, bluestone, cream
+  render, black iron). Kept here for reference and for the shared design language
+  it establishes; not part of the current active work.
 
 ## Project goals
 
