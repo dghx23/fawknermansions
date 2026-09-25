@@ -16,8 +16,13 @@
     inPortal ? 'wifi' :
     'public';
 
-  document.body.classList.add('fm-shell','fm-theme-'+theme);
-  if(inPortal) document.body.classList.add('fm-portal');
+  const navOnly = /\/docs\/(book-mockup(?:-3d)?|send-postcard)\.html$/.test(path);
+  if(navOnly){
+    document.body.classList.add('fm-nav-only');
+  }else{
+    document.body.classList.add('fm-shell','fm-theme-'+theme);
+    if(inPortal) document.body.classList.add('fm-portal');
+  }
 
   const items = [
     ['home','Home',base+'index.html'],
