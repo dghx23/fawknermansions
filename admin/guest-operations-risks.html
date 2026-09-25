@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Fawkner Mansions — Guest Platform Risks</title><style>
+:root{--page:#f1ece8;--paper:#fff;--ink:#221c1c;--red:#8c2633;--amber:#9a6800;--green:#2e704a;--blue:#315f86;--muted:#726768}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 Georgia,serif}header{background:var(--red);color:#fff;padding:1.45rem}header div,nav div,main{max-width:1180px;margin:auto}header h1{margin:.15rem 0}
+nav{background:#29181b;padding:.65rem 1rem;position:sticky;top:0;z-index:3}nav div{display:flex;gap:.5rem;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;border:1px solid #805e64;padding:.3rem .65rem;border-radius:999px;font-size:.78rem}
+main{padding:2rem 1.2rem 4rem}h2{color:var(--red);border-bottom:2px solid var(--red);padding-bottom:.4rem;margin-top:2.1rem}.banner{background:#fff;border-left:6px solid var(--red);padding:1rem 1.2rem}.tag{display:inline-block;padding:.14rem .42rem;font-size:.67rem;text-transform:uppercase;letter-spacing:.06em;border-radius:2px}.critical{background:#8c2633;color:#fff}.high{background:#efc3a8;color:#65280e}.medium{background:#f6e9bd;color:#674d00}.low{background:#dfeee4;color:#245b3d}.verify{background:#dce8f1;color:#2a5878}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.78rem}th,td{border:1px solid #d9caca;padding:.48rem;text-align:left;vertical-align:top}th{background:#eadbd6}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}.card{background:#fff;border:1px solid #ddd0cc;padding:1rem;border-top:4px solid var(--amber)}.note{background:#fff6dc;border-left:4px solid var(--amber);padding:.8rem 1rem}.source li{margin:.55rem 0}
+</style></head><body>
+<header><div><div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em">Guest Operations · Separate Risk Page</div><h1>Booking, Check‑in, Identity & Data Risks</h1><p>Controls, unresolved regulatory questions and implementation gates</p></div></header>
+<nav><div><a href="guest-operations.html">← Guest operations</a><a href="index.html">Project hub</a><a href="wifi-project.html">Wi‑Fi</a><a href="research.html">Research</a></div></nav>
+<main>
+<div class="banner"><strong>This page deliberately separates verified regulatory requirements from risk hypotheses.</strong> Some dramatic liability language in earlier working material (for example assumptions about criminal negligence, automatic insurance denial or licence loss) has not yet been tied to a specific applicable law, licence condition or insurance policy. Treat those as matters to verify with the operator's insurer/legal adviser, not as established facts.</div>
+
+<h2>Risk scoring</h2>
+<p>Likelihood (1–5) × Impact (1–5), with evidence confidence shown separately. “High” does not mean a breach is currently occurring; it means the design should address the exposure before production.</p>
+<table><tr><th>Risk</th><th>L</th><th>I</th><th>Score</th><th>Evidence / uncertainty</th><th>Control / intervention</th></tr>
+<tr><td>Guest personal-data breach</td><td>3</td><td>5</td><td><span class="tag high">15 High</span></td><td>System would hold identifying/contact/stay data.</td><td>Separate secured backend; MFA/RBAC; encryption; audit logs; minimal retention; no guest data in GitHub/static admin.</td></tr>
+<tr><td>Over-collection / unnecessary ID copies</td><td>4</td><td>4</td><td><span class="tag high">16 High</span></td><td>OAIC guidance emphasises reasonable necessity/proportionality and data minimisation.</td><td>Verify ID then discard image by default; maintain a data dictionary and retention rule for every field.</td></tr>
+<tr><td>Biometric privacy exposure</td><td>3</td><td>5</td><td><span class="tag high">15 High</span></td><td>Facial templates/images can be sensitive information and increase harm if compromised.</td><td>Do not use stored facial recognition in v1; PIA and necessity test before any later biometric flow.</td></tr>
+<tr><td>DVS access/consent non-compliance</td><td>3</td><td>4</td><td><span class="tag medium">12 Medium</span></td><td>DVS private-sector use requires approval/GSP/participation agreement and express consent.</td><td>Use approved GSP; explicit standalone consent; annual compliance process; manual alternative.</td></tr>
+<tr><td>Guest locked out due to system/network failure</td><td>4</td><td>4</td><td><span class="tag high">16 High</span></td><td>Digital access creates availability dependency.</td><td>LTE failover, tablet battery, watchdog, manual emergency access and staffed escalation procedure.</td></tr>
+<tr><td>Shared/permanent access code leakage</td><td>4</td><td>4</td><td><span class="tag high">16 High</span></td><td>Working material describes generic/manual code distribution.</td><td>Future unique time-limited credentials; rotate shared codes until access-control upgrade exists.</td></tr>
+<tr><td>Wrong guest / fraudulent booking</td><td>3</td><td>4</td><td><span class="tag medium">12 Medium</span></td><td>Booking name alone does not establish identity.</td><td>Booking match + ID sighting; DVS if approved/proportionate; staff exception path.</td></tr>
+<tr><td>Tablet theft/tampering</td><td>3</td><td>3</td><td><span class="tag medium">9 Medium</span></td><td>Public-facing device.</td><td>Lockable metal mount, kiosk mode, remote management/wipe, no locally retained guest documents.</td></tr>
+<tr><td>Incomplete real-time occupancy record</td><td>3</td><td>5</td><td><span class="tag high">15 High</span></td><td>Manual check-in/out can leave stale state; Wi‑Fi presence is not authoritative occupancy.</td><td>Explicit check-in/out state + staff reconciliation; emergency roster export; do not infer occupancy solely from network connections.</td></tr>
+<tr><td>Accessibility/digital exclusion</td><td>3</td><td>3</td><td><span class="tag medium">9 Medium</span></td><td>Some guests cannot/will not use smartphone, biometrics or kiosk.</td><td>Staff/manual alternative; adjustable mount; readable UI; language/accessibility support.</td></tr>
+<tr><td>Third-party identity/vendor dependency</td><td>3</td><td>4</td><td><span class="tag medium">12 Medium</span></td><td>GSP/identity provider processes high-value personal data.</td><td>Due diligence, data-processing terms, breach notification, subprocessor/hosting review, exit plan.</td></tr>
+<tr><td>Payment-data exposure</td><td>2</td><td>5</td><td><span class="tag medium">10 Medium</span></td><td>Only arises if payments are integrated.</td><td>Hosted/tokenised PCI-compliant payment provider; never store CVV/full card data.</td></tr>
+</table>
+
+<h2>Government/industry controls that shape the design</h2>
+<div class="grid">
+<div class="card"><span class="tag verify">Conditional rule</span><h3>Victorian residents register</h3><p>If the accommodation provider has a relevant general or on-premises liquor licence, Victorian guidance requires a residents register recording name, address, room number and check-in/check-out dates. A digital register is permitted and must be immediately accessible onsite when requested. ID may be requested to verify details; a copy does not need to be kept.</p></div>
+<div class="card"><span class="tag verify">Privacy benchmark</span><h3>Collect the minimum</h3><p>OAIC APP 3 guidance says collection should be reasonably necessary and proportionate, using data minimisation. “Helpful” or “convenient” alone is not enough where the APPs apply.</p></div>
+<div class="card"><span class="tag verify">Retention</span><h3>Delete/de-identify when no longer needed</h3><p>OAIC APP 11 requires covered entities to protect information and take reasonable steps to destroy/de-identify information no longer needed, unless another law/order requires retention.</p></div>
+<div class="card"><span class="tag verify">Identity verification</span><h3>DVS is possible, but controlled</h3><p>Approved private businesses can use the DVS for their own business purposes through an approved Gateway Service Provider. Express consent is mandatory and access must meet the government's criteria/participation agreement.</p></div>
+</div>
+
+<h2>DVS vs facial verification</h2>
+<table><tr><th>Service</th><th>What it proves</th><th>Current suitability</th></tr>
+<tr><td><strong>DVS</strong></td><td>Checks biographic/document details against the issuing government's record and returns a match result; it does not compare faces.</td><td><span class="tag medium">Potential Phase 2</span> Apply as business user through approved GSP if the use case is accepted as reasonable, necessary and proportionate.</td></tr>
+<tr><td><strong>Government FVS</strong></td><td>Compares a person's photo with the image associated with an identity document.</td><td><span class="tag verify">Not a v1 dependency</span> Current IDMatch pages say government access is live and private-sector access is planned/being prepared. Register interest rather than assume production availability.</td></tr>
+<tr><td><strong>Commercial selfie/liveness</strong></td><td>Can compare selfie/liveness capture to an ID image depending on provider.</td><td><span class="tag high">High privacy burden</span> Only if unattended identity risk justifies it; complete PIA, consent and vendor/security review first.</td></tr>
+</table>
+
+<h2>Questions that must be resolved before production</h2>
+<ul>
+<li><strong>Operating entity:</strong> which legal entity operates Fawkner Mansions Heritage Hotel and will be the data controller/contracting party?</li>
+<li><strong>Privacy Act applicability:</strong> confirm turnover and any exception that brings the operator within Privacy Act coverage. Design to APP-level controls regardless.</li>
+<li><strong>Liquor licence:</strong> does the property hold a general/on-premises licence that triggers the Victorian residents-register requirement?</li>
+<li><strong>Insurance:</strong> what guest-record, security, cyber and access-control conditions actually appear in the current policy? Do not assume.</li>
+<li><strong>Fire/emergency obligations:</strong> identify the exact building/emergency-management requirements applicable to this property before making legal claims in the owner pitch.</li>
+<li><strong>Retention:</strong> agree operational/legal retention periods for stay records, verification results, audit logs and any incident records.</li>
+</ul>
+
+<h2>Primary guidance links</h2>
+<ul class="source">
+<li><a href="https://www.vic.gov.au/guest-and-member-registers">Victoria — Guest and member registers</a></li>
+<li><a href="https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-guidelines/chapter-3-app-3-collection-of-solicited-personal-information">OAIC — APP 3 collection/data minimisation</a></li>
+<li><a href="https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-guidelines/chapter-11-app-11-security-of-personal-information">OAIC — APP 11 security/retention</a></li>
+<li><a href="https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/organisations/facial-recognition-technology-a-guide-to-assessing-the-privacy-risks">OAIC — facial recognition privacy risks</a></li>
+<li><a href="https://www.idmatch.gov.au/organisations/business-user">IDMatch — DVS business users</a></li>
+<li><a href="https://www.idmatch.gov.au/guidance-users/consent-obligations-private-sector-users">IDMatch — DVS express consent</a></li>
+<li><a href="https://www.idmatch.gov.au/organisations/business-user/approved-gateway-service-providers">IDMatch — approved Gateway Service Providers</a></li>
+<li><a href="https://www.idmatch.gov.au/organisations">IDMatch — DVS/FVS eligibility and status</a></li>
+</ul>
+<p class="note"><strong>Owner-facing wording control:</strong> present the digital register as a resilience, recordkeeping and guest-experience improvement. Avoid saying a particular criminal/civil/insurance consequence is inevitable unless the applicable statute, licence condition, policy or legal advice specifically supports it.</p>
+</main></body></html>
