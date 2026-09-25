@@ -179,34 +179,69 @@
 
     .portal__body { padding: 27px 30px 30px; }
 
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 0 0 24px;
-      padding: 0;
-      list-style: none;
+    .history-strip{
+      margin:0;
+      padding:14px 24px 15px;
+      border-top:1px solid rgba(214,179,106,.12);
+      border-bottom:1px solid rgba(214,179,106,.22);
+      color:var(--brass-light);
+      background:rgba(8,16,24,.78);
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:.98rem;
+      line-height:1.45;
+      text-align:center;
     }
 
-    .benefits li {
-      min-width: 0;
-      padding: 13px 8px 12px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, .07);
-      border-radius: 14px;
-      color: #cbd2da;
-      background: rgba(255, 255, 255, .025);
-      font-size: .78rem;
-      line-height: 1.25;
+    .access-box{
+      padding:18px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      background:rgba(255,255,255,.028);
     }
-
-    .benefits strong {
-      display: block;
-      margin-bottom: 3px;
-      color: var(--cream);
-      font-size: .86rem;
-      font-weight: 700;
+    .access-box + .access-box{margin-top:14px;}
+    .access-box h2{
+      margin:0 0 7px;
+      color:var(--cream);
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:1.12rem;
+      font-weight:500;
     }
+    .access-box p{margin:0 0 13px;color:#bfc8cf;font-size:.85rem;line-height:1.45;}
+    .token-row{display:grid;grid-template-columns:1fr auto;gap:9px;}
+    .token-row input,.package-select{
+      min-width:0;
+      width:100%;
+      min-height:48px;
+      padding:0 13px;
+      border:1px solid rgba(201,164,96,.35);
+      border-radius:11px;
+      color:var(--cream);
+      background:#101b24;
+      outline:none;
+    }
+    .token-row input:focus,.package-select:focus{border-color:var(--brass);box-shadow:0 0 0 3px rgba(201,164,96,.11);}
+    .mini-button,.pay-card{
+      min-height:48px;
+      border:1px solid var(--brass);
+      border-radius:11px;
+      color:#0a1522;
+      background:linear-gradient(180deg,#ead9ae,var(--brass));
+      font-weight:800;
+      cursor:pointer;
+    }
+    .mini-button{padding:0 16px;}
+    .pay-card{width:100%;margin-top:10px;}
+    .mini-button:disabled,.pay-card:disabled{cursor:not-allowed;filter:saturate(.3);opacity:.42;}
+    .choice-divider{
+      display:flex;align-items:center;gap:12px;margin:18px 0;color:#7f8d98;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;
+    }
+    .choice-divider::before,.choice-divider::after{content:"";height:1px;flex:1;background:rgba(255,255,255,.08);}
+    .legal-footer{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07);}
+    .legal-copy{margin:12px 0 0;color:#aeb8c0;font-size:.78rem;line-height:1.5;text-align:center;}
+    .legal-links{text-align:center;font-size:.8rem;margin-top:10px;}
+    .legal-links a{color:var(--brass-light);text-underline-offset:3px;}
+    .payment-logos{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:16px auto 0;opacity:.86;}
+    .payment-logos img{height:18px;max-width:46px;object-fit:contain;filter:grayscale(.05);}
 
     .agree {
       display: grid;
@@ -367,14 +402,14 @@
       <div id="access-panel">
         <header class="portal__top">
           <figure class="building-hero">
-            <img src="./fawkner-mansions-illustration.webp" alt="Architectural illustration of the red-brick Fawkner Mansions in Prahran">
-            <figcaption>Established 1910–11</figcaption>
+            <img src="./fawkner-mansions-hero.webp" alt="Fawkner Mansions Heritage Hotel at 250 Punt Road, Prahran">
           </figure>
+          <p class="history-strip"><strong>Built around 1910, Fawkner Mansions is among Victoria’s earliest surviving purpose-built apartment buildings.</strong></p>
           <div class="portal__intro">
             <div class="monogram" aria-hidden="true">FM</div>
-            <p class="eyebrow">250 Punt Road · Prahran</p>
+            <p class="eyebrow">Fawkner Mansions Heritage Hotel</p>
             <h1 id="portal-title">Welcome to<br>Fawkner Mansions</h1>
-            <p class="intro">Guest Wi-Fi in one of Victoria’s earliest purpose-built apartment buildings.</p>
+            <p class="intro">Choose a voucher or card payment to activate guest Wi-Fi for your stay.</p>
             <div class="network-chip" aria-label="Network Mansion WiFi">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
                 <path d="M4.8 9.4a11 11 0 0 1 14.4 0M7.8 12.6a6.6 6.6 0 0 1 8.4 0M10.5 15.8a2.4 2.4 0 0 1 3 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>
@@ -385,20 +420,52 @@
         </header>
 
         <div class="portal__body">
-          <ul class="benefits" aria-label="Access details">
-            <li><strong>Guest</strong>network</li>
-            <li><strong>Private</strong>devices</li>
-            <li><strong>Fair use</strong>access</li>
-          </ul>
+          <div class="access-box">
+            <h2>Have a voucher?</h2>
+            <p>Enter the token supplied at check-in. Your access can be reused across the devices authorised for your booking.</p>
+            <div class="token-row">
+              <input id="voucher-token" type="text" inputmode="text" autocomplete="off" placeholder="Enter voucher token" aria-label="Voucher token">
+              <button class="mini-button" id="redeem" type="button" disabled>Use voucher</button>
+            </div>
+          </div>
 
-          <label class="agree">
-            <input id="agree" type="checkbox">
-            <span>I agree to use this network lawfully and respectfully, and accept the <a class="terms-link" href="#terms" id="open-terms">access terms</a>.</span>
-          </label>
+          <div class="choice-divider">or</div>
 
-          <button class="connect" id="connect" type="button" disabled>Connect to Mansion WiFi</button>
-          <p class="privacy">No marketing sign-up. Basic connection details may be logged for security and troubleshooting.</p>
-          <p class="support">Having trouble? Turn Wi-Fi off and on, then reconnect.</p>
+          <div class="access-box">
+            <h2>Pay by card</h2>
+            <p>Select the Wi-Fi package you want. At reception, the payment terminal will prompt you to tap your card or wallet; once approved, access is issued automatically to your booking.</p>
+            <select class="package-select" id="wifi-package" aria-label="Wi-Fi package">
+              <option value="6">1 night — A$6</option>
+              <option value="10">2 nights — A$10</option>
+              <option value="13">3 nights — A$13</option>
+              <option value="22">7 days — A$22</option>
+              <option value="55">1 month — A$55</option>
+            </select>
+            <button class="pay-card" id="pay-card" type="button" disabled>Pay by card</button>
+          </div>
+
+          <div class="legal-footer">
+            <label class="agree">
+              <input id="agree" type="checkbox">
+              <span>I accept the <a class="terms-link" href="#terms" id="open-terms">Terms &amp; Conditions</a> and <a class="terms-link" href="#fair-use" id="open-fair-use">Fair Use Policy</a>.</span>
+            </label>
+
+            <p class="legal-copy">After accepting, you can enter a valid voucher token if you already have one, or choose <strong>Pay by card</strong>. Successful voucher validation or card-payment approval activates the Wi-Fi entitlement linked to your booking and room for the selected period.</p>
+
+            <div class="payment-logos" aria-label="Accepted payment methods">
+              <img src="../assets/payment-logos/visa.svg" alt="Visa">
+              <img src="../assets/payment-logos/mastercard.svg" alt="Mastercard">
+              <img src="../assets/payment-logos/amex.svg" alt="American Express">
+              <img src="../assets/payment-logos/apple-pay.svg" alt="Apple Pay">
+              <img src="../assets/payment-logos/google-pay.svg" alt="Google Pay">
+              <img src="../assets/payment-logos/unionpay.svg" alt="UnionPay">
+              <img src="../assets/payment-logos/jcb.svg" alt="JCB">
+            </div>
+
+            <div class="legal-links"><a href="#terms" id="open-terms-bottom">Terms &amp; Conditions</a> &nbsp;·&nbsp; <a href="#fair-use" id="open-fair-use-bottom">Fair Use Policy</a></div>
+            <p class="privacy">Basic connection and entitlement details may be logged for security, billing, support and troubleshooting. No marketing sign-up is required.</p>
+            <p class="support">Having trouble? Ask reception for assistance.</p>
+          </div>
         </div>
       </div>
 
@@ -406,9 +473,9 @@
         <div class="checkmark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>
         </div>
-        <p class="eyebrow">Fawkner Mansions · Mansion WiFi</p>
+        <p class="eyebrow">Fawkner Mansions Heritage Hotel · Mansion WiFi</p>
         <h2>You’re connected</h2>
-        <p>Your device now has guest Internet access at Fawkner Mansions. This window may close automatically.</p>
+        <p>Your voucher has been accepted and this device now has guest Internet access for the entitlement linked to your booking.</p>
         <a class="connect" href="http://neverssl.com">Continue online</a>
       </div>
     </section>
@@ -416,43 +483,94 @@
 
   <dialog id="terms">
     <div class="dialog-content">
-      <h2>Fawkner Mansions guest access</h2>
-      <p>By connecting, you agree to use Mansion WiFi responsibly and at your own risk.</p>
+      <h2>Terms &amp; Conditions</h2>
+      <p>Guest Wi-Fi is supplied for authorised Fawkner Mansions guests and visitors with a valid entitlement. Access may be suspended where necessary to operate, secure or maintain the service.</p>
       <ul>
-        <li>Do not use the service for unlawful, harmful or abusive activity.</li>
-        <li>Do not attempt to access other guests’ devices or the Mansion’s private systems.</li>
-        <li>Access may be limited, monitored for network security, or withdrawn at any time.</li>
-        <li>Use encrypted websites and services when handling sensitive information.</li>
+        <li>Use the service lawfully and do not interfere with other users, systems or devices.</li>
+        <li>Keep voucher/token details within your booking party and do not resell or publicly share access.</li>
+        <li>Package validity is tied to the purchased entitlement and may also end when the associated stay ends.</li>
+        <li>Availability and performance can vary and are not guaranteed continuously.</li>
       </ul>
-      <p>The network records technical connection information such as device address, session time and data usage for operation and security. It does not ask for marketing information.</p>
-      <button type="button" id="close-terms">Close terms</button>
+      <p>Technical connection, entitlement and transaction-reference information may be retained for service operation, billing, security and troubleshooting.</p>
+      <button type="button" id="close-terms">Close</button>
+    </div>
+  </dialog>
+
+  <dialog id="fair-use">
+    <div class="dialog-content">
+      <h2>Fair Use Policy</h2>
+      <p>Paid packages provide unlimited data during the valid entitlement period, subject to reasonable network management so that one user or device does not materially degrade service for other guests.</p>
+      <ul>
+        <li>No deliberate network abuse, attacks, bulk unsolicited messaging or unlawful activity.</li>
+        <li>Automated or unusually heavy traffic may be rate-limited where required to protect service quality.</li>
+        <li>Multi-device access is permitted for devices authorised to the same guest/booking, within any configured device or concurrency limit.</li>
+      </ul>
+      <button type="button" id="close-fair-use">Close</button>
+    </div>
+  </dialog>
+
+  <dialog id="payment-flow">
+    <div class="dialog-content">
+      <h2>Pay by card</h2>
+      <p id="payment-summary">Your selected package will be sent to the reception payment terminal.</p>
+      <p>In the live system, the terminal will prompt you to tap your card or wallet. Once the payment provider confirms approval, the backend will issue your Wi-Fi entitlement automatically and associate it with your booking.</p>
+      <button type="button" id="close-payment-flow">Close demo</button>
     </div>
   </dialog>
 
   <script>
     (() => {
       const agree = document.getElementById('agree');
-      const connect = document.getElementById('connect');
+      const token = document.getElementById('voucher-token');
+      const redeem = document.getElementById('redeem');
+      const payCard = document.getElementById('pay-card');
       const access = document.getElementById('access-panel');
       const success = document.getElementById('success-panel');
       const terms = document.getElementById('terms');
+      const fairUse = document.getElementById('fair-use');
+      const paymentFlow = document.getElementById('payment-flow');
+      const packageSelect = document.getElementById('wifi-package');
 
-      agree.addEventListener('change', () => { connect.disabled = !agree.checked; });
-      document.getElementById('open-terms').addEventListener('click', (event) => {
-        event.preventDefault();
-        terms.showModal();
-      });
+      function syncActions(){
+        redeem.disabled = !(agree.checked && token.value.trim().length > 0);
+        payCard.disabled = !agree.checked;
+      }
+
+      function openDialog(id, dialog){
+        document.getElementById(id).addEventListener('click', (event) => {
+          event.preventDefault();
+          dialog.showModal();
+        });
+      }
+
+      agree.addEventListener('change', syncActions);
+      token.addEventListener('input', syncActions);
+      openDialog('open-terms', terms);
+      openDialog('open-terms-bottom', terms);
+      openDialog('open-fair-use', fairUse);
+      openDialog('open-fair-use-bottom', fairUse);
       document.getElementById('close-terms').addEventListener('click', () => terms.close());
+      document.getElementById('close-fair-use').addEventListener('click', () => fairUse.close());
+      document.getElementById('close-payment-flow').addEventListener('click', () => paymentFlow.close());
 
-      connect.addEventListener('click', () => {
-        if (!agree.checked) return;
+      redeem.addEventListener('click', () => {
+        if (redeem.disabled) return;
         access.classList.add('is-loading');
-        connect.disabled = true;
         window.setTimeout(() => {
           access.hidden = true;
           success.setAttribute('aria-hidden', 'false');
-        }, 700);
+        }, 650);
       });
+
+      payCard.addEventListener('click', () => {
+        if (payCard.disabled) return;
+        const option = packageSelect.options[packageSelect.selectedIndex];
+        document.getElementById('payment-summary').textContent =
+          option.text + ' will be sent to the reception payment terminal.';
+        paymentFlow.showModal();
+      });
+
+      syncActions();
     })();
   </script>
 </body>
