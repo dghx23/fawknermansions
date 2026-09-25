@@ -36,6 +36,105 @@ table{width:100%;border-collapse:collapse;background:#fff;font-size:.85rem}th,td
 <div class="card"><h3>Future value</h3><p>Once reliable building connectivity exists, access control, environmental monitoring and maintenance telemetry become feasible.</p></div>
 </div>
 
+<h2>What the captive portal is — and what it is not</h2>
+<div class="grid">
+<div class="card"><h3>Guest access only</h3><p>A <strong>captive portal</strong> is the web page a guest is redirected to when they first join the guest Wi‑Fi network. Instead of giving every guest a permanent Wi‑Fi password, the portal checks their booking/entitlement and asks for a valid token before allowing internet access.</p></div>
+<div class="card"><h3>Not used by building equipment</h3><p>Smart TVs, CCTV cameras, environmental sensors, the check‑in tablet, staff devices and other building equipment should be provisioned permanently on separate managed SSIDs/VLANs. They do <strong>not</strong> pay, see the captive portal or use guest tokens.</p></div>
+<div class="card"><h3>Multi-device entitlement</h3><p>A paid entitlement belongs to the <strong>guest/booking</strong>, not to one device. The same token can enrol multiple guest devices. The backend records each authorised device against that guest and enforces a configurable device/concurrency limit.</p></div>
+<div class="card"><h3>Automatic expiry</h3><p>Entitlements expire at the earlier of the purchased package end or the guest's recorded checkout, unless management deliberately extends them.</p></div>
+</div>
+
+<h2>Guest packages — unlimited data during the entitlement</h2>
+<table><tr><th>Package</th><th>Price</th><th>Suggested validity</th><th>Use</th></tr>
+<tr><td>1 night</td><td><strong>A$6</strong></td><td>Through the guest's next checkout day</td><td>Unlimited guest internet; multi-device entitlement.</td></tr>
+<tr><td>2 nights</td><td><strong>A$10</strong></td><td>2-night booking window</td><td>Unlimited guest internet; multi-device entitlement.</td></tr>
+<tr><td>3 nights</td><td><strong>A$13</strong></td><td>3-night booking window</td><td>Unlimited guest internet; multi-device entitlement.</td></tr>
+<tr><td>7 days</td><td><strong>A$22</strong></td><td>Up to 7 days, never beyond checkout unless extended</td><td>Useful for 4–7 night stays or longer-stay guests.</td></tr>
+<tr><td>1 month</td><td><strong>A$55</strong></td><td>30 days, subject to an active stay/resident entitlement</td><td>Long-stay guest/resident option.</td></tr>
+</table>
+<p class="note"><strong>Unlimited</strong> means no metered data allowance within the valid period. Reasonable network-management controls can still protect the service from abusive traffic. The number of simultaneously authorised devices should be configurable rather than hard-coded.</p>
+
+<h2>Buy Wi‑Fi during digital check‑in</h2>
+<div class="flow"><strong>Booking matched</strong> → check‑in screen knows guest, room and booked stay dates.</div>
+<div class="flow"><strong>Optional Wi‑Fi offer</strong> → guest sees the packages above and chooses one. The interface can highlight the package matching the booking length while still allowing another valid option.</div>
+<div class="flow"><strong>Tap card / wallet</strong> → payment is taken on a dedicated integrated EFTPOS terminal beside the tablet.</div>
+<div class="flow"><strong>Payment confirmation</strong> → payment provider sends success to the check‑in backend → backend creates the Wi‑Fi entitlement/token and associates it with booking ID, guest ID, room, validity and payment reference.</div>
+<div class="flow"><strong>Immediate access</strong> → token/QR is displayed and sent to the guest; the captive portal also recognises the reservation-linked entitlement when the guest joins the guest SSID.</div>
+
+<div class="grid">
+<div class="card"><span class="pill">Preferred integration pattern</span><h3>Square Terminal + Terminal API</h3><p>Square's Terminal API can pair a Square Terminal with a custom application running on another device. The terminal handles contactless/NFC, chip/PIN and payment compliance; the backend receives checkout/payment events and can then issue the Wi‑Fi entitlement.</p><p><a href="https://developer.squareup.com/au/en/in-person-payments">Square developer docs</a></p></div>
+<div class="card"><span class="pill">Australian alternative</span><h3>Tyro integrated EFTPOS</h3><p>Tyro provides a browser-based JavaScript integration (iClient) for browser POS software to communicate with Tyro EFTPOS machines, plus Android/iOS options. This is attractive because the Fawkner check‑in UI is web-based.</p><p><a href="https://docs.integrated-eftpos.tyro.com/">Tyro integration docs</a></p></div>
+<div class="card"><span class="pill warn">Tablet limitation</span><h3>Lenovo tablet itself is not the card reader</h3><p>The current Lenovo TB311XU/ZAEJ0157AU candidate is an LTE tablet but available specifications identify it as having <strong>no NFC</strong>. Therefore, direct Tap to Pay on that tablet should not be a dependency. Use an integrated EFTPOS terminal, or select a different certified NFC-capable device later.</p></div>
+<div class="card"><span class="pill warn">Resilience</span><h3>Payments need their own outage plan</h3><p>The tablet's LTE backup protects the check‑in UI, but a separate payment terminal also needs connectivity. Network-level LTE failover or a cellular-capable smart reader is preferable if payment availability must survive a building WAN outage. Always retain a manual/online-link fallback.</p></div>
+</div>
+
+<h2>Revenue model — interactive assumptions</h2>
+<p>This calculator separates <strong>total rooms</strong> from <strong>usable/sellable guest rooms</strong>. Occupancy applies only to usable inventory. “Usable” means rooms actually available to sell in the period after excluding maintenance/offline rooms, long-term/non-guest use or other unavailable stock.</p>
+<div class="wifi-calculator">
+<style>
+.wifi-calculator{background:#f4efe0;border:1px solid #8fb29a;padding:1.1rem;border-radius:3px}
+.calc-row{display:grid;grid-template-columns:1.15fr 1fr auto;gap:.75rem;align-items:center;margin:.7rem 0}.calc-row label{font-weight:bold}.calc-row input,.calc-row select{width:100%;padding:.4rem}
+.calc-buttons{display:flex;gap:.45rem;flex-wrap:wrap;margin:1rem 0}.calc-buttons button{border:0;background:#1f6a43;color:#fff;padding:.45rem .7rem;cursor:pointer}
+.calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.65rem;margin-top:1rem}.calc-result-box{background:#fff;border:1px solid #ccd9d0;padding:.7rem}.calc-result-label{font-size:.68rem;text-transform:uppercase;color:#5b6b60}.calc-result-value{font-size:1.25rem;font-weight:bold}
+</style>
+<div class="calc-row"><label for="wf-total-rooms">Total rooms:</label><input type="number" id="wf-total-rooms" value="30" min="1" max="150"><span></span></div>
+<div class="calc-row"><label for="wf-usable-rooms">Usable / sellable rooms:</label><input type="range" id="wf-usable-rooms" value="30" min="1" max="30"><span id="wf-usable-display">30</span></div>
+<div class="calc-row"><label for="wf-occupancy">Average occupancy:</label><input type="range" id="wf-occupancy" value="60" min="0" max="100"><span id="wf-occupancy-display">60%</span></div>
+<div class="calc-row"><label for="wf-takeup">Wi‑Fi take-up:</label><input type="range" id="wf-takeup" value="25" min="0" max="100"><span id="wf-takeup-display">25%</span></div>
+<div class="calc-row"><label for="wf-stay">Average stay length:</label><input type="range" id="wf-stay" value="2" min="1" max="30"><span id="wf-stay-display">2 nights</span></div>
+<div class="calc-row"><label for="wf-plan">Average purchased package:</label><select id="wf-plan"><option value="6">1 night — A$6</option><option value="10" selected>2 nights — A$10</option><option value="13">3 nights — A$13</option><option value="22">7 days — A$22</option><option value="55">1 month — A$55</option></select><span></span></div>
+<div class="calc-row"><label for="wf-network-cost">Monthly network/backhaul cost:</label><input type="number" id="wf-network-cost" value="110" min="0" step="1"><span>A$/mo</span></div>
+<div class="calc-row"><label for="wf-setup-cost">One-off setup cost:</label><input type="number" id="wf-setup-cost" value="1500" min="0" step="50"><span>A$</span></div>
+<div class="calc-buttons"><button type="button" onclick="wfScenario(30,24,50,20,2,10)">Conservative</button><button type="button" onclick="wfScenario(30,27,60,35,2,10)">Working case</button><button type="button" onclick="wfScenario(30,30,75,55,3,13)">High take-up</button></div>
+<div class="calc-results">
+<div class="calc-result-box"><div class="calc-result-label">Usable inventory</div><div class="calc-result-value" id="wf-inventory">100%</div></div>
+<div class="calc-result-box"><div class="calc-result-label">Occupied room-nights / month</div><div class="calc-result-value" id="wf-occupied">0</div></div>
+<div class="calc-result-box"><div class="calc-result-label">Estimated Wi‑Fi purchases / month</div><div class="calc-result-value" id="wf-purchases">0</div></div>
+<div class="calc-result-box"><div class="calc-result-label">Gross Wi‑Fi revenue</div><div class="calc-result-value" id="wf-gross">A$0</div></div>
+<div class="calc-result-box"><div class="calc-result-label">Net before payment fees/tax</div><div class="calc-result-value" id="wf-net">A$0</div></div>
+<div class="calc-result-box"><div class="calc-result-label">Indicative setup payback</div><div class="calc-result-value" id="wf-payback">—</div></div>
+</div>
+<p class="note">This is scenario modelling, not a forecast. Revenue is estimated by converting occupied room-nights into stays using the average stay length, then applying the Wi‑Fi take-up rate and selected average package. Payment fees, refunds, taxes, maintenance and support costs are excluded unless added later.</p>
+<script>
+(function(){
+const total=document.getElementById('wf-total-rooms'), usable=document.getElementById('wf-usable-rooms'), occ=document.getElementById('wf-occupancy'), take=document.getElementById('wf-takeup'), stay=document.getElementById('wf-stay');
+function syncMax(){const t=Math.max(1,parseInt(total.value)||1);usable.max=t;if((parseInt(usable.value)||1)>t)usable.value=t;}
+window.wfCalc=function(){syncMax();const t=Math.max(1,+total.value||1),u=Math.max(1,+usable.value||1),o=+occ.value||0,w=+take.value||0,s=Math.max(1,+stay.value||1),p=+document.getElementById('wf-plan').value||0,nc=+document.getElementById('wf-network-cost').value||0,sc=+document.getElementById('wf-setup-cost').value||0;const occupied=u*30*o/100,purchases=(occupied/s)*w/100,gross=purchases*p,net=gross-nc;document.getElementById('wf-usable-display').textContent=u;document.getElementById('wf-occupancy-display').textContent=o+'%';document.getElementById('wf-takeup-display').textContent=w+'%';document.getElementById('wf-stay-display').textContent=s+(s===1?' night':' nights');document.getElementById('wf-inventory').textContent=Math.round(u/t*100)+'% ('+u+'/'+t+')';document.getElementById('wf-occupied').textContent=Math.round(occupied);document.getElementById('wf-purchases').textContent=purchases.toFixed(1);document.getElementById('wf-gross').textContent='A
+<table><tr><th>Phase</th><th>Deliverable</th><th>Decision gate</th></tr>
+<tr><td>1 — Survey</td><td>Coverage survey, backhaul test, router/AP layout, cabling/power constraints, separation of guest and operations traffic.</td><td>Confirm actual equipment and installation cost.</td></tr>
+<tr><td>2 — Core Wi‑Fi</td><td>Reliable building coverage + guest SSID + owner/admin monitoring.</td><td>Measure uptime/coverage before monetising.</td></tr>
+<tr><td>3 — Captive portal</td><td>Voucher and/or card-paid plans, receipts and support process.</td><td>Validate demand and payment-provider economics.</td></tr>
+<tr><td>4 — Operations integration</td><td>Check‑in platform connectivity, optional guest account linkage, future access-control/IoT integration.</td><td>Privacy/security review before sharing identifiers between systems.</td></tr>
+</table>
+
+<h2>Key risks</h2><div class="grid">
+<div class="card"><span class="pill risk">High</span><h3>Single point of failure</h3><p>Backhaul/router/AP failure can affect both revenue and operations. Keep operational fallback procedures and consider LTE backup at the operations layer.</p></div>
+<div class="card"><span class="pill risk">High</span><h3>Network segregation</h3><p>Do not put guest traffic and the guest-management database on the same trusted LAN.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>Support expectations</h3><p>Charging for access creates an obligation to define refunds, support and what happens during outages.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>Economics</h3><p>Pricing, take-up and backhaul costs are still assumptions. The interactive calculator in the existing dashboard is scenario modelling, not a forecast.</p></div>
+</div>
+<p class="note"><strong>Cross-reference:</strong> guest identity, occupancy, privacy and tablet hardware belong in the <a href="guest-operations.html">Guest Operations</a> workstream. The network is an enabling control, not a substitute for a proper guest register.</p>
+</main></body></html>+Math.round(gross);document.getElementById('wf-net').textContent='A
+<table><tr><th>Phase</th><th>Deliverable</th><th>Decision gate</th></tr>
+<tr><td>1 — Survey</td><td>Coverage survey, backhaul test, router/AP layout, cabling/power constraints, separation of guest and operations traffic.</td><td>Confirm actual equipment and installation cost.</td></tr>
+<tr><td>2 — Core Wi‑Fi</td><td>Reliable building coverage + guest SSID + owner/admin monitoring.</td><td>Measure uptime/coverage before monetising.</td></tr>
+<tr><td>3 — Captive portal</td><td>Voucher and/or card-paid plans, receipts and support process.</td><td>Validate demand and payment-provider economics.</td></tr>
+<tr><td>4 — Operations integration</td><td>Check‑in platform connectivity, optional guest account linkage, future access-control/IoT integration.</td><td>Privacy/security review before sharing identifiers between systems.</td></tr>
+</table>
+
+<h2>Key risks</h2><div class="grid">
+<div class="card"><span class="pill risk">High</span><h3>Single point of failure</h3><p>Backhaul/router/AP failure can affect both revenue and operations. Keep operational fallback procedures and consider LTE backup at the operations layer.</p></div>
+<div class="card"><span class="pill risk">High</span><h3>Network segregation</h3><p>Do not put guest traffic and the guest-management database on the same trusted LAN.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>Support expectations</h3><p>Charging for access creates an obligation to define refunds, support and what happens during outages.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>Economics</h3><p>Pricing, take-up and backhaul costs are still assumptions. The interactive calculator in the existing dashboard is scenario modelling, not a forecast.</p></div>
+</div>
+<p class="note"><strong>Cross-reference:</strong> guest identity, occupancy, privacy and tablet hardware belong in the <a href="guest-operations.html">Guest Operations</a> workstream. The network is an enabling control, not a substitute for a proper guest register.</p>
+</main></body></html>+Math.round(net);document.getElementById('wf-payback').textContent=net>0?(sc/net).toFixed(1)+' months':'—';}
+window.wfScenario=function(t,u,o,w,s,p){total.value=t;usable.max=t;usable.value=u;occ.value=o;take.value=w;stay.value=s;document.getElementById('wf-plan').value=p;wfCalc();}
+[total,usable,occ,take,stay,document.getElementById('wf-plan'),document.getElementById('wf-network-cost'),document.getElementById('wf-setup-cost')].forEach(x=>x.addEventListener('input',wfCalc));wfCalc();
+})();
+</script>
+</div>
 <h2>Phased delivery</h2>
 <table><tr><th>Phase</th><th>Deliverable</th><th>Decision gate</th></tr>
 <tr><td>1 — Survey</td><td>Coverage survey, backhaul test, router/AP layout, cabling/power constraints, separation of guest and operations traffic.</td><td>Confirm actual equipment and installation cost.</td></tr>
