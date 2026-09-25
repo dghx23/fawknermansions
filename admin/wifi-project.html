@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Fawkner Mansions — Wi‑Fi Project</title><style>
+:root{--paper:#f4efe0;--page:#e7efe8;--ink:#162019;--muted:#5b6b60;--green:#1f6a43;--green2:#2d8b5c;--amber:#a36a00;--red:#922b2b}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.55 Georgia,serif}header{background:var(--green);color:white;padding:1.5rem}header div,main,nav div{max-width:1100px;margin:auto}header h1{font-size:2rem;margin:.15rem 0}.eyebrow,.pill{font-size:.69rem;text-transform:uppercase;letter-spacing:.08em}
+nav{background:#13231a;padding:.65rem 1rem;position:sticky;top:0;z-index:3}nav div{display:flex;gap:.5rem;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;border:1px solid #5d7867;padding:.3rem .65rem;border-radius:999px;font-size:.78rem}
+main{padding:2rem 1.2rem 4rem}.hero,.card{background:#fff;border:1px solid #c8d8cc}.hero{padding:1.35rem;border-top:6px solid var(--green2)}h2{color:var(--green);border-bottom:2px solid var(--green);padding-bottom:.4rem;margin-top:2.2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}.card{padding:1rem;border-top:4px solid var(--green2)}.pill{display:inline-block;padding:.18rem .45rem;border-radius:2px;background:#dff2e7;color:#155c39}.warn{background:#fff2d5;color:#6f4d00}.risk{background:#f5dddd;color:#7d2020}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.85rem}th,td{border:1px solid #c8d8cc;padding:.55rem;text-align:left;vertical-align:top}th{background:#dce9df}.flow{padding:.8rem;background:white;border-left:5px solid var(--green2);margin:.6rem 0}.note{background:#fff8e6;border-left:4px solid var(--amber);padding:.8rem 1rem}.btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:.45rem .75rem;margin:.15rem .3rem .15rem 0}
+</style></head><body>
+<header><div><div class="eyebrow">Workstream 2 · Revenue + Infrastructure</div><h1>Wi‑Fi Project</h1><p>Reliable guest connectivity · captive portal · paid access · operational backbone</p></div></header>
+<nav><div><a href="index.html">← Project hub</a><a href="../wifi-portal/index.html">Portal prototype</a><a href="guest-operations.html">Guest/check‑in platform</a><a href="guest-operations-risks.html">Operational risks</a><a href="heritage-project.html">Heritage project</a></div></nav>
+<main>
+<section class="hero"><span class="pill">Headline opportunity</span><h2 style="border:0;margin:.45rem 0">Turn a service gap into infrastructure the rest of the operating model can use</h2>
+<p>The Wi‑Fi concept is now a standalone project rather than a footnote to the heritage work. The same network can support paid guest access, reception systems, the digital check‑in platform, future CCTV/sensors and owner visibility.</p>
+<a class="btn" href="../wifi-portal/index.html">Open Mansion WiFi prototype</a><a class="btn" href="guest-operations.html">See check‑in integration</a></section>
+
+<h2>Working commercial model</h2>
+<table><tr><th>Element</th><th>Working concept</th><th>Status</th></tr>
+<tr><td>Primary internet</td><td>Starlink / existing or proposed building backhaul</td><td><span class="pill warn">Verify actual service/cost</span></td></tr>
+<tr><td>Guest access</td><td>Captive portal with time-limited plans/vouchers or card payment</td><td><span class="pill">Prototype concept exists</span></td></tr>
+<tr><td>Indicative pricing</td><td>$5/day · $20/week · $50/month</td><td><span class="pill warn">Working assumption</span></td></tr>
+<tr><td>Management</td><td>Owner dashboard: active users, vouchers, revenue, device/network status</td><td><span class="pill">Design target</span></td></tr>
+<tr><td>Guest/check-in link</td><td>Optional linkage after successful guest registration; do not use Wi‑Fi presence alone as authoritative occupancy evidence</td><td><span class="pill">Design target</span></td></tr>
+</table>
+
+<h2>Architecture</h2>
+<div class="flow"><strong>Internet backhaul</strong> → router/firewall → managed access points → guest SSID / staff SSID / operations SSID</div>
+<div class="flow"><strong>Guest SSID</strong> → captive portal → voucher/payment/approved guest access → internet</div>
+<div class="flow"><strong>Operations network</strong> → check‑in tablet + staff devices + future locks/CCTV/sensors, isolated from guest traffic</div>
+<div class="flow"><strong>Owner portal</strong> → remote monitoring, billing/audit records and device health — without exposing guest devices to admin systems</div>
+
+<h2>Why separate networks matter</h2><div class="grid">
+<div class="card"><h3>Guest isolation</h3><p>Guests should never share a trusted network segment with the check‑in database, reception equipment or future cameras/IoT.</p></div>
+<div class="card"><h3>Reliability</h3><p>If guest traffic spikes, the reception/check‑in system still needs priority and predictable connectivity.</p></div>
+<div class="card"><h3>Security</h3><p>VLAN/SSID separation, strong admin authentication and restricted management access reduce the blast radius of a compromised guest device.</p></div>
+<div class="card"><h3>Future value</h3><p>Once reliable building connectivity exists, access control, environmental monitoring and maintenance telemetry become feasible.</p></div>
+</div>
+
+<h2>Phased delivery</h2>
+<table><tr><th>Phase</th><th>Deliverable</th><th>Decision gate</th></tr>
+<tr><td>1 — Survey</td><td>Coverage survey, backhaul test, router/AP layout, cabling/power constraints, separation of guest and operations traffic.</td><td>Confirm actual equipment and installation cost.</td></tr>
+<tr><td>2 — Core Wi‑Fi</td><td>Reliable building coverage + guest SSID + owner/admin monitoring.</td><td>Measure uptime/coverage before monetising.</td></tr>
+<tr><td>3 — Captive portal</td><td>Voucher and/or card-paid plans, receipts and support process.</td><td>Validate demand and payment-provider economics.</td></tr>
+<tr><td>4 — Operations integration</td><td>Check‑in platform connectivity, optional guest account linkage, future access-control/IoT integration.</td><td>Privacy/security review before sharing identifiers between systems.</td></tr>
+</table>
+
+<h2>Key risks</h2><div class="grid">
+<div class="card"><span class="pill risk">High</span><h3>Single point of failure</h3><p>Backhaul/router/AP failure can affect both revenue and operations. Keep operational fallback procedures and consider LTE backup at the operations layer.</p></div>
+<div class="card"><span class="pill risk">High</span><h3>Network segregation</h3><p>Do not put guest traffic and the guest-management database on the same trusted LAN.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>Support expectations</h3><p>Charging for access creates an obligation to define refunds, support and what happens during outages.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>Economics</h3><p>Pricing, take-up and backhaul costs are still assumptions. The interactive calculator in the existing dashboard is scenario modelling, not a forecast.</p></div>
+</div>
+<p class="note"><strong>Cross-reference:</strong> guest identity, occupancy, privacy and tablet hardware belong in the <a href="guest-operations.html">Guest Operations</a> workstream. The network is an enabling control, not a substitute for a proper guest register.</p>
+</main></body></html>
