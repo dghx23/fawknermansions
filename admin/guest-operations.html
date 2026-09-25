@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Fawkner Mansions — Guest Operations & Digital Check‑in</title><style>
+:root{--page:#e8edf3;--paper:#fff;--ink:#17202a;--blue:#265b86;--blue2:#3e7cb1;--muted:#637382;--green:#2c7048;--amber:#a06b00;--red:#8b2430}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.5 Georgia,serif}header{background:var(--blue);color:#fff;padding:1.45rem}header div,nav div,main{max-width:1150px;margin:auto}header h1{margin:.15rem 0}.eyebrow,.tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}
+nav{background:#172b3d;padding:.65rem 1rem;position:sticky;top:0;z-index:3}nav div{display:flex;gap:.5rem;flex-wrap:wrap}nav a{color:white;text-decoration:none;border:1px solid #668097;padding:.3rem .65rem;border-radius:999px;font-size:.78rem}
+main{padding:2rem 1.2rem 4rem}.hero,.card{background:white;border:1px solid #cad5df}.hero{padding:1.35rem;border-top:6px solid var(--blue2)}h2{color:var(--blue);border-bottom:2px solid var(--blue);padding-bottom:.4rem;margin-top:2.2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}.card{padding:1rem;border-top:4px solid var(--blue2)}table{width:100%;border-collapse:collapse;background:white;font-size:.82rem}th,td{border:1px solid #c7d4df;padding:.5rem;vertical-align:top;text-align:left}th{background:#dce7f0}.tag{display:inline-block;padding:.16rem .42rem;border-radius:2px}.preferred{background:#dcefe3;color:#235c3b}.strong{background:#e4edf6;color:#24587f}.hold{background:#fff0c9;color:#765000}.reject{background:#f3d9dc;color:#7b1d27}.flow{background:#fff;border-left:5px solid var(--blue2);padding:.75rem 1rem;margin:.55rem 0}.note{background:#fff5da;border-left:4px solid var(--amber);padding:.75rem 1rem}.btn{display:inline-block;background:var(--blue);color:white;text-decoration:none;padding:.42rem .7rem;margin:.15rem .3rem .15rem 0}
+small{color:var(--muted)}
+</style></head><body>
+<header><div><div class="eyebrow">Workstream 3 · Guest Operations</div><h1>Digital Check‑in & Guest Management</h1><p>Booking match · registration · identity checks · resilient reception tablet · audit trail</p></div></header>
+<nav><div><a href="index.html">← Project hub</a><a href="guest-operations-risks.html">Risk &amp; compliance page</a><a href="wifi-project.html">Wi‑Fi project</a><a href="heritage-project.html">Heritage project</a><a href="research.html">Research</a></div></nav>
+<main>
+<section class="hero"><span class="tag preferred">Design concept</span><h2 style="border:0;margin:.45rem 0">A reliable check‑in appliance, not a tablet with a loose form</h2>
+<p>Target flow: match the reservation, collect the minimum justified guest data, verify identity where proportionate, record acceptance of rules/privacy information, confirm payment/access status, and create an auditable stay record. The counter tablet is the fallback/onsite interface; pre-arrival mobile check‑in should do most of the work.</p>
+<a class="btn" href="guest-operations-risks.html">Open quantified risks &amp; compliance</a></section>
+
+<h2>Target guest journey</h2>
+<div class="flow"><strong>1. Pre-arrival:</strong> secure link sent against the reservation → guest confirms details and expected arrival.</div>
+<div class="flow"><strong>2. Identity:</strong> ID sighted/verified where justified → verification result recorded; raw ID image not retained by default.</div>
+<div class="flow"><strong>3. Consent &amp; rules:</strong> privacy notice + house rules + any DVS express consent captured separately.</div>
+<div class="flow"><strong>4. Arrival:</strong> guest uses mobile link or reception tablet → booking matched → staff exception path if anything fails.</div>
+<div class="flow"><strong>5. Access:</strong> approved guest receives room/access instructions; future option for unique time-limited credentials.</div>
+<div class="flow"><strong>6. Departure:</strong> checkout status recorded; access expires; any room inspection is a separate staff control.</div>
+
+<h2>Reception tablet — device options</h2>
+<table><tr><th>Option</th><th>Strengths</th><th>Trade-offs</th><th>Status</th></tr>
+<tr><td><strong>Lenovo Tab LTE ZAEJ0157AU</strong><br>10.1", 4GB/128GB, Android, built-in LTE</td><td>Low-cost; sufficient performance; USB-C; 425g; direct LTE backup; avoids separate modem for kiosk.</td><td>Consumer device; verify long-term Android/security support, battery protection and kiosk-management behaviour before purchase.</td><td><span class="tag preferred">Preferred low-cost baseline</span></td></tr>
+<tr><td><strong>Samsung cellular mid-range tablet</strong></td><td>Generally stronger hardware/support ecosystem and common commercial accessories.</td><td>Higher purchase price; exact model/SKU should be selected only when buying.</td><td><span class="tag strong">Strong alternative</span></td></tr>
+<tr><td><strong>Cellular iPad + purpose-built enclosure</strong></td><td>Polished kiosk ecosystem; precise Beelta/Bouncepad-style enclosures; long support life.</td><td>Higher device + enclosure cost; less attractive if lowest initial cost is the priority.</td><td><span class="tag strong">Premium alternative</span></td></tr>
+</table>
+<p><small>Lenovo reference dimensions: 235.7 × 154.5 × 7.5 mm, 425 g. Confirm exact fit against any mount before ordering.</small></p>
+
+<h2>Mount/enclosure decision matrix</h2>
+<table><tr><th>ID</th><th>Mount</th><th>Lenovo fit</th><th>Movement</th><th>Security</th><th>Decision position</th></tr>
+<tr><td>M1</td><td><strong>WeSTRUGGLE B099N4DQZZ</strong><br><a href="https://www.amazon.com.au/dp/B099N4DQZZ">Amazon link</a></td><td>Unconfirmed / iPad-focused</td><td>Articulated; useful guest/staff positioning</td><td>Lockable concept</td><td><span class="tag hold">Keep as arm concept; verify exact dimensions</span></td></tr>
+<tr><td>M2</td><td><strong>WeSTRUGGLE B0DBHTND2V</strong><br><a href="https://www.amazon.com.au/dp/B0DBHTND2V">Amazon link</a></td><td>No — iPad Mini class</td><td>Rotation but limited reach</td><td>Good enclosed anti-theft design</td><td><span class="tag reject">Reject for Lenovo; enclosure reference only</span></td></tr>
+<tr><td>M3</td><td><strong>Beelta / B0BSBFBMMV fixed enclosure</strong><br><a href="https://www.amazon.com.au/Beelta-Anti-Theft-Librarian-Business-Warehouse/dp/B0BSBFBMMV">Amazon link</a></td><td>Model-specific; do not assume</td><td>Fixed/tilting kiosk style</td><td>Strong commercial enclosure</td><td><span class="tag hold">Strong if matching tablet chosen</span></td></tr>
+<tr><td>M4</td><td><strong>Beelta BSC401X universal countertop</strong><br><a href="https://store.beelta.com/products/beelta-universal-tablet-stand-bs401x">Manufacturer</a></td><td>Likely — universal 7.9–12.9", but physical camera/port fit still to confirm</td><td>90° tilt / 145° flip; countertop</td><td>All-metal, key lock, cable management</td><td><span class="tag preferred">Best compact Lenovo candidate</span></td></tr>
+<tr><td>M5</td><td><strong>StarTech ARMTBLTIW articulated arm</strong><br><a href="https://www.startech.com/en-au/display-mounting-ergonomics/armtbltiw">Manufacturer</a></td><td>Strong — universal 9–11"; Lenovo weight well below 1kg capacity</td><td>54cm extension, 180° tilt, 280° swivel, 360° rotation</td><td>Locking clamp; steel/plastic; desk clamp</td><td><span class="tag preferred">Best articulated universal candidate</span></td></tr>
+<tr><td>M6</td><td><strong>Beelta BSC401BA / BSC401 series</strong><br><a href="https://store.beelta.com/products/beelta-lockable-ipad-stand-for-ipad-10-2-inch-bsc401t">Manufacturer</a></td><td>iPad-specific enclosure</td><td>Countertop flip/swivel form</td><td>All-metal and lockable</td><td><span class="tag strong">Best if choosing iPad instead</span></td></tr>
+</table>
+
+<h2>Hardware configuration choices to decide later</h2>
+<div class="grid">
+<div class="card"><span class="tag preferred">A · Lowest cost</span><h3>Lenovo LTE + Beelta BSC401X</h3><p>Compact, lockable counter installation with direct LTE failover. Best if the tablet can remain in a fixed/flip position rather than needing long reach.</p></div>
+<div class="card"><span class="tag preferred">B · Best ergonomics</span><h3>Lenovo LTE + StarTech ARMTBLTIW</h3><p>More expensive arm, but strongest option for pulling the tablet toward a guest, changing height/depth and turning it to staff.</p></div>
+<div class="card"><span class="tag strong">C · Premium finish</span><h3>Cellular iPad + Beelta iPad enclosure</h3><p>Higher capital cost but cleaner tablet-specific bezel/enclosure and well-established kiosk hardware.</p></div>
+<div class="card"><span class="tag hold">D · Fixed wall/riser kiosk</span><h3>Compatible tablet + Beelta fixed enclosure</h3><p>Cleanest appearance where a vertical reception riser exists; less ergonomic for ID capture and assisted check-in.</p></div>
+</div>
+
+<h2>Reliability design</h2>
+<table><tr><th>Failure</th><th>Control</th></tr>
+<tr><td>Wi‑Fi outage</td><td>Tablet has its own cellular data service and fails over to LTE/5G; test this in a live check-in session.</td></tr>
+<tr><td>Power interruption</td><td>Tablet battery bridges short outages; permanent concealed USB-C power; battery-health/charge-limit setting where supported.</td></tr>
+<tr><td>Browser/app crash</td><td>Kiosk browser/MDM launches on boot, watchdog reloads the PWA, abandoned sessions auto-purge.</td></tr>
+<tr><td>Backend outage</td><td>Clear offline/manual fallback and staff procedure; never trap a legitimate guest outside because a cloud service failed.</td></tr>
+<tr><td>Tablet stolen/tampered</td><td>Lockable mount, restricted Android/iPad kiosk mode, no stored guest documents, remote wipe/management.</td></tr>
+</table>
+
+<h2>Data & identity design</h2>
+<p>Best-practice direction is <strong>minimum necessary collection</strong>. A Victorian residents-register rule applies to accommodation providers with relevant general/on-premises liquor licences and requires name, address, room number and check-in/check-out dates; it says ID may be requested to verify details but a copy does not need to be kept. The property's actual licence status still needs to be checked.</p>
+<table><tr><th>Data</th><th>Proposed treatment</th></tr>
+<tr><td>Booking reference, name, stay dates, room, contact details</td><td>Retain for defined operational/recordkeeping purposes.</td></tr>
+<tr><td>ID document</td><td>Prefer verify/sight → store result, type and transaction reference rather than the full image. Temporary scan may be used for OCR/verification if securely deleted.</td></tr>
+<tr><td>DVS verification</td><td>Potentially viable as an approved private-sector business user through an approved Gateway Service Provider; requires approval, participation agreement and express consent.</td></tr>
+<tr><td>Government Face Verification Service</td><td>Not a launch dependency. Official guidance still describes private-sector FVS access as future/being rolled out; do not architect v1 around it.</td></tr>
+<tr><td>Commercial selfie/liveness biometrics</td><td>Defer unless a clear unattended-check-in need justifies it; conduct privacy impact assessment and avoid retaining reusable biometric templates.</td></tr>
+<tr><td>Payment card data</td><td>Use external PCI-compliant processor; store transaction/status, not full card details/CVV.</td></tr>
+</table>
+<p class="note"><strong>Important:</strong> the current static GitHub “admin” area is not suitable for real guest records. Production guest data needs a separate authenticated application/database with MFA, role-based access, encryption, audit logging, backups, retention/deletion rules and a defined legal operating entity.</p>
+<h2>Cross-references</h2>
+<p><a class="btn" href="guest-operations-risks.html">Risk, privacy &amp; compliance matrix</a><a class="btn" href="wifi-project.html">Wi‑Fi/infrastructure workstream</a><a class="btn" href="heritage-project.html">Heritage workstream</a></p>
+</main></body></html>
