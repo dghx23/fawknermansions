@@ -68,6 +68,23 @@ small{color:var(--muted)}
 <tr><td>Payment card data</td><td>Use external PCI-compliant processor; store transaction/status, not full card details/CVV.</td></tr>
 </table>
 <p class="note"><strong>Important:</strong> the current static GitHub “admin” area is not suitable for real guest records. Production guest data needs a separate authenticated application/database with MFA, role-based access, encryption, audit logging, backups, retention/deletion rules and a defined legal operating entity.</p>
+<h2>Wi‑Fi purchase at check‑in</h2>
+<div class="grid">
+<div class="card"><span class="tag preferred">Guest choice</span><h3>Offer Wi‑Fi inside the check‑in flow</h3><p>Once the booking is matched, the tablet already knows the guest, room and booked stay dates. It can offer an unlimited guest Wi‑Fi package before check‑in is completed: 1 night A$6, 2 nights A$10, 3 nights A$13, 7 days A$22, or 1 month A$55.</p></div>
+<div class="card"><span class="tag strong">Automatic linkage</span><h3>Payment → entitlement</h3><p>Successful payment returns an event/reference to the backend. The system creates a Wi‑Fi entitlement linked to the guest ID, booking ID, room, paid package and validity period. The guest can receive a token/QR immediately and the captive portal recognises that reservation-linked entitlement.</p></div>
+<div class="card"><span class="tag strong">Multi-device</span><h3>One guest entitlement, several devices</h3><p>The token is reusable for that customer's authorised devices rather than being consumed once. Each device that joins is enrolled against the same booking entitlement; a configurable device/concurrency ceiling can prevent sharing outside the room/booking.</p></div>
+<div class="card"><span class="tag hold">Guest network only</span><h3>Permanent building equipment bypasses this</h3><p>TVs, CCTV, sensors, reception/check‑in hardware and other fixed building devices use permanent managed network credentials on separate operations/IoT networks. They do not see or pay through the captive portal.</p></div>
+</div>
+
+<h3>Card-present payment architecture</h3>
+<table><tr><th>Option</th><th>How it would work</th><th>Assessment</th></tr>
+<tr><td><strong>Square Terminal + Terminal API</strong></td><td>Tablet/web app creates a checkout request; paired Square Terminal prompts the guest to tap/insert card; Square payment event/webhook confirms success; Fawkner backend issues the Wi‑Fi entitlement/token.</td><td><span class="tag preferred">Strong fit</span> Works with a custom application on another platform and keeps card handling in certified payment hardware.</td></tr>
+<tr><td><strong>Tyro EFTPOS + iClient</strong></td><td>Browser-based Fawkner POS/check‑in interface calls Tyro's iClient JavaScript integration to initiate the EFTPOS transaction; result is returned to the application/backend.</td><td><span class="tag strong">Strong AU alternative</span> Particularly relevant because the kiosk UI is web based.</td></tr>
+<tr><td><strong>Tap to Pay on the Lenovo tablet</strong></td><td>Would require certified NFC hardware and a supported payment integration on the same Android device.</td><td><span class="tag reject">Not for current Lenovo</span> Available specifications for the TB311XU/ZAEJ0157AU identify NFC as absent. Do not design around native tap-to-pay on this tablet.</td></tr>
+</table>
+<p class="note"><strong>Reliability implication:</strong> LTE on the Lenovo protects the tablet when building Wi‑Fi fails, but a separate EFTPOS terminal also needs connectivity. If payment availability must survive a building WAN outage, either provide network-level LTE failover for the operations network or choose a payment reader with its own cellular capability. A secure online payment link/manual fallback should also exist.</p>
+<p>Full package design, captive-portal explanation and revenue modelling are maintained on the <a href="wifi-project.html">Wi‑Fi Project page</a>.</p>
+
 <h2>Cross-references</h2>
 <p><a class="btn" href="guest-operations-risks.html">Risk, privacy &amp; compliance matrix</a><a class="btn" href="wifi-project.html">Wi‑Fi/infrastructure workstream</a><a class="btn" href="heritage-project.html">Heritage workstream</a></p>
 </main></body></html>
