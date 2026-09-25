@@ -264,3 +264,18 @@ body.fm-shell.fm-portal .fm-page-ribbon{display:none}
   #fm-global-nav,.fm-page-ribbon,.fm-screen-only{display:none!important}
   body.fm-shell{background:#fff!important}
 }
+
+/* Retire legacy top-level navigation in favour of the shared project nav */
+body.fm-shell:not(.fm-portal) > nav{display:none!important}
+body.fm-shell:not(.fm-portal) .site-nav-strip{display:none!important}
+body.fm-shell:not(.fm-portal) header.site-header{display:none!important}
+/* Keep the dashboard's internal section-jump navigation */
+body.fm-shell #dashboard nav.jump{display:flex!important;position:sticky;top:62px;z-index:20}
+/* Secondary page headers become editorial title bands below the shared navigation */
+body.fm-shell:not(.fm-portal) > header:not(.site-header):not(#fm-global-nav){
+  margin:0;
+}
+body.fm-shell:not(.fm-portal) > header:not(.site-header):not(#fm-global-nav) > div{
+  max-width:1120px!important;
+  margin:0 auto!important;
+}
