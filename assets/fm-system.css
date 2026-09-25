@@ -279,3 +279,106 @@ body.fm-shell:not(.fm-portal) > header:not(.site-header):not(#fm-global-nav) > d
   max-width:1120px!important;
   margin:0 auto!important;
 }
+
+
+/* === Permanent colour-mode lock: keep Fawkner visual identity stable across OS/browser light and dark modes === */
+:root,
+html{
+  color-scheme:light only;
+  background:#f4efe5;
+}
+body.fm-shell{
+  background:
+    radial-gradient(circle at 15% 0%,rgba(177,138,74,.10),transparent 28rem),
+    linear-gradient(180deg,#f4efe5 0,#ede5d7 100%) !important;
+  color:var(--fm-ink) !important;
+}
+
+/* Never allow browser visited/default link colours to leak into project navigation. */
+#fm-global-nav,
+#fm-global-nav .fm-nav-inner,
+#fm-global-nav .fm-nav-scroll{
+  color-scheme:light only;
+}
+#fm-global-nav{
+  background:rgba(21,29,36,.98) !important;
+  color:#eef2f3 !important;
+}
+#fm-global-nav a.fm-brand,
+#fm-global-nav a.fm-brand:link,
+#fm-global-nav a.fm-brand:visited{
+  color:#fff !important;
+  text-decoration:none !important;
+}
+#fm-global-nav .fm-brand-copy strong{color:#fff !important;}
+#fm-global-nav .fm-brand-copy span{color:#b9c2c8 !important;}
+
+body.fm-shell #fm-global-nav a.fm-nav-link,
+body.fm-shell #fm-global-nav a.fm-nav-link:link,
+body.fm-shell #fm-global-nav a.fm-nav-link:visited{
+  color:#d9e0e4 !important;
+  text-decoration:none !important;
+  background:transparent !important;
+  border-color:transparent !important;
+}
+body.fm-shell #fm-global-nav a.fm-nav-link:hover,
+body.fm-shell #fm-global-nav a.fm-nav-link:focus-visible{
+  color:#fff !important;
+  background:rgba(255,255,255,.08) !important;
+  border-color:rgba(255,255,255,.14) !important;
+}
+body.fm-shell #fm-global-nav a.fm-nav-link.active,
+body.fm-shell #fm-global-nav a.fm-nav-link[aria-current="page"]{
+  color:#fff !important;
+  border-color:color-mix(in srgb,var(--nav-color) 70%,white 30%) !important;
+  background:color-mix(in srgb,var(--nav-color) 30%,transparent) !important;
+}
+
+/* Explicit editorial surfaces so OS dark mode never inverts the site body. */
+body.fm-shell:not(.fm-portal) > header:not(#fm-global-nav),
+body.fm-shell:not(.fm-portal) header.topbar,
+body.fm-shell:not(.fm-portal) .hero,
+body.fm-shell:not(.fm-portal) .card,
+body.fm-shell:not(.fm-portal) .book-card,
+body.fm-shell:not(.fm-portal) .run,
+body.fm-shell:not(.fm-portal) .wifi-calculator,
+body.fm-shell:not(.fm-portal) .calc,
+body.fm-shell:not(.fm-portal) table{
+  color-scheme:light only;
+}
+body.fm-shell:not(.fm-portal) input,
+body.fm-shell:not(.fm-portal) select,
+body.fm-shell:not(.fm-portal) textarea{
+  color:#17202a !important;
+  background:#fff !important;
+}
+body.fm-shell:not(.fm-portal) input::placeholder,
+body.fm-shell:not(.fm-portal) textarea::placeholder{
+  color:#7b746a !important;
+  opacity:1;
+}
+
+/* Keep the section ribbon deterministic too. */
+.fm-page-ribbon,
+.fm-page-ribbon *{
+  color:#fff !important;
+}
+
+/* Reinforce the same palette even when the operating system requests dark mode. */
+@media (prefers-color-scheme:dark){
+  :root,html{color-scheme:light only;background:#f4efe5 !important;}
+  body.fm-shell{
+    background:
+      radial-gradient(circle at 15% 0%,rgba(177,138,74,.10),transparent 28rem),
+      linear-gradient(180deg,#f4efe5 0,#ede5d7 100%) !important;
+    color:#17202a !important;
+  }
+  #fm-global-nav{background:rgba(21,29,36,.98) !important;}
+  body.fm-shell #fm-global-nav a.fm-nav-link,
+  body.fm-shell #fm-global-nav a.fm-nav-link:link,
+  body.fm-shell #fm-global-nav a.fm-nav-link:visited{color:#d9e0e4 !important;}
+  body.fm-shell #fm-global-nav a.fm-nav-link:hover,
+  body.fm-shell #fm-global-nav a.fm-nav-link:focus-visible,
+  body.fm-shell #fm-global-nav a.fm-nav-link.active,
+  body.fm-shell #fm-global-nav a.fm-nav-link[aria-current="page"]{color:#fff !important;}
+}
