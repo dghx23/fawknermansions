@@ -20,11 +20,7 @@ the book concept, the preservation/VR plan, and an early, parked concept for a
   research sources, 3D/VR capture, documentary, and website.
 - [`docs/website-proposal.md`](docs/website-proposal.md) — skeleton proposal for the
   companion history website (sitemap, content plan, design language, phased build).
-- [`wifi-portal/`](wifi-portal/) — **parked, not deployed.** An early "Mansion WiFi"
-  captive-portal splash page and OpenWrt/openNDS router configuration concept for
-  the building, with a heritage-grounded design (oxblood brick, bluestone, cream
-  render, black iron). Kept here for reference and for the shared design language
-  it establishes; not part of the current active work.
+- [`wifi-portal/`](wifi-portal/) — active guest Wi-Fi captive-portal prototype using the shared Fawkner visual system, voucher/card-payment flow, heritage branding and booking-linked multi-device entitlement concept.
 - [`admin/`](admin/) — a private project dashboard (storyboard, condensed pitch,
   best practices, tech value-add ideas, monetisation ideas, target audience) behind
   a **soft, client-side-only login gate** — see [`admin/README.md`](admin/README.md)
@@ -36,6 +32,16 @@ the book concept, the preservation/VR plan, and an early, parked concept for a
 - [`admin/research.html`](admin/research.html) — dashboard view: latest run by default, older runs selectable, new revelations/contradictions, source library and quantified risk matrix.
 - [`research/sources.md`](research/sources.md) — source library with context, relevance and authority class.
 - [`research/risk-register.md`](research/risk-register.md) — actionable risk register with likelihood, impact, evidence confidence, priority, controls and interventions.
+
+## Current project workstreams
+
+- [Public project site](index.html) — unified landing page and navigation.
+- [Heritage & Legacy](admin/heritage-project.html) — research, book, documentary and 3D/VR preservation.
+- [Wi-Fi Project](admin/wifi-project.html) — managed network, captive portal, commercial model and Sentrix operating model.
+- [Guest Operations](admin/guest-operations.html) — digital check-in, identity, payments and access.
+- [Room & Capacity Model](admin/room-inventory-model.html) — theoretical vs sellable vs occupied rooms and network demand.
+- [Risk & Compliance](admin/guest-operations-risks.html) — privacy, identity, resilience and governance.
+- [Research & Development](admin/research.html) — versioned research runs, sources, contradictions and provenance.
 
 ## Project goals
 
