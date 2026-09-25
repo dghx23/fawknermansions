@@ -1,153 +1,196 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
-<title>Fawkner Mansions — Wi‑Fi Project</title><style>
-:root{--paper:#f4efe0;--page:#e7efe8;--ink:#162019;--muted:#5b6b60;--green:#1f6a43;--green2:#2d8b5c;--amber:#a36a00;--red:#922b2b}
-*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.55 Georgia,serif}header{background:var(--green);color:white;padding:1.5rem}header div,main,nav div{max-width:1100px;margin:auto}header h1{font-size:2rem;margin:.15rem 0}.eyebrow,.pill{font-size:.69rem;text-transform:uppercase;letter-spacing:.08em}
-nav{background:#13231a;padding:.65rem 1rem;position:sticky;top:0;z-index:3}nav div{display:flex;gap:.5rem;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;border:1px solid #5d7867;padding:.3rem .65rem;border-radius:999px;font-size:.78rem}
-main{padding:2rem 1.2rem 4rem}.hero,.card{background:#fff;border:1px solid #c8d8cc}.hero{padding:1.35rem;border-top:6px solid var(--green2)}h2{color:var(--green);border-bottom:2px solid var(--green);padding-bottom:.4rem;margin-top:2.2rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}.card{padding:1rem;border-top:4px solid var(--green2)}.pill{display:inline-block;padding:.18rem .45rem;border-radius:2px;background:#dff2e7;color:#155c39}.warn{background:#fff2d5;color:#6f4d00}.risk{background:#f5dddd;color:#7d2020}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:.85rem}th,td{border:1px solid #c8d8cc;padding:.55rem;text-align:left;vertical-align:top}th{background:#dce9df}.flow{padding:.8rem;background:white;border-left:5px solid var(--green2);margin:.6rem 0}.note{background:#fff8e6;border-left:4px solid var(--amber);padding:.8rem 1rem}.btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:.45rem .75rem;margin:.15rem .3rem .15rem 0}
-</style></head><body>
-<header><div><div class="eyebrow">Workstream 2 · Revenue + Infrastructure</div><h1>Wi‑Fi Project</h1><p>Reliable guest connectivity · captive portal · paid access · operational backbone</p></div></header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Fawkner Mansions — Wi‑Fi Project</title>
+<style>
+:root{--page:#e7efe8;--paper:#fff;--ink:#162019;--muted:#5b6b60;--green:#1f6a43;--green2:#2d8b5c;--amber:#a36a00;--red:#922b2b;--line:#c8d8cc}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.55 Georgia,serif}
+header{background:var(--green);color:#fff;padding:1.5rem}header div,main,nav div{max-width:1120px;margin:auto}header h1{font-size:2rem;margin:.15rem 0}
+.eyebrow,.pill{font-size:.69rem;text-transform:uppercase;letter-spacing:.08em}
+nav{background:#13231a;padding:.65rem 1rem;position:sticky;top:0;z-index:3}nav div{display:flex;gap:.5rem;flex-wrap:wrap}
+nav a{color:#fff;text-decoration:none;border:1px solid #5d7867;padding:.3rem .65rem;border-radius:999px;font-size:.78rem}
+main{padding:2rem 1.2rem 4rem}.hero,.card{background:#fff;border:1px solid var(--line)}.hero{padding:1.35rem;border-top:6px solid var(--green2)}
+h2{color:var(--green);border-bottom:2px solid var(--green);padding-bottom:.4rem;margin-top:2.2rem}h3{margin:.4rem 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}.card{padding:1rem;border-top:4px solid var(--green2)}
+.pill{display:inline-block;padding:.18rem .45rem;border-radius:2px;background:#dff2e7;color:#155c39}.warn{background:#fff2d5;color:#6f4d00}.risk{background:#f5dddd;color:#7d2020}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem}th,td{border:1px solid var(--line);padding:.55rem;text-align:left;vertical-align:top}th{background:#dce9df}
+.flow{padding:.8rem;background:#fff;border-left:5px solid var(--green2);margin:.6rem 0}.note{background:#fff8e6;border-left:4px solid var(--amber);padding:.8rem 1rem}
+.critical-note{background:#f8e4e4;border-left:4px solid var(--red);padding:.8rem 1rem}.btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:.45rem .75rem;margin:.15rem .3rem .15rem 0}
+.calc{background:#f4efe0;border:1px solid #8fb29a;padding:1.1rem;border-radius:3px}.calc-row{display:grid;grid-template-columns:1.15fr 1fr auto;gap:.75rem;align-items:center;margin:.7rem 0}
+.calc-row label{font-weight:bold}.calc-row input,.calc-row select{width:100%;padding:.4rem}.calc-buttons{display:flex;gap:.45rem;flex-wrap:wrap;margin:1rem 0}
+.calc-buttons button{border:0;background:var(--green);color:#fff;padding:.45rem .7rem;cursor:pointer}.calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.65rem;margin-top:1rem}
+.result{background:#fff;border:1px solid #ccd9d0;padding:.7rem}.result-label{font-size:.68rem;text-transform:uppercase;color:var(--muted)}.result-value{font-size:1.25rem;font-weight:bold}
+.source-list li{margin:.5rem 0}.small{font-size:.8rem;color:var(--muted)}
+@media(max-width:650px){.calc-row{grid-template-columns:1fr}.calc-row span{text-align:right}}
+</style>
+</head>
+<body>
+<header><div><div class="eyebrow">Workstream 2 · Revenue + Infrastructure</div><h1>Wi‑Fi Project</h1><p>Managed connectivity · paid guest access · captive portal · building network · ongoing operations</p></div></header>
 <nav><div><a href="index.html">← Project hub</a><a href="../wifi-portal/index.html">Portal prototype</a><a href="guest-operations.html">Guest/check‑in platform</a><a href="guest-operations-risks.html">Operational risks</a><a href="heritage-project.html">Heritage project</a></div></nav>
 <main>
-<section class="hero"><span class="pill">Headline opportunity</span><h2 style="border:0;margin:.45rem 0">Turn a service gap into infrastructure the rest of the operating model can use</h2>
-<p>The Wi‑Fi concept is now a standalone project rather than a footnote to the heritage work. The same network can support paid guest access, reception systems, the digital check‑in platform, future CCTV/sensors and owner visibility.</p>
-<a class="btn" href="../wifi-portal/index.html">Open Mansion WiFi prototype</a><a class="btn" href="guest-operations.html">See check‑in integration</a></section>
+<section class="hero">
+<span class="pill">Priority operational opportunity</span>
+<h2 style="border:0;margin:.45rem 0">A managed service, not a one-off router installation</h2>
+<p>The proposal is to establish reliable building-wide connectivity, sell optional guest Wi‑Fi through the check-in/captive-portal workflow, keep TVs/cameras/sensors and operating systems permanently connected on separate managed networks, and place ongoing technical responsibility with a named operator.</p>
+<a class="btn" href="../wifi-portal/index.html">Open captive-portal prototype</a><a class="btn" href="guest-operations.html">See check-in integration</a>
+</section>
 
-<h2>Working commercial model</h2>
-<table><tr><th>Element</th><th>Working concept</th><th>Status</th></tr>
-<tr><td>Primary internet</td><td>Starlink / existing or proposed building backhaul</td><td><span class="pill warn">Verify actual service/cost</span></td></tr>
-<tr><td>Guest access</td><td>Captive portal with time-limited plans/vouchers or card payment</td><td><span class="pill">Prototype concept exists</span></td></tr>
-<tr><td>Indicative pricing</td><td>$5/day · $20/week · $50/month</td><td><span class="pill warn">Working assumption</span></td></tr>
-<tr><td>Management</td><td>Owner dashboard: active users, vouchers, revenue, device/network status</td><td><span class="pill">Design target</span></td></tr>
-<tr><td>Guest/check-in link</td><td>Optional linkage after successful guest registration; do not use Wi‑Fi presence alone as authoritative occupancy evidence</td><td><span class="pill">Design target</span></td></tr>
+<h2>Proposed managed operator</h2>
+<div class="grid">
+<div class="card"><span class="pill">Operator proposal</span><h3>Sentrix Digital</h3><p><strong>ABN 29 203 554 753</strong>. Sentrix Digital would operate the service under a written managed-services/revenue-sharing agreement rather than leaving the hotel with an unmanaged collection of routers and accounts.</p></div>
+<div class="card"><h3>Ongoing responsibility</h3><p>Account administration, network/controller configuration, captive portal, backend administration, payment/reconciliation workflow, monitoring, software/firmware changes, troubleshooting and periodic reporting.</p></div>
+<div class="card"><h3>Owner visibility</h3><p>The owners retain agreed dashboard/reporting access, see revenue and service health, and receive a documented handover/exit process so the service is not technically hostage to one person.</p></div>
+<div class="card"><h3>Commercial structure</h3><p>Direct operating costs are paid first; remaining operating profit can then be split between the property and Sentrix Digital at an agreed percentage. The scenario builder below models this.</p></div>
+</div>
+<p class="note"><strong>Safer contractual structure:</strong> keep the Starlink service line in the hotel/owner operating entity's name (or otherwise with Starlink's explicit approval) and engage Sentrix Digital as the managed network/service operator. That is cleaner than presenting Sentrix as an unauthorised Starlink reseller.</p>
+
+<h2>Starlink — replace the existing kit or keep it?</h2>
+<table>
+<tr><th>Issue</th><th>Current position</th><th>Proposal / decision gate</th></tr>
+<tr><td>Existing dish</td><td>The building already has a Starlink installation.</td><td>Retain only if its generation, Ethernet/network integration, condition and account/plan are suitable for a managed hotel hotspot.</td></tr>
+<tr><td>Newer kit</td><td>A newer Starlink kit/router may give cleaner hardware, current support and easier integration.</td><td><strong>Preferred if commercial terms work:</strong> start the managed service on current hardware rather than build around legacy equipment.</td></tr>
+<tr><td>User-supplied rental offer</td><td>The current offer described to the project is a rental kit with no purchase price, approximately A$19 shipping, returned when service is cancelled.</td><td><span class="pill warn">Verify in the live order</span> Starlink's public terms say rental availability is location/order specific and generally tied to Residential plans; Priority rental is only at Starlink's discretion. Do not promise this hardware deal until the qualifying order is actually accepted.</td></tr>
+<tr><td>Paid guest resale</td><td>Starlink's terms prohibit ordinary resale, but expressly permit community Wi‑Fi / hotel hotspot resale on a <strong>Priority Plan</strong>.</td><td><span class="pill risk">Mandatory plan check</span> The paid Fawkner hotspot should not be launched on an ordinary Residential service unless Starlink gives specific authorisation.</td></tr>
+</table>
+<p class="critical-note"><strong>Important economics correction:</strong> the earlier ~560% hardware-ROI figure came from a low monthly backhaul assumption. A paid hotel hotspot needs a resale-compliant Priority arrangement, and the appropriate plan/data level may cost materially more. Keep the 560% case as a scenario, not as the promised base case.</p>
+
+<h2>Starlink plan and monitoring implications</h2>
+<div class="grid">
+<div class="card"><h3>Priority plan required for hotspot resale</h3><p>Current Starlink terms expressly allow third-party hotel/community hotspot resale when the customer purchases a Priority Plan. This is the key contractual gate before charging guests.</p></div>
+<div class="card"><h3>Australian Local Priority data</h3><p>The Australian Critical Information Summary lists Local Priority tiers and included priority-data allowances. The small 50 GB tier is not a realistic assumption for a streaming-heavy multi-room guest service without testing what happens after the allowance is consumed.</p></div>
+<div class="card"><h3>Enterprise dashboard</h3><p>Starlink's business dashboard exposes online/offline state, alerts, obstruction, ping drop, latency, client/router data, throughput, software version, uptime and last-online status, plus remote reboot and some Wi‑Fi configuration controls.</p></div>
+<div class="card"><h3>API access is not guaranteed</h3><p>Starlink documents an account/data API, but its own support material says API access is provided to <strong>larger business customers</strong>. Integrate the official API if this account is eligible; otherwise use the Enterprise Dashboard plus the managed internal-network controller/API for monitoring.</p></div>
+</div>
+
+<h2>Network architecture</h2>
+<div class="flow"><strong>Starlink / approved business backhaul</strong> → gateway/firewall → managed switches/APs → segregated networks.</div>
+<div class="flow"><strong>Guest SSID</strong> → captive portal → voucher/payment/booking entitlement → internet.</div>
+<div class="flow"><strong>Operations SSID/VLAN</strong> → check-in tablet, staff/admin devices, payment integrations and management systems.</div>
+<div class="flow"><strong>IoT / fixed-equipment VLAN</strong> → smart TVs, CCTV cameras, environmental sensors and future building systems. These remain permanently provisioned and never see the guest captive portal.</div>
+<div class="flow"><strong>Management plane</strong> → Sentrix Digital monitoring/controller → service health, AP status, connected infrastructure, alerts, remote changes and troubleshooting.</div>
+
+<h2>Captive portal — guest access only</h2>
+<div class="grid">
+<div class="card"><h3>What it is</h3><p>The captive portal is the branded page a guest sees after joining the guest Wi‑Fi network. It validates a voucher or paid booking entitlement before the gateway opens internet access.</p></div>
+<div class="card"><h3>What it is not</h3><p>It is not the network login for televisions, cameras, sensors, staff systems or reception equipment. Those devices receive permanent managed credentials on separate network segments.</p></div>
+<div class="card"><h3>Multi-device</h3><p>The entitlement belongs to the guest/booking, not to a single phone. A token can enrol multiple authorised devices with a configurable device/concurrency limit.</p></div>
+<div class="card"><h3>Automatic expiry</h3><p>Access expires at the package end or checkout unless management deliberately extends it. The booking system and captive-portal backend share entitlement state.</p></div>
+</div>
+
+<h2>Guest packages</h2>
+<table><tr><th>Package</th><th>Price</th><th>Model</th></tr>
+<tr><td>1 night</td><td><strong>A$6</strong></td><td>Unlimited data during valid entitlement; multi-device booking access.</td></tr>
+<tr><td>2 nights</td><td><strong>A$10</strong></td><td>Unlimited data during valid entitlement; multi-device booking access.</td></tr>
+<tr><td>3 nights</td><td><strong>A$13</strong></td><td>Unlimited data during valid entitlement; multi-device booking access.</td></tr>
+<tr><td>7 days</td><td><strong>A$22</strong></td><td>Up to 7 days, normally capped at the guest's checkout.</td></tr>
+<tr><td>1 month</td><td><strong>A$55</strong></td><td>Long-stay/resident option, subject to an active entitlement.</td></tr>
 </table>
 
-<h2>Architecture</h2>
-<div class="flow"><strong>Internet backhaul</strong> → router/firewall → managed access points → guest SSID / staff SSID / operations SSID</div>
-<div class="flow"><strong>Guest SSID</strong> → captive portal → voucher/payment/approved guest access → internet</div>
-<div class="flow"><strong>Operations network</strong> → check‑in tablet + staff devices + future locks/CCTV/sensors, isolated from guest traffic</div>
-<div class="flow"><strong>Owner portal</strong> → remote monitoring, billing/audit records and device health — without exposing guest devices to admin systems</div>
+<h2>Pay for Wi‑Fi during check-in</h2>
+<div class="flow"><strong>Booking matched</strong> → guest/room/stay length known.</div>
+<div class="flow"><strong>Wi‑Fi offered</strong> → check-in tablet highlights the package closest to the booked stay.</div>
+<div class="flow"><strong>Guest taps card/wallet</strong> → separate integrated EFTPOS terminal handles the payment.</div>
+<div class="flow"><strong>Payment approved</strong> → provider event/API returns to backend → entitlement/token generated against guest + booking + room + validity.</div>
+<div class="flow"><strong>Immediate activation</strong> → token/QR shown and sent; captive portal sees the same booking-linked entitlement.</div>
+<p class="note">The proposed Lenovo LTE tablet should not be treated as an NFC payment terminal. Use a certified integrated EFTPOS device (for example Square Terminal via Terminal API or an Australian integrated EFTPOS solution such as Tyro) and keep card data out of the Fawkner/Sentrix application.</p>
 
-<h2>Why separate networks matter</h2><div class="grid">
-<div class="card"><h3>Guest isolation</h3><p>Guests should never share a trusted network segment with the check‑in database, reception equipment or future cameras/IoT.</p></div>
-<div class="card"><h3>Reliability</h3><p>If guest traffic spikes, the reception/check‑in system still needs priority and predictable connectivity.</p></div>
-<div class="card"><h3>Security</h3><p>VLAN/SSID separation, strong admin authentication and restricted management access reduce the blast radius of a compromised guest device.</p></div>
-<div class="card"><h3>Future value</h3><p>Once reliable building connectivity exists, access control, environmental monitoring and maintenance telemetry become feasible.</p></div>
-</div>
-
-<h2>What the captive portal is — and what it is not</h2>
-<div class="grid">
-<div class="card"><h3>Guest access only</h3><p>A <strong>captive portal</strong> is the web page a guest is redirected to when they first join the guest Wi‑Fi network. Instead of giving every guest a permanent Wi‑Fi password, the portal checks their booking/entitlement and asks for a valid token before allowing internet access.</p></div>
-<div class="card"><h3>Not used by building equipment</h3><p>Smart TVs, CCTV cameras, environmental sensors, the check‑in tablet, staff devices and other building equipment should be provisioned permanently on separate managed SSIDs/VLANs. They do <strong>not</strong> pay, see the captive portal or use guest tokens.</p></div>
-<div class="card"><h3>Multi-device entitlement</h3><p>A paid entitlement belongs to the <strong>guest/booking</strong>, not to one device. The same token can enrol multiple guest devices. The backend records each authorised device against that guest and enforces a configurable device/concurrency limit.</p></div>
-<div class="card"><h3>Automatic expiry</h3><p>Entitlements expire at the earlier of the purchased package end or the guest's recorded checkout, unless management deliberately extends them.</p></div>
-</div>
-
-<h2>Guest packages — unlimited data during the entitlement</h2>
-<table><tr><th>Package</th><th>Price</th><th>Suggested validity</th><th>Use</th></tr>
-<tr><td>1 night</td><td><strong>A$6</strong></td><td>Through the guest's next checkout day</td><td>Unlimited guest internet; multi-device entitlement.</td></tr>
-<tr><td>2 nights</td><td><strong>A$10</strong></td><td>2-night booking window</td><td>Unlimited guest internet; multi-device entitlement.</td></tr>
-<tr><td>3 nights</td><td><strong>A$13</strong></td><td>3-night booking window</td><td>Unlimited guest internet; multi-device entitlement.</td></tr>
-<tr><td>7 days</td><td><strong>A$22</strong></td><td>Up to 7 days, never beyond checkout unless extended</td><td>Useful for 4–7 night stays or longer-stay guests.</td></tr>
-<tr><td>1 month</td><td><strong>A$55</strong></td><td>30 days, subject to an active stay/resident entitlement</td><td>Long-stay guest/resident option.</td></tr>
+<h2>Managed-service responsibilities</h2>
+<table>
+<tr><th>Sentrix Digital</th><th>Property / owner</th><th>Shared / agreement item</th></tr>
+<tr><td>Starlink account administration as authorised; network configuration; managed AP/controller administration; captive portal; backend; billing workflow; monitoring; incident response; updates; monthly service/revenue reporting.</td><td>Approvals for installation/cabling/power; physical access; agreed direct service/hardware costs; hotel policies and guest support escalation; legal operating entity and merchant account.</td><td>Revenue split; settlement timing; support hours/SLA; ownership of hardware/code/data; termination/handover; tax/GST treatment; privacy/data roles; Starlink plan compliance; refund policy.</td></tr>
 </table>
-<p class="note"><strong>Unlimited</strong> means no metered data allowance within the valid period. Reasonable network-management controls can still protect the service from abusive traffic. The number of simultaneously authorised devices should be configurable rather than hard-coded.</p>
 
-<h2>Buy Wi‑Fi during digital check‑in</h2>
-<div class="flow"><strong>Booking matched</strong> → check‑in screen knows guest, room and booked stay dates.</div>
-<div class="flow"><strong>Optional Wi‑Fi offer</strong> → guest sees the packages above and chooses one. The interface can highlight the package matching the booking length while still allowing another valid option.</div>
-<div class="flow"><strong>Tap card / wallet</strong> → payment is taken on a dedicated integrated EFTPOS terminal beside the tablet.</div>
-<div class="flow"><strong>Payment confirmation</strong> → payment provider sends success to the check‑in backend → backend creates the Wi‑Fi entitlement/token and associates it with booking ID, guest ID, room, validity and payment reference.</div>
-<div class="flow"><strong>Immediate access</strong> → token/QR is displayed and sent to the guest; the captive portal also recognises the reservation-linked entitlement when the guest joins the guest SSID.</div>
-
-<div class="grid">
-<div class="card"><span class="pill">Preferred integration pattern</span><h3>Square Terminal + Terminal API</h3><p>Square's Terminal API can pair a Square Terminal with a custom application running on another device. The terminal handles contactless/NFC, chip/PIN and payment compliance; the backend receives checkout/payment events and can then issue the Wi‑Fi entitlement.</p><p><a href="https://developer.squareup.com/au/en/in-person-payments">Square developer docs</a></p></div>
-<div class="card"><span class="pill">Australian alternative</span><h3>Tyro integrated EFTPOS</h3><p>Tyro provides a browser-based JavaScript integration (iClient) for browser POS software to communicate with Tyro EFTPOS machines, plus Android/iOS options. This is attractive because the Fawkner check‑in UI is web-based.</p><p><a href="https://docs.integrated-eftpos.tyro.com/">Tyro integration docs</a></p></div>
-<div class="card"><span class="pill warn">Tablet limitation</span><h3>Lenovo tablet itself is not the card reader</h3><p>The current Lenovo TB311XU/ZAEJ0157AU candidate is an LTE tablet but available specifications identify it as having <strong>no NFC</strong>. Therefore, direct Tap to Pay on that tablet should not be a dependency. Use an integrated EFTPOS terminal, or select a different certified NFC-capable device later.</p></div>
-<div class="card"><span class="pill warn">Resilience</span><h3>Payments need their own outage plan</h3><p>The tablet's LTE backup protects the check‑in UI, but a separate payment terminal also needs connectivity. Network-level LTE failover or a cellular-capable smart reader is preferable if payment availability must survive a building WAN outage. Always retain a manual/online-link fallback.</p></div>
+<h2>Revenue & profit-share scenario builder</h2>
+<p>Separate <strong>total rooms</strong> from <strong>usable/sellable rooms</strong>. Occupancy applies to usable inventory. Direct costs are deducted before the distributable operating profit is split.</p>
+<div class="calc">
+<div class="calc-row"><label for="totalRooms">Total rooms</label><input id="totalRooms" type="number" value="30" min="1" max="150"><span></span></div>
+<div class="calc-row"><label for="usableRooms">Usable / sellable rooms</label><input id="usableRooms" type="range" value="27" min="1" max="30"><span id="usableRoomsOut">27</span></div>
+<div class="calc-row"><label for="occupancy">Average occupancy</label><input id="occupancy" type="range" value="60" min="0" max="100"><span id="occupancyOut">60%</span></div>
+<div class="calc-row"><label for="takeup">Wi‑Fi take-up</label><input id="takeup" type="range" value="35" min="0" max="100"><span id="takeupOut">35%</span></div>
+<div class="calc-row"><label for="avgStay">Average stay</label><input id="avgStay" type="range" value="2" min="1" max="30"><span id="avgStayOut">2 nights</span></div>
+<div class="calc-row"><label for="avgPackage">Average package sold</label><select id="avgPackage"><option value="6">1 night — A$6</option><option value="10" selected>2 nights — A$10</option><option value="13">3 nights — A$13</option><option value="22">7 days — A$22</option><option value="55">1 month — A$55</option></select><span></span></div>
+<div class="calc-row"><label for="networkCost">Starlink/backhaul + network direct cost</label><input id="networkCost" type="number" value="486" min="0"><span>A$/mo</span></div>
+<div class="calc-row"><label for="paymentFee">Payment fees</label><input id="paymentFee" type="number" value="1.6" min="0" step=".1"><span>% gross</span></div>
+<div class="calc-row"><label for="otherCost">Other monthly operating cost</label><input id="otherCost" type="number" value="0" min="0"><span>A$/mo</span></div>
+<div class="calc-row"><label for="setupCost">One-off hardware/setup cost</label><input id="setupCost" type="number" value="1500" min="0" step="50"><span>A$</span></div>
+<div class="calc-row"><label for="sentrixShare">Sentrix Digital share of distributable profit</label><input id="sentrixShare" type="range" value="30" min="0" max="100"><span id="sentrixShareOut">30%</span></div>
+<div class="calc-buttons">
+<button type="button" onclick="setScenario(30,24,50,20,2,10,486,30)">Conservative</button>
+<button type="button" onclick="setScenario(30,27,60,35,2,10,486,30)">Working case</button>
+<button type="button" onclick="setScenario(30,30,75,55,3,13,486,30)">High take-up</button>
+<button type="button" onclick="setScenario(30,27,60,35,2,10,110,30)">Legacy ~A$110 backhaul case</button>
 </div>
-
-<h2>Revenue model — interactive assumptions</h2>
-<p>This calculator separates <strong>total rooms</strong> from <strong>usable/sellable guest rooms</strong>. Occupancy applies only to usable inventory. “Usable” means rooms actually available to sell in the period after excluding maintenance/offline rooms, long-term/non-guest use or other unavailable stock.</p>
-<div class="wifi-calculator">
-<style>
-.wifi-calculator{background:#f4efe0;border:1px solid #8fb29a;padding:1.1rem;border-radius:3px}
-.calc-row{display:grid;grid-template-columns:1.15fr 1fr auto;gap:.75rem;align-items:center;margin:.7rem 0}.calc-row label{font-weight:bold}.calc-row input,.calc-row select{width:100%;padding:.4rem}
-.calc-buttons{display:flex;gap:.45rem;flex-wrap:wrap;margin:1rem 0}.calc-buttons button{border:0;background:#1f6a43;color:#fff;padding:.45rem .7rem;cursor:pointer}
-.calc-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.65rem;margin-top:1rem}.calc-result-box{background:#fff;border:1px solid #ccd9d0;padding:.7rem}.calc-result-label{font-size:.68rem;text-transform:uppercase;color:#5b6b60}.calc-result-value{font-size:1.25rem;font-weight:bold}
-</style>
-<div class="calc-row"><label for="wf-total-rooms">Total rooms:</label><input type="number" id="wf-total-rooms" value="30" min="1" max="150"><span></span></div>
-<div class="calc-row"><label for="wf-usable-rooms">Usable / sellable rooms:</label><input type="range" id="wf-usable-rooms" value="30" min="1" max="30"><span id="wf-usable-display">30</span></div>
-<div class="calc-row"><label for="wf-occupancy">Average occupancy:</label><input type="range" id="wf-occupancy" value="60" min="0" max="100"><span id="wf-occupancy-display">60%</span></div>
-<div class="calc-row"><label for="wf-takeup">Wi‑Fi take-up:</label><input type="range" id="wf-takeup" value="25" min="0" max="100"><span id="wf-takeup-display">25%</span></div>
-<div class="calc-row"><label for="wf-stay">Average stay length:</label><input type="range" id="wf-stay" value="2" min="1" max="30"><span id="wf-stay-display">2 nights</span></div>
-<div class="calc-row"><label for="wf-plan">Average purchased package:</label><select id="wf-plan"><option value="6">1 night — A$6</option><option value="10" selected>2 nights — A$10</option><option value="13">3 nights — A$13</option><option value="22">7 days — A$22</option><option value="55">1 month — A$55</option></select><span></span></div>
-<div class="calc-row"><label for="wf-network-cost">Monthly network/backhaul cost:</label><input type="number" id="wf-network-cost" value="110" min="0" step="1"><span>A$/mo</span></div>
-<div class="calc-row"><label for="wf-setup-cost">One-off setup cost:</label><input type="number" id="wf-setup-cost" value="1500" min="0" step="50"><span>A$</span></div>
-<div class="calc-buttons"><button type="button" onclick="wfScenario(30,24,50,20,2,10)">Conservative</button><button type="button" onclick="wfScenario(30,27,60,35,2,10)">Working case</button><button type="button" onclick="wfScenario(30,30,75,55,3,13)">High take-up</button></div>
 <div class="calc-results">
-<div class="calc-result-box"><div class="calc-result-label">Usable inventory</div><div class="calc-result-value" id="wf-inventory">100%</div></div>
-<div class="calc-result-box"><div class="calc-result-label">Occupied room-nights / month</div><div class="calc-result-value" id="wf-occupied">0</div></div>
-<div class="calc-result-box"><div class="calc-result-label">Estimated Wi‑Fi purchases / month</div><div class="calc-result-value" id="wf-purchases">0</div></div>
-<div class="calc-result-box"><div class="calc-result-label">Gross Wi‑Fi revenue</div><div class="calc-result-value" id="wf-gross">A$0</div></div>
-<div class="calc-result-box"><div class="calc-result-label">Net before payment fees/tax</div><div class="calc-result-value" id="wf-net">A$0</div></div>
-<div class="calc-result-box"><div class="calc-result-label">Indicative setup payback</div><div class="calc-result-value" id="wf-payback">—</div></div>
+<div class="result"><div class="result-label">Usable inventory</div><div class="result-value" id="inventoryOut">—</div></div>
+<div class="result"><div class="result-label">Occupied room-nights / month</div><div class="result-value" id="occupiedOut">—</div></div>
+<div class="result"><div class="result-label">Wi‑Fi purchases / month</div><div class="result-value" id="purchasesOut">—</div></div>
+<div class="result"><div class="result-label">Gross Wi‑Fi revenue</div><div class="result-value" id="grossOut">—</div></div>
+<div class="result"><div class="result-label">Distributable profit</div><div class="result-value" id="profitOut">—</div></div>
+<div class="result"><div class="result-label">Project hardware ROI / year</div><div class="result-value" id="roiOut">—</div></div>
+<div class="result"><div class="result-label">Owner share / month</div><div class="result-value" id="ownerOut">—</div></div>
+<div class="result"><div class="result-label">Sentrix share / month</div><div class="result-value" id="sentrixOut">—</div></div>
+<div class="result"><div class="result-label">Owner share / year</div><div class="result-value" id="ownerYearOut">—</div></div>
+<div class="result"><div class="result-label">Sentrix share / year</div><div class="result-value" id="sentrixYearOut">—</div></div>
 </div>
-<p class="note">This is scenario modelling, not a forecast. Revenue is estimated by converting occupied room-nights into stays using the average stay length, then applying the Wi‑Fi take-up rate and selected average package. Payment fees, refunds, taxes, maintenance and support costs are excluded unless added later.</p>
+<p class="small">Scenario model only. It excludes tax/GST, refunds, chargebacks, support labour unless entered as “other cost”, hardware replacement reserves and any Starlink top-up/overage charges. The A$110 legacy case is included only to reproduce the earlier ROI assumption; it is not evidence that a resale-compliant, adequately sized Priority service will cost A$110/month.</p>
+</div>
+
+<h2>Monitoring & remote administration</h2>
+<div class="grid">
+<div class="card"><h3>Starlink layer</h3><p>Monitor WAN online/offline state, alerts, latency, packet loss, obstruction, throughput, data usage, uptime and software state using the Enterprise Dashboard and official API if the account is eligible.</p></div>
+<div class="card"><h3>Internal network layer</h3><p>Use managed switches/APs/mesh with a cloud or self-hosted controller exposing device health, AP/client load, VLAN state, firmware and remote configuration. This should be vendor/API-capable rather than consumer-only mesh hardware.</p></div>
+<div class="card"><h3>Application layer</h3><p>Monitor captive portal availability, payment webhooks, token issuance, entitlement failures, check-in integration and database health.</p></div>
+<div class="card"><h3>Alerting</h3><p>Backend raises actionable alerts to Sentrix when WAN, AP, captive portal or payment components fail. Routine issues should be resolved remotely; physical intervention is the exception.</p></div>
+</div>
+
+<h2>Delivery sequence</h2>
+<table>
+<tr><th>Phase</th><th>Deliverable</th><th>Gate</th></tr>
+<tr><td>1 — Commercial/plan verification</td><td>Confirm operating entity, Starlink Priority eligibility, hardware offer, actual order pricing/data terms and managed-service agreement.</td><td>No paid hotspot before Starlink resale condition is satisfied.</td></tr>
+<tr><td>2 — Survey & core network</td><td>Coverage survey, new/retained Starlink kit, gateway, managed AP/mesh, VLANs, permanent TV/camera/IoT connectivity.</td><td>Coverage and stability testing.</td></tr>
+<tr><td>3 — Captive portal & payments</td><td>Guest SSID, packages, vouchers, card-present payment integration, entitlement backend.</td><td>Payment/reconciliation and failure testing.</td></tr>
+<tr><td>4 — Check-in integration</td><td>Booking/room association, package offer on reception tablet, automatic entitlement issue.</td><td>Privacy/security review.</td></tr>
+<tr><td>5 — Managed operations</td><td>Monitoring, alerting, reporting, patch/firmware process, revenue settlement and defined support SLA.</td><td>Monthly operational review.</td></tr>
+</table>
+
+<h2>Key risks / decisions</h2>
+<div class="grid">
+<div class="card"><span class="pill risk">High</span><h3>Wrong Starlink plan</h3><p>Charging hotel guests on a non-authorised plan risks breaching Starlink terms. Priority/resale authorisation is a launch gate.</p></div>
+<div class="card"><span class="pill risk">High</span><h3>Under-sized data plan</h3><p>A low-cost Priority allowance may be exhausted quickly by streaming/multi-device use. Measure traffic before treating low plan cost as permanent.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>API assumption</h3><p>Starlink's official API access is not guaranteed to a single small-business account. The design must remain operable through the dashboard and internal-network telemetry.</p></div>
+<div class="card"><span class="pill warn">Medium</span><h3>Operator dependency</h3><p>Sentrix should own operational accountability, but credentials, documentation, source code/config exports and transition rights must ensure the owners can transfer the service if the agreement ends.</p></div>
+</div>
+
+<h2>Primary Starlink references</h2>
+<ul class="source-list">
+<li><a href="https://starlink.com/legal/documents/DOC-1540-49184-72">Starlink Terms of Service — resale/hotspot and rental conditions</a></li>
+<li><a href="https://www.starlink.com/public-files/Local_Priority_AUS.pdf">Starlink Local Priority — Australian Critical Information Summary</a></li>
+<li><a href="https://starlink.com/tc/support/article/6aff51c6-254a-700e-c175-4c05a2b8c894">Starlink Enterprise Dashboard monitoring and remote controls</a></li>
+<li><a href="https://starlink.com/nz/support/article/b4518e80-cdaf-f665-dceb-44e24ce34738">Starlink API support note — API access for larger business customers</a></li>
+</ul>
+<p class="note"><strong>Commercial position to carry into the owner proposal:</strong> Sentrix Digital is offering an ongoing managed operating service, not merely installation. The value is accountability: one party monitors the backhaul, internal network, captive portal, payments and backend continuously, with a transparent revenue share that can be negotiated using the model above.</p>
+</main>
 <script>
 (function(){
-const total=document.getElementById('wf-total-rooms'), usable=document.getElementById('wf-usable-rooms'), occ=document.getElementById('wf-occupancy'), take=document.getElementById('wf-takeup'), stay=document.getElementById('wf-stay');
-function syncMax(){const t=Math.max(1,parseInt(total.value)||1);usable.max=t;if((parseInt(usable.value)||1)>t)usable.value=t;}
-window.wfCalc=function(){syncMax();const t=Math.max(1,+total.value||1),u=Math.max(1,+usable.value||1),o=+occ.value||0,w=+take.value||0,s=Math.max(1,+stay.value||1),p=+document.getElementById('wf-plan').value||0,nc=+document.getElementById('wf-network-cost').value||0,sc=+document.getElementById('wf-setup-cost').value||0;const occupied=u*30*o/100,purchases=(occupied/s)*w/100,gross=purchases*p,net=gross-nc;document.getElementById('wf-usable-display').textContent=u;document.getElementById('wf-occupancy-display').textContent=o+'%';document.getElementById('wf-takeup-display').textContent=w+'%';document.getElementById('wf-stay-display').textContent=s+(s===1?' night':' nights');document.getElementById('wf-inventory').textContent=Math.round(u/t*100)+'% ('+u+'/'+t+')';document.getElementById('wf-occupied').textContent=Math.round(occupied);document.getElementById('wf-purchases').textContent=purchases.toFixed(1);document.getElementById('wf-gross').textContent='A
-<table><tr><th>Phase</th><th>Deliverable</th><th>Decision gate</th></tr>
-<tr><td>1 — Survey</td><td>Coverage survey, backhaul test, router/AP layout, cabling/power constraints, separation of guest and operations traffic.</td><td>Confirm actual equipment and installation cost.</td></tr>
-<tr><td>2 — Core Wi‑Fi</td><td>Reliable building coverage + guest SSID + owner/admin monitoring.</td><td>Measure uptime/coverage before monetising.</td></tr>
-<tr><td>3 — Captive portal</td><td>Voucher and/or card-paid plans, receipts and support process.</td><td>Validate demand and payment-provider economics.</td></tr>
-<tr><td>4 — Operations integration</td><td>Check‑in platform connectivity, optional guest account linkage, future access-control/IoT integration.</td><td>Privacy/security review before sharing identifiers between systems.</td></tr>
-</table>
-
-<h2>Key risks</h2><div class="grid">
-<div class="card"><span class="pill risk">High</span><h3>Single point of failure</h3><p>Backhaul/router/AP failure can affect both revenue and operations. Keep operational fallback procedures and consider LTE backup at the operations layer.</p></div>
-<div class="card"><span class="pill risk">High</span><h3>Network segregation</h3><p>Do not put guest traffic and the guest-management database on the same trusted LAN.</p></div>
-<div class="card"><span class="pill warn">Medium</span><h3>Support expectations</h3><p>Charging for access creates an obligation to define refunds, support and what happens during outages.</p></div>
-<div class="card"><span class="pill warn">Medium</span><h3>Economics</h3><p>Pricing, take-up and backhaul costs are still assumptions. The interactive calculator in the existing dashboard is scenario modelling, not a forecast.</p></div>
-</div>
-<p class="note"><strong>Cross-reference:</strong> guest identity, occupancy, privacy and tablet hardware belong in the <a href="guest-operations.html">Guest Operations</a> workstream. The network is an enabling control, not a substitute for a proper guest register.</p>
-</main></body></html>+Math.round(gross);document.getElementById('wf-net').textContent='A
-<table><tr><th>Phase</th><th>Deliverable</th><th>Decision gate</th></tr>
-<tr><td>1 — Survey</td><td>Coverage survey, backhaul test, router/AP layout, cabling/power constraints, separation of guest and operations traffic.</td><td>Confirm actual equipment and installation cost.</td></tr>
-<tr><td>2 — Core Wi‑Fi</td><td>Reliable building coverage + guest SSID + owner/admin monitoring.</td><td>Measure uptime/coverage before monetising.</td></tr>
-<tr><td>3 — Captive portal</td><td>Voucher and/or card-paid plans, receipts and support process.</td><td>Validate demand and payment-provider economics.</td></tr>
-<tr><td>4 — Operations integration</td><td>Check‑in platform connectivity, optional guest account linkage, future access-control/IoT integration.</td><td>Privacy/security review before sharing identifiers between systems.</td></tr>
-</table>
-
-<h2>Key risks</h2><div class="grid">
-<div class="card"><span class="pill risk">High</span><h3>Single point of failure</h3><p>Backhaul/router/AP failure can affect both revenue and operations. Keep operational fallback procedures and consider LTE backup at the operations layer.</p></div>
-<div class="card"><span class="pill risk">High</span><h3>Network segregation</h3><p>Do not put guest traffic and the guest-management database on the same trusted LAN.</p></div>
-<div class="card"><span class="pill warn">Medium</span><h3>Support expectations</h3><p>Charging for access creates an obligation to define refunds, support and what happens during outages.</p></div>
-<div class="card"><span class="pill warn">Medium</span><h3>Economics</h3><p>Pricing, take-up and backhaul costs are still assumptions. The interactive calculator in the existing dashboard is scenario modelling, not a forecast.</p></div>
-</div>
-<p class="note"><strong>Cross-reference:</strong> guest identity, occupancy, privacy and tablet hardware belong in the <a href="guest-operations.html">Guest Operations</a> workstream. The network is an enabling control, not a substitute for a proper guest register.</p>
-</main></body></html>+Math.round(net);document.getElementById('wf-payback').textContent=net>0?(sc/net).toFixed(1)+' months':'—';}
-window.wfScenario=function(t,u,o,w,s,p){total.value=t;usable.max=t;usable.value=u;occ.value=o;take.value=w;stay.value=s;document.getElementById('wf-plan').value=p;wfCalc();}
-[total,usable,occ,take,stay,document.getElementById('wf-plan'),document.getElementById('wf-network-cost'),document.getElementById('wf-setup-cost')].forEach(x=>x.addEventListener('input',wfCalc));wfCalc();
+const ids=['totalRooms','usableRooms','occupancy','takeup','avgStay','avgPackage','networkCost','paymentFee','otherCost','setupCost','sentrixShare'];
+const E=id=>document.getElementById(id);
+function money(v){return 'A$'+Math.round(v).toLocaleString('en-AU');}
+function calc(){
+  const total=Math.max(1,+E('totalRooms').value||1);
+  E('usableRooms').max=total;if(+E('usableRooms').value>total)E('usableRooms').value=total;
+  const usable=Math.max(1,+E('usableRooms').value||1),occ=+E('occupancy').value||0,take=+E('takeup').value||0,stay=Math.max(1,+E('avgStay').value||1);
+  const pack=+E('avgPackage').value||0,network=+E('networkCost').value||0,fee=(+E('paymentFee').value||0)/100,other=+E('otherCost').value||0,setup=+E('setupCost').value||0,ss=+E('sentrixShare').value||0;
+  const occupied=usable*30*occ/100,stays=occupied/stay,purchases=stays*take/100,gross=purchases*pack,payment=gross*fee,profit=Math.max(0,gross-network-payment-other);
+  const sentrix=profit*ss/100,owner=profit-sentrix,annual=profit*12,roi=setup>0?annual/setup*100:0;
+  E('usableRoomsOut').textContent=usable;E('occupancyOut').textContent=occ+'%';E('takeupOut').textContent=take+'%';E('avgStayOut').textContent=stay+(stay===1?' night':' nights');E('sentrixShareOut').textContent=ss+'%';
+  E('inventoryOut').textContent=Math.round(usable/total*100)+'% ('+usable+'/'+total+')';E('occupiedOut').textContent=Math.round(occupied);E('purchasesOut').textContent=purchases.toFixed(1);
+  E('grossOut').textContent=money(gross);E('profitOut').textContent=money(profit);E('roiOut').textContent=roi.toFixed(0)+'%/year';E('ownerOut').textContent=money(owner);E('sentrixOut').textContent=money(sentrix);E('ownerYearOut').textContent=money(owner*12);E('sentrixYearOut').textContent=money(sentrix*12);
+}
+window.setScenario=function(t,u,o,w,s,p,n,share){E('totalRooms').value=t;E('usableRooms').max=t;E('usableRooms').value=u;E('occupancy').value=o;E('takeup').value=w;E('avgStay').value=s;E('avgPackage').value=p;E('networkCost').value=n;E('sentrixShare').value=share;calc();}
+ids.forEach(id=>E(id).addEventListener('input',calc));calc();
 })();
 </script>
-</div>
-<h2>Phased delivery</h2>
-<table><tr><th>Phase</th><th>Deliverable</th><th>Decision gate</th></tr>
-<tr><td>1 — Survey</td><td>Coverage survey, backhaul test, router/AP layout, cabling/power constraints, separation of guest and operations traffic.</td><td>Confirm actual equipment and installation cost.</td></tr>
-<tr><td>2 — Core Wi‑Fi</td><td>Reliable building coverage + guest SSID + owner/admin monitoring.</td><td>Measure uptime/coverage before monetising.</td></tr>
-<tr><td>3 — Captive portal</td><td>Voucher and/or card-paid plans, receipts and support process.</td><td>Validate demand and payment-provider economics.</td></tr>
-<tr><td>4 — Operations integration</td><td>Check‑in platform connectivity, optional guest account linkage, future access-control/IoT integration.</td><td>Privacy/security review before sharing identifiers between systems.</td></tr>
-</table>
-
-<h2>Key risks</h2><div class="grid">
-<div class="card"><span class="pill risk">High</span><h3>Single point of failure</h3><p>Backhaul/router/AP failure can affect both revenue and operations. Keep operational fallback procedures and consider LTE backup at the operations layer.</p></div>
-<div class="card"><span class="pill risk">High</span><h3>Network segregation</h3><p>Do not put guest traffic and the guest-management database on the same trusted LAN.</p></div>
-<div class="card"><span class="pill warn">Medium</span><h3>Support expectations</h3><p>Charging for access creates an obligation to define refunds, support and what happens during outages.</p></div>
-<div class="card"><span class="pill warn">Medium</span><h3>Economics</h3><p>Pricing, take-up and backhaul costs are still assumptions. The interactive calculator in the existing dashboard is scenario modelling, not a forecast.</p></div>
-</div>
-<p class="note"><strong>Cross-reference:</strong> guest identity, occupancy, privacy and tablet hardware belong in the <a href="guest-operations.html">Guest Operations</a> workstream. The network is an enabling control, not a substitute for a proper guest register.</p>
-</main></body></html>
+</body></html>
