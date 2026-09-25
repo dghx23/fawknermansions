@@ -262,6 +262,17 @@
     margin-top:1rem;
   }
 
+  .workstream-hub{max-width:920px;margin:1.2rem auto 0;padding:0 1.5rem;}
+  .wifi-headline{background:#e6f1e8;border:1px solid #b8d0be;border-left:6px solid #2d7049;padding:1.05rem 1.15rem;margin-bottom:1rem;}
+  .wifi-headline .kicker{font-size:.65rem;letter-spacing:.09em;text-transform:uppercase;color:#2d7049;font-weight:bold;}
+  .wifi-headline h2{margin:.2rem 0 .4rem;color:#235c3b;font-size:1.35rem;}
+  .wifi-headline a{display:inline-block;margin-top:.45rem;background:#235c3b;color:#fff;text-decoration:none;padding:.4rem .7rem;font-size:.78rem;border-radius:2px;}
+  .stream-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.8rem;}
+  .stream-card{background:#fff;border:1px solid #d8ccac;padding:.9rem;}
+  .stream-card.heritage{border-top:5px solid #6b1f22}.stream-card.guest{border-top:5px solid #315f86}.stream-card.risk{border-top:5px solid #9a6800}.stream-card.research{border-top:5px solid #6d5a86}
+  .stream-card .marker{font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;font-weight:bold;}
+  .stream-card.heritage .marker{color:#6b1f22}.stream-card.guest .marker{color:#315f86}.stream-card.risk .marker{color:#9a6800}.stream-card.research .marker{color:#6d5a86}
+  .stream-card h3{font-size:.95rem;margin:.2rem 0 .35rem}.stream-card p{font-size:.8rem;margin:.15rem 0 .7rem;color:#4d493f}.stream-card a{font-size:.76rem;color:#1a1a1a;font-weight:bold;}
   footer.foot{
     text-align:center;
     font-size:.7rem;
@@ -304,6 +315,10 @@
     </header>
 
     <nav class="jump">
+      <a href="wifi-project.html">WiFi Project</a>
+      <a href="heritage-project.html">Heritage Project</a>
+      <a href="guest-operations.html">Guest Operations</a>
+      <a href="guest-operations-risks.html">Guest Risks</a>
       <a href="research.html">Research &amp; Development</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#storyboard">Storyboard</a>
@@ -319,12 +334,31 @@
     <div class="asset-links">
       <a href="../index.html">&rarr; Public site</a>
       <a href="research.html">&rarr; Research &amp; Development</a>
+      <a href="wifi-project.html">&rarr; WiFi Project</a>
+      <a href="guest-operations.html">&rarr; Guest Operations</a>
+      <a href="guest-operations-risks.html">&rarr; Guest Risks</a>
+      <a href="heritage-project.html">&rarr; Heritage Project</a>
       <a href="../docs/proposal.html">&rarr; Polished proposal</a>
       <a href="../docs/book-mockup.html">&rarr; Book cover mockup</a>
       <a href="../docs/book-mockup-3d.html">&rarr; Interactive 3D book</a>
       <a href="../docs/send-postcard.html">&rarr; Send a postcard</a>
       <a href="../docs/project-brief.md">&rarr; Full pitch doc (.md)</a>
       <a href="../wifi-portal/index.html">&rarr; WiFi portal design</a>
+    </div>
+
+    <div class="workstream-hub">
+      <div class="wifi-headline">
+        <div class="kicker">Priority operational opportunity</div>
+        <h2>WiFi Project — guest revenue, reliable connectivity &amp; operating infrastructure</h2>
+        <div>Standalone workstream covering network design, guest-only captive portal, check-in payment integration, multi-device entitlements, permanent connectivity for TVs/cameras/sensors, and an interactive business case.</div>
+        <a href="wifi-project.html">Open full WiFi project &rarr;</a>
+      </div>
+      <div class="stream-grid">
+        <div class="stream-card heritage"><div class="marker">Heritage &amp; Legacy</div><h3>Heritage project</h3><p>Research, book, documentary, 3D/VR preservation and public history.</p><a href="heritage-project.html">Open heritage workstream &rarr;</a></div>
+        <div class="stream-card guest"><div class="marker">Guest Operations</div><h3>Booking &amp; digital check-in</h3><p>Registration, identity verification, tablet/EFTPOS hardware, access and stay records.</p><a href="guest-operations.html">Open guest operations &rarr;</a></div>
+        <div class="stream-card risk"><div class="marker">Risk &amp; Compliance</div><h3>Guest-platform risks</h3><p>Privacy, DVS, biometrics, availability, access control and unresolved legal questions.</p><a href="guest-operations-risks.html">Open risk page &rarr;</a></div>
+        <div class="stream-card research"><div class="marker">Evidence</div><h3>Research &amp; Development</h3><p>Versioned research runs, contradictions, sources, provenance and project risk register.</p><a href="research.html">Open research system &rarr;</a></div>
+      </div>
     </div>
 
     <main>
@@ -1340,6 +1374,11 @@
             operational — it's psychological reassurance.</li>
         </ul>
 
+        <h3>Guest-only captive portal, permanent equipment &amp; check-in payment</h3>
+        <p><strong>Guest-only captive portal:</strong> the captive portal is the web page a guest sees after joining the guest SSID. It validates a paid/authorised guest entitlement before internet access is opened. It is <strong>not</strong> used by smart TVs, CCTV cameras, sensors, reception devices or other fixed equipment; those are connected permanently to separate managed networks.</p>
+        <p>At digital check-in, guests can optionally buy unlimited WiFi for <strong>A$6 / 1 night, A$10 / 2 nights, A$13 / 3 nights, A$22 / 7 days, or A$55 / month</strong>. The current Lenovo tablet candidate does not provide NFC, so the preferred card-present pattern is a separate integrated EFTPOS terminal (for example Square Terminal via Terminal API or Tyro integrated EFTPOS). Payment success is fed back to the Fawkner backend, which creates a multi-device token tied to the guest, booking and room.</p>
+        <p><a href="wifi-project.html"><strong>Open the full WiFi project page →</strong></a> &nbsp;|&nbsp; <a href="guest-operations.html">See check-in/EFTPOS integration →</a></p>
+
         <h3>Business case — interactive scenarios</h3>
 
         <p style="margin-bottom:1rem;">Use the calculator below to model
@@ -1429,127 +1468,137 @@
         </style>
 
         <div class="wifi-calculator">
+          <style>
+            .wifi-calculator .calc-row{grid-template-columns:minmax(165px,1.1fr) minmax(180px,1fr) auto;}
+            .wifi-calculator .calc-results{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));}
+          </style>
           <div class="calc-scenario-title">Configure your scenario:</div>
 
           <div class="calc-row">
             <label for="rooms">Total rooms:</label>
-            <input type="number" id="rooms" value="30" min="10" max="100">
+            <input type="number" id="rooms" value="30" min="1" max="150">
+            <span></span>
+          </div>
+
+          <div class="calc-row">
+            <label for="usable-rooms">Usable / sellable rooms:</label>
+            <input type="range" id="usable-rooms" value="30" min="1" max="30" style="cursor:pointer;">
+            <span id="usable-rooms-display">30</span>
           </div>
 
           <div class="calc-row">
             <label for="occupancy">Avg. occupancy rate (%):</label>
-            <input type="range" id="occupancy" value="60" min="20" max="100" style="cursor:pointer;">
+            <input type="range" id="occupancy" value="60" min="0" max="100" style="cursor:pointer;">
             <span id="occupancy-display">60%</span>
           </div>
 
           <div class="calc-row">
             <label for="wifitake">WiFi take-up rate (%):</label>
-            <input type="range" id="wifitake" value="25" min="5" max="80" style="cursor:pointer;">
-            <span id="wifitake-display">25%</span>
+            <input type="range" id="wifitake" value="35" min="0" max="100" style="cursor:pointer;">
+            <span id="wifitake-display">35%</span>
           </div>
 
           <div class="calc-row">
-            <label for="avgplan">Avg. plan selected:</label>
+            <label for="avgstay">Avg. stay length:</label>
+            <input type="range" id="avgstay" value="2" min="1" max="30" style="cursor:pointer;">
+            <span id="avgstay-display">2 nights</span>
+          </div>
+
+          <div class="calc-row">
+            <label for="avgplan">Avg. WiFi package purchased:</label>
             <select id="avgplan">
-              <option value="6" selected>Day pass (A$6)</option>
-              <option value="18">Weekly pass (A$18)</option>
-              <option value="50">Monthly pass (A$50)</option>
-              <option value="12">Mix (avg A$12)</option>
+              <option value="6">1 night — A$6</option>
+              <option value="10" selected>2 nights — A$10</option>
+              <option value="13">3 nights — A$13</option>
+              <option value="22">7 days — A$22</option>
+              <option value="55">1 month — A$55</option>
             </select>
+            <span></span>
+          </div>
+
+          <div class="calc-row">
+            <label for="networkcost">Monthly network/backhaul cost:</label>
+            <input type="number" id="networkcost" value="110" min="0">
+            <span>A$/mo</span>
+          </div>
+
+          <div class="calc-row">
+            <label for="setupcost">One-off setup cost:</label>
+            <input type="number" id="setupcost" value="1500" min="0" step="50">
+            <span>A$</span>
           </div>
 
           <div class="calc-buttons">
-            <button onclick="setScenario(30, 50, 15, 12, 'Conservative')">📊 Conservative (50% occ, 15% take-up)</button>
-            <button onclick="setScenario(30, 60, 25, 12, 'Realistic')">📈 Realistic (60% occ, 25% take-up)</button>
-            <button onclick="setScenario(30, 75, 40, 12, 'Optimistic')">🚀 Optimistic (75% occ, 40% take-up)</button>
+            <button onclick="setScenario(30,24,50,20,2,10,'Conservative')">📊 Conservative</button>
+            <button onclick="setScenario(30,27,60,35,2,10,'Working case')">📈 Working case</button>
+            <button onclick="setScenario(30,30,75,55,3,13,'High take-up')">🚀 High take-up</button>
           </div>
 
           <button onclick="calculateWiFi()" style="background:#a9884f;color:#1a1a1a;padding:.6rem 1.2rem;font-size:.85rem;cursor:pointer;border:none;border-radius:2px;font-weight:bold;width:100%;">Calculate</button>
 
           <div class="calc-results">
-            <div class="calc-result-box">
-              <div class="calc-result-label">Monthly room-nights with WiFi</div>
-              <div class="calc-result-value" id="room-nights">0</div>
-            </div>
-            <div class="calc-result-box">
-              <div class="calc-result-label">Avg. revenue per room-night</div>
-              <div class="calc-result-value" id="avg-revenue">A$0</div>
-            </div>
-            <div class="calc-result-box">
-              <div class="calc-result-label">Monthly WiFi gross revenue</div>
-              <div class="calc-result-value" id="gross-revenue">A$0</div>
-            </div>
-            <div class="calc-result-box">
-              <div class="calc-result-label">Starlink connectivity cost</div>
-              <div class="calc-result-value" id="starlink-cost">–A$110</div>
-            </div>
-            <div class="calc-result-box">
-              <div class="calc-result-label">Monthly net profit</div>
-              <div class="calc-result-value" id="net-profit" style="color:#6b1f22;">A$0</div>
-            </div>
-            <div class="calc-result-box">
-              <div class="calc-result-label">Annual net profit</div>
-              <div class="calc-result-value" id="annual-profit" style="color:#6b1f22;">A$0</div>
-            </div>
-            <div class="calc-result-box">
-              <div class="calc-result-label">Payback period (setup cost)</div>
-              <div class="calc-result-value" id="payback" style="font-size:1rem;">~2 weeks</div>
-            </div>
-            <div class="calc-result-box">
-              <div class="calc-result-label">ROI on hardware (~A$1500)</div>
-              <div class="calc-result-value" id="roi" style="font-size:1rem;">0%</div>
-            </div>
+            <div class="calc-result-box"><div class="calc-result-label">Usable inventory</div><div class="calc-result-value" id="usable-share">100%</div></div>
+            <div class="calc-result-box"><div class="calc-result-label">Occupied room-nights / month</div><div class="calc-result-value" id="occupied-nights">0</div></div>
+            <div class="calc-result-box"><div class="calc-result-label">Estimated WiFi purchases / month</div><div class="calc-result-value" id="wifi-purchases">0</div></div>
+            <div class="calc-result-box"><div class="calc-result-label">Monthly WiFi gross revenue</div><div class="calc-result-value" id="gross-revenue">A$0</div></div>
+            <div class="calc-result-box"><div class="calc-result-label">Network/backhaul cost</div><div class="calc-result-value" id="starlink-cost">–A$110</div></div>
+            <div class="calc-result-box"><div class="calc-result-label">Net before payment fees/tax</div><div class="calc-result-value" id="net-profit">A$0</div></div>
+            <div class="calc-result-box"><div class="calc-result-label">Annual net before fees/tax</div><div class="calc-result-value" id="annual-profit">A$0</div></div>
+            <div class="calc-result-box"><div class="calc-result-label">Indicative setup payback</div><div class="calc-result-value" id="payback">—</div></div>
           </div>
         </div>
 
         <script>
           function calculateWiFi(){
-            const rooms = parseInt(document.getElementById('rooms').value) || 30;
-            const occupancy = parseInt(document.getElementById('occupancy').value) || 60;
-            const wifitake = parseInt(document.getElementById('wifitake').value) || 25;
-            const avgplan = parseInt(document.getElementById('avgplan').value) || 12;
+            const rooms=Math.max(1,parseInt(document.getElementById('rooms').value)||1);
+            const usableEl=document.getElementById('usable-rooms');
+            usableEl.max=rooms;
+            if((parseInt(usableEl.value)||1)>rooms) usableEl.value=rooms;
+            const usable=Math.max(1,parseInt(usableEl.value)||1);
+            const occupancy=parseInt(document.getElementById('occupancy').value)||0;
+            const wifitake=parseInt(document.getElementById('wifitake').value)||0;
+            const avgstay=Math.max(1,parseInt(document.getElementById('avgstay').value)||1);
+            const avgplan=parseFloat(document.getElementById('avgplan').value)||0;
+            const networkcost=parseFloat(document.getElementById('networkcost').value)||0;
+            const setupcost=parseFloat(document.getElementById('setupcost').value)||0;
 
-            const roomNights = (rooms * 30 * occupancy / 100 * wifitake / 100).toFixed(0);
-            const grossRevenue = (roomNights * avgplan).toFixed(0);
-            const starlink = 110;
-            const netMonthly = (grossRevenue - starlink).toFixed(0);
-            const netAnnual = (netMonthly * 12).toFixed(0);
-            const payback = (1500 / (netMonthly || 1)).toFixed(1);
-            const roi = ((netAnnual / 1500) * 100).toFixed(0);
+            const occupied=usable*30*occupancy/100;
+            const purchases=(occupied/avgstay)*wifitake/100;
+            const gross=purchases*avgplan;
+            const net=gross-networkcost;
+            const annual=net*12;
 
-            document.getElementById('room-nights').textContent = roomNights;
-            document.getElementById('avg-revenue').textContent = 'A$' + avgplan;
-            document.getElementById('gross-revenue').textContent = 'A$' + grossRevenue;
-            document.getElementById('net-profit').textContent = 'A$' + netMonthly;
-            document.getElementById('annual-profit').textContent = 'A$' + netAnnual;
-            document.getElementById('payback').textContent = payback + ' months';
-            document.getElementById('roi').textContent = roi + '%/year';
+            document.getElementById('usable-rooms-display').textContent=usable;
+            document.getElementById('occupancy-display').textContent=occupancy+'%';
+            document.getElementById('wifitake-display').textContent=wifitake+'%';
+            document.getElementById('avgstay-display').textContent=avgstay+(avgstay===1?' night':' nights');
+            document.getElementById('usable-share').textContent=Math.round(usable/rooms*100)+'% ('+usable+'/'+rooms+')';
+            document.getElementById('occupied-nights').textContent=Math.round(occupied);
+            document.getElementById('wifi-purchases').textContent=purchases.toFixed(1);
+            document.getElementById('gross-revenue').textContent='A$'+Math.round(gross);
+            document.getElementById('starlink-cost').textContent='–A$'+Math.round(networkcost);
+            document.getElementById('net-profit').textContent='A$'+Math.round(net);
+            document.getElementById('annual-profit').textContent='A$'+Math.round(annual);
+            document.getElementById('payback').textContent=net>0?(setupcost/net).toFixed(1)+' months':'—';
           }
-          function setScenario(r, o, w, p, name){
-            document.getElementById('rooms').value = r;
-            document.getElementById('occupancy').value = o;
-            document.getElementById('wifitake').value = w;
-            document.getElementById('avgplan').value = p;
-            document.getElementById('occupancy-display').textContent = o + '%';
-            document.getElementById('wifitake-display').textContent = w + '%';
+          function setScenario(r,u,o,w,s,p,name){
+            document.getElementById('rooms').value=r;
+            document.getElementById('usable-rooms').max=r;
+            document.getElementById('usable-rooms').value=u;
+            document.getElementById('occupancy').value=o;
+            document.getElementById('wifitake').value=w;
+            document.getElementById('avgstay').value=s;
+            document.getElementById('avgplan').value=p;
             calculateWiFi();
-            alert('Scenario: ' + name + ' (' + o + '% occupancy, ' + w + '% WiFi take-up)');
           }
-          document.getElementById('occupancy').addEventListener('input', function(){
-            document.getElementById('occupancy-display').textContent = this.value + '%';
-          });
-          document.getElementById('wifitake').addEventListener('input', function(){
-            document.getElementById('wifitake-display').textContent = this.value + '%';
+          ['rooms','usable-rooms','occupancy','wifitake','avgstay','avgplan','networkcost','setupcost'].forEach(function(id){
+            document.getElementById(id).addEventListener('input',calculateWiFi);
           });
           calculateWiFi();
         </script>
 
-        <p class="note" style="margin-top:1rem;"><strong>The case is strong:</strong>
-        Even the conservative scenario yields A$600–800/month net profit after
-        Starlink costs. At A$1,500 hardware investment, the system pays for itself
-        in 2–3 months. The additional operational benefits — guest satisfaction,
-        security infrastructure, competitive positioning — are free upside. This
-        is a no-brainer investment with immediate positive ROI.</p>
+        <p class="note" style="margin-top:1rem;"><strong>Use the calculator as scenario modelling, not a forecast.</strong>
+        The economics now distinguish total rooms from usable/sellable inventory and convert occupied room-nights into estimated stays before applying WiFi take-up. Payment fees, refunds, tax, support, access-point maintenance and other operating costs are not yet included.</p>
 
         <p class="note" style="margin-top:.75rem;"><strong>Why this matters to Dr. Nguyen:</strong>
         Given your networking background, you'll recognize this as a straightforward
