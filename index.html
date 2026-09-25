@@ -2,363 +2,89 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fawkner Mansions — 250 Punt Road, Prahran</title>
-<meta name="description" content="Fawkner Mansions, 250 Punt Road, Prahran — heritage-listed 1910–11 Edwardian Free Classical flats, believed to be the oldest surviving residential flats in the City of Stonnington.">
+<meta name="description" content="Fawkner Mansions, 250 Punt Road, Prahran — heritage research, digital preservation and contemporary guest-operations project.">
 <style>
-  :root{
-    --paper:#f4efe0;
-    --ink:#1a1a1a;
-    --rule:#1a1a1a;
-    --muted:#6b6558;
-    --page:#e9dfc4;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family: Georgia, 'Times New Roman', serif;
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.6;
-  }
-
-  header.site-header{
-    background:var(--paper);
-    position:sticky;
-    top:0;
-    z-index:10;
-    border-bottom:1px solid var(--rule);
-  }
-  .header-inner{
-    max-width:960px;
-    margin:0 auto;
-    padding:.75rem 1.5rem;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:.75rem;
-  }
-  .brand{display:flex;align-items:center;gap:.6rem;}
-  .brand span{
-    font-size:.85rem;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    font-variant-caps: small-caps;
-  }
-  nav.site-nav{display:flex;gap:1.2rem;flex-wrap:wrap;}
-  nav.site-nav a{
-    color:var(--ink);
-    text-decoration:none;
-    font-size:.72rem;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    opacity:.75;
-  }
-  nav.site-nav a:hover{opacity:1;}
-
-  .hero{
-    text-align:center;
-    padding:3rem 1.5rem 2.5rem;
-    border-bottom:2px solid var(--rule);
-  }
-  .hero .eyebrow{
-    font-size:.65rem;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:var(--muted);
-    margin-bottom:.75rem;
-  }
-  .hero h1{
-    font-size:3rem;
-    margin:0 0 .4rem;
-    font-variant-caps: small-caps;
-    letter-spacing:.02em;
-  }
-  .hero .addr{
-    font-size:.85rem;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--muted);
-    margin-bottom:.6rem;
-  }
-  .hero .facts{
-    font-size:.68rem;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--muted);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:.6rem;
-    margin-bottom:1.5rem;
-  }
-  .hero .facts .dash{width:20px;height:1px;background:var(--muted);}
-  .hero .claim{
-    max-width:520px;
-    margin:0 auto;
-    font-size:1.05rem;
-    font-style:italic;
-    color:var(--ink);
-  }
-  .badges{
-    display:flex;
-    justify-content:center;
-    gap:.6rem;
-    flex-wrap:wrap;
-    margin-top:1.5rem;
-  }
-  .badge{
-    font-size:.62rem;
-    text-transform:uppercase;
-    letter-spacing:.07em;
-    border:1px solid var(--rule);
-    color:var(--ink);
-    padding:.3rem .7rem;
-  }
-
-  main{max-width:760px;margin:0 auto;padding:0 1.5rem;}
-  section{padding:3rem 0;border-bottom:1px solid var(--rule);}
-  section:last-of-type{border-bottom:none;}
-  section h2{
-    color:var(--ink);
-    font-size:1.3rem;
-    font-variant-caps: small-caps;
-    letter-spacing:.03em;
-    margin:0 0 1rem;
-    padding-bottom:.6rem;
-    border-bottom:1px solid var(--rule);
-  }
-  section p{font-size:.98rem;color:#2a2a2a;}
-  .lede{font-size:1.05rem;color:var(--muted);}
-
-  .pull{
-    border-left:2px solid var(--rule);
-    padding-left:1rem;
-    margin:1.5rem 0;
-    font-style:italic;
-    color:var(--muted);
-  }
-
-  .book-card{
-    background:#fff;
-    border:1px solid var(--rule);
-    padding:1.5rem;
-    margin-top:1rem;
-  }
-  .book-card .status{
-    display:inline-block;
-    font-size:.62rem;
-    text-transform:uppercase;
-    letter-spacing:.07em;
-    border:1px solid var(--rule);
-    color:var(--ink);
-    padding:.15rem .5rem;
-    margin-bottom:.6rem;
-  }
-
-  .buy-cta{
-    display:inline-flex;
-    align-items:center;
-    gap:.6rem;
-    background:#FF9900;
-    color:#111;
-    padding:.5rem 1rem;
-    margin-top:1rem;
-    font-family: Arial, sans-serif;
-    border-radius:2px;
-  }
-  .buy-cta .label{font-size:.85rem;font-weight:bold;}
-  .buy-cta .status{
-    font-size:.62rem;
-    text-transform:uppercase;
-    letter-spacing:.05em;
-    background:rgba(0,0,0,.15);
-    padding:.15rem .5rem;
-    border-radius:2px;
-  }
-
-  .note{
-    font-size:.82rem;
-    color:#8a8370;
-    background:#f2ead9;
-    border:1px dashed #d8ccac;
-    border-radius:3px;
-    padding:.75rem 1rem;
-    margin-top:1rem;
-  }
-
-  footer.site-footer{
-    text-align:center;
-    font-size:.72rem;
-    letter-spacing:.04em;
-    color:var(--muted);
-    padding:2.5rem 1.5rem 3rem;
-    border-top:1px solid var(--rule);
-  }
-  footer.site-footer a{color:var(--ink);}
+:root{--paper:#fffdf8;--ink:#17202a;--muted:#6f685f;--line:#d7ccb8;--ox:#6f2330;--gold:#b18a4a;--green:#246149;--blue:#315f86;--violet:#65547d}
+*{box-sizing:border-box}body{margin:0}.home-hero{max-width:1180px;margin:1.4rem auto 0;padding:0 1rem}
+.hero-shell{display:grid;grid-template-columns:1.05fr .95fr;background:#151f28;border-radius:22px;overflow:hidden;box-shadow:0 24px 55px rgba(20,25,30,.18)}
+.hero-copy{padding:clamp(2rem,5vw,4.5rem);color:#fff;display:flex;flex-direction:column;justify-content:center}
+.hero-kicker{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:#d8ba80;margin-bottom:.9rem}
+.hero-copy h1{font:600 clamp(2.7rem,6vw,5.5rem)/.92 Georgia,serif;margin:0 0 1rem;letter-spacing:-.03em}
+.hero-copy p{font-size:1.02rem;color:#d5dde2;max-width:650px;margin:.3rem 0}
+.hero-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.4rem}.hero-meta span{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;border:1px solid rgba(255,255,255,.24);padding:.35rem .55rem;border-radius:999px;color:#e8edf0}
+.hero-image{min-height:520px;position:relative}.hero-image img{width:100%;height:100%;object-fit:cover;display:block}.hero-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(21,31,40,.34),transparent 35%)}
+.home-main{max-width:1180px;margin:0 auto;padding:1.4rem 1rem 4rem}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin:2.3rem 0 1rem}.section-head h2{font:600 clamp(1.65rem,3vw,2.45rem)/1.1 Georgia,serif;margin:0;color:var(--ink)}.section-head p{max-width:540px;color:var(--muted);margin:0;font-size:.9rem}
+.workstreams{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.work-card{min-height:250px;border-radius:18px;padding:1.15rem;display:flex;flex-direction:column;justify-content:space-between;color:#fff;text-decoration:none;box-shadow:0 16px 34px rgba(25,30,30,.11);position:relative;overflow:hidden}.work-card:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-60px;top:-55px;background:rgba(255,255,255,.08)}.work-card small{font-size:.62rem;text-transform:uppercase;letter-spacing:.11em;opacity:.8}.work-card h3{font:600 1.45rem/1.12 Georgia,serif;margin:.45rem 0}.work-card p{font-size:.82rem;opacity:.88;margin:.3rem 0}.work-card .arrow{font-size:.78rem;margin-top:1rem;font-weight:700}.heritage{background:linear-gradient(150deg,#7a2b39,#4b1821)}.wifi{background:linear-gradient(150deg,#2e7555,#194a37)}.guest{background:linear-gradient(150deg,#3d78a8,#244e70)}.research{background:linear-gradient(150deg,#755f90,#4d3e63)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.story-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.2rem;box-shadow:0 10px 26px rgba(50,45,35,.055)}.story-card h3{font:600 1.15rem Georgia,serif;margin:.1rem 0 .5rem}.story-card p{font-size:.9rem;color:#403d37;margin:.4rem 0}.story-card strong{color:var(--ox)}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem}.era{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:12px;padding:.9rem}.era b{display:block;font:600 .95rem Georgia,serif}.era span{font-size:.75rem;color:var(--muted)}
+.cta-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:1rem}.cta{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.3rem}.cta.dark{background:#17202a;color:#fff;border-color:#17202a}.cta h3{font:600 1.3rem Georgia,serif;margin:.1rem 0 .5rem}.cta p{font-size:.88rem;margin:.4rem 0;color:inherit;opacity:.86}.button-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}.button{display:inline-block;text-decoration:none;padding:.5rem .78rem;border-radius:9px;background:var(--ox);color:#fff;font-size:.76rem;font-weight:700}.button.gold{background:var(--gold);color:#17202a}.button.outline{background:transparent;border:1px solid currentColor;color:inherit}
+.home-footer{border-top:1px solid var(--line);padding:2rem 1rem 3rem;text-align:center;color:var(--muted);font-size:.75rem}
+@media(max-width:900px){.hero-shell{grid-template-columns:1fr}.hero-image{min-height:360px;order:-1}.workstreams{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:repeat(2,1fr)}.cta-grid,.story-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.workstreams,.timeline{grid-template-columns:1fr}.hero-image{min-height:290px}.hero-copy{padding:1.6rem}}
 </style>
-
 <link rel="stylesheet" href="assets/fm-system.css">
 <script src="assets/fm-navigation.js" defer></script>
 </head>
 <body>
+<section class="home-hero">
+  <div class="hero-shell">
+    <div class="hero-copy">
+      <div class="hero-kicker">Heritage · Operations · Research</div>
+      <h1>Fawkner<br>Mansions</h1>
+      <p>250 Punt Road, Prahran — a living heritage building being documented, researched and reimagined as a stronger guest operation without losing the history that makes it distinctive.</p>
+      <div class="hero-meta"><span>Heritage Overlay HO448</span><span>Ernest H. Willis</span><span>c.1910–11</span><span>Prahran, Victoria</span></div>
+    </div>
+    <div class="hero-image"><img src="wifi-portal/fawkner-mansions-hero.webp" alt="Fawkner Mansions Heritage Hotel at dusk"></div>
+  </div>
+</section>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">
-        <span>Fawkner Mansions</span>
-      </div>
-      <nav class="site-nav">
-        <a href="#history">History</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#book">The Book</a>
-        <a href="#author">Author</a>
-        <a href="#about">About</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="hero">
-    <div class="eyebrow">History &middot; Architecture &middot; Community</div>
-    <h1>Fawkner Mansions</h1>
-    <div class="addr">250 Punt Road, Prahran, Victoria</div>
-    <div class="facts">
-      <span class="dash"></span>
-      <span>Est. 1910&ndash;1911 &middot; Designed by Ernest H. Willis</span>
-      <span class="dash"></span>
-    </div>
-    <p class="claim">Believed to be the oldest surviving residential flats in the
-    City of Stonnington, and one of the oldest in Victoria.</p>
-    <div class="badges">
-      <span class="badge">Heritage Overlay HO448</span>
-      <span class="badge">Ernest H. Willis, 1910</span>
-      <span class="badge">Edwardian Free Classical</span>
-    </div>
+<main class="home-main">
+  <div class="section-head">
+    <h2>One building, four connected workstreams</h2>
+    <p>The project now separates heritage, infrastructure, guest operations and research so each can be developed properly while still feeding a single owner-facing strategy.</p>
   </div>
 
-  <main>
+  <div class="workstreams">
+    <a class="work-card heritage" href="admin/heritage-project.html"><div><small>01 · Heritage & Legacy</small><h3>Preserve the building and verify the story</h3><p>Book, documentary, 3D/VR capture, archival work and public history.</p></div><span class="arrow">Open heritage project →</span></a>
+    <a class="work-card wifi" href="admin/wifi-project.html"><div><small>02 · Revenue & Infrastructure</small><h3>Build a managed Wi‑Fi service</h3><p>Starlink/backhaul, managed network, captive portal, payments and ongoing operations.</p></div><span class="arrow">Open Wi‑Fi project →</span></a>
+    <a class="work-card guest" href="admin/guest-operations.html"><div><small>03 · Guest Operations</small><h3>Modernise check‑in and access</h3><p>Digital registration, identity verification, tablet/EFTPOS workflow and guest entitlements.</p></div><span class="arrow">Open guest operations →</span></a>
+    <a class="work-card research" href="admin/research.html"><div><small>04 · Evidence</small><h3>Keep every conclusion traceable</h3><p>Versioned research runs, contradictions, provenance, sources and risk controls.</p></div><span class="arrow">Open research system →</span></a>
+  </div>
 
-    <section id="history">
-      <h2>History</h2>
-      <p class="lede">Few flats were built in Melbourne before the First World
-      War — Fawkner Mansions is the only known surviving example from that
-      period in the City of Stonnington.</p>
-      <p>Designed by architect Ernest H. Willis and constructed in 1910–11,
-      Fawkner Mansions introduced a layout — flats arranged either side of a
-      shared central stairwell — that would later become common across
-      Melbourne's flat blocks. It stands today much as it was built, with
-      later alterations assessed as not significant to its heritage value.</p>
-      <p class="pull">"Historically, Fawkner Mansions is the oldest
-      residential flats in the City of Stonnington and one of the oldest in
-      Victoria." — Victorian Heritage Database, Statement of Significance</p>
-    </section>
+  <div class="section-head"><h2>Why the building matters</h2><p>The safest current heritage wording is deliberately precise rather than promotional.</p></div>
+  <div class="story-grid">
+    <div class="story-card"><h3>Among Victoria’s earliest surviving purpose-built flats</h3><p>The Victorian heritage record identifies Fawkner Mansions as the <strong>oldest residential flats in the City of Stonnington</strong> and one of the oldest surviving examples in Victoria. Its exact construction dating still varies slightly between sources, so the research system preserves that contradiction rather than hiding it.</p></div>
+    <div class="story-card"><h3>A building whose social role kept changing</h3><p>Its history moves from experimental early flat living to professional households, Alfred Hospital nurses’ accommodation, low-cost rooming-house use, deterioration and eventual re-emergence as a heritage-branded accommodation business.</p></div>
+  </div>
 
-    <section id="architecture">
-      <h2>Architecture</h2>
-      <p class="lede">A bold, three-storey red-brick Edwardian Free Classical
-      design on the corner of Punt and Commercial roads.</p>
-      <p>The building's massing is defined by parapeted corner towers and
-      hip-roof entrance towers with semi-circular windows either side of the
-      central entry. Finely varied brickwork — recessed spandrels, corbelled
-      bands, rusticated pilasters — breaks up the mass and gives each level
-      its own character, set behind an iron palisade fence on a bluestone
-      plinth, a tessellated entrance path, and two mature Liquidambar trees.</p>
-      <p class="note">A full photographic and 3D-model record of the
-      building's exterior and common areas is planned as part of this
-      project's digital preservation work — see the project's public
-      repository for progress.</p>
-    </section>
+  <div class="section-head"><h2>A century of changing use</h2><p>The project treats these as phases in one continuous building history rather than isolated anecdotes.</p></div>
+  <div class="timeline">
+    <div class="era"><b>c.1910</b><span>Early purpose-built apartment living</span></div>
+    <div class="era"><b>Mid-century</b><span>Alfred Hospital nurses’ accommodation</span></div>
+    <div class="era"><b>Late 20th century</b><span>Low-cost residential / rooming-house use</span></div>
+    <div class="era"><b>2013 onward</b><span>Closure, vacancy, deterioration and repair</span></div>
+    <div class="era"><b>Present project</b><span>Heritage hotel + digital operational renewal</span></div>
+  </div>
 
-    <section id="book">
-      <h2>The Book</h2>
-      <div class="book-card">
-        <span class="status">In research</span>
-        <p>A hardcover A5 book tracing Fawkner Mansions from its 1910–11
-        construction through a century of residents to the present day —
-        paired with a 3D/VR digital record of the building for long-term
-        preservation. Print-on-demand release planned, with a small run
-        distributed to heritage groups, local libraries, and universities.</p>
-        <div class="buy-cta">
-          <span class="label">Buy on Amazon</span>
-          <span class="status">Coming soon</span>
-        </div>
-        <p class="note">In the meantime, you can <a href="docs/send-postcard.html">send
-        a virtual postcard</a> of Fawkner Mansions to someone, anywhere in
-        the world.</p>
-      </div>
-    </section>
+  <div class="section-head"><h2>The current operating model</h2><p>Working assumptions are kept editable until an onsite survey replaces them with measured facts.</p></div>
+  <div class="story-grid">
+    <div class="story-card"><h3>Room inventory model</h3><p>Current planning assumption: roughly <strong>27 theoretical bedrooms</strong> based on approximately nine rooms across three levels. Sellable inventory is modelled separately and defaults conservatively until a room-by-room count is completed.</p><p><a class="button" href="admin/room-inventory-model.html">Open room model</a></p></div>
+    <div class="story-card"><h3>Guest Wi‑Fi + check-in</h3><p>Optional guest Wi‑Fi can be purchased during digital check-in, with the resulting entitlement linked to the guest, booking and room. Fixed building equipment—TVs, cameras and sensors—remains permanently connected on isolated managed networks.</p><p><a class="button" style="background:var(--green)" href="wifi-portal/index.html">View portal prototype</a></p></div>
+  </div>
 
-    <section id="author">
-      <h2>About David Hough</h2>
-      <p class="lede">Academic researcher and writer, and current resident of
-      Fawkner Mansions since 11 September 2026.</p>
-      <p>David Hough is a Melbourne-based academic researcher and writer with
-      an international career spanning South Africa, Europe, and Australia.
-      He holds a Master of Public Health from Macquarie University and a
-      Bachelor of Business Systems from Bond University, with a professional
-      background in assurance, governance, and evidence-based research built
-      across major firms including PwC and Deloitte. That same international
-      curiosity, and a research discipline honed across public health, risk,
-      and policy, now turns toward Fawkner Mansions — a building whose
-      century-long history had, until now, gone almost entirely undocumented.</p>
-      <p>David is also a co-founder of <a href="https://www.one1.digital/">One1
-      Digital</a>, an Adelaide-founded studio building custom software and
-      automation — CRMs, workflow tools, branded client portals, and system
-      integrations — for service-based organisations across education,
-      healthcare, aged care, and community services. His sister now leads the
-      company day to day, having relocated to the Western Cape, South Africa,
-      since most clients are in Europe or America; David's early contribution
-      focused on strategy, risk, and business-development groundwork. Since
-      returning to Melbourne, his current work runs through his own
-      independent practice,
-      Sentrix Digital, where RiskAtlas — a structured source-governance
-      system for tracking legislative, regulatory, and policy material across
-      jurisdictions — is the flagship project.</p>
-      <p>A consistent thread runs through all of it: a commitment to equity
-      and access — making complex institutional information more
-      transparent, navigable, and usable for the people it actually affects,
-      whether that's someone navigating a benefits system, or a reader trying
-      to understand the history of the building they live in.</p>
-      <p>In concrete terms, that's meant things like: a City of Gold Coast
-      Open Data capstone project whose recommendations the city actually
-      adopted, implementing an Open Data Access Project from it; a POPIA-
-      compliant document-dispatch platform, <a href="https://postnow.co.za">PostNow</a>,
-      now running across South Africa, Botswana, and Namibia; an import
-      cost-calculator, <a href="https://afterduty.co.za">AfterDuty</a>, that
-      shows shoppers the real landed cost of buying from overseas; and
-      RiskAtlas, a source-governance system that tracks the currency and
-      authority of legislative and regulatory material across jurisdictions
-      so conclusions stay traceable back to their source. For Fawkner
-      Mansions, that same capability shows up as 3D capture and photogrammetry,
-      web development, and an audit-style research discipline — every
-      historical claim in this project is meant to trace back to a specific,
-      checkable source, the same standard applied to the systems above.</p>
-      <p class="note">Draft bio — check the wording and level of detail
-      before this goes live, and add or remove anything you'd like.</p>
-    </section>
+  <div class="section-head"><h2>Research outputs</h2><p>The heritage side of the project remains the long-term record: what happened here, who lived here, and what can still be proven.</p></div>
+  <div class="cta-grid">
+    <div class="cta dark"><h3>The Fawkner Mansions book</h3><p>A research-led history bringing together the building, residents, hospital era, housing story, planning constraints and present-day revival—with every significant historical claim intended to remain traceable to its source.</p><div class="button-row"><a class="button gold" href="docs/book-mockup.html">Book mockup</a><a class="button outline" href="docs/book-mockup-3d.html">3D cover mockup</a><a class="button outline" href="docs/send-postcard.html">Virtual postcard</a></div></div>
+    <div class="cta"><h3>Owner proposal</h3><p>The owner-facing case connects heritage legacy with guest-experience improvements and managed digital infrastructure.</p><div class="button-row"><a class="button" href="docs/proposal.html">Read proposal</a><a class="button outline" style="color:var(--ink)" href="admin/index.html">Project dashboard</a></div></div>
+  </div>
+</main>
 
-    <section id="about">
-      <h2>About this project</h2>
-      <p>This site is an independent research and heritage-documentation
-      project about Fawkner Mansions, undertaken by a current resident of the
-      building. It draws on the Victorian Heritage Database listing for
-      Heritage Overlay HO448, alongside archival and on-the-ground research,
-      with the aim of producing a book, a digital 3D/VR preservation record,
-      and a short documentary.</p>
-      <p class="note">Contact details for the project will be added here once
-      finalised.</p>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    Fawkner Mansions · 250 Punt Road, Prahran VIC 3181 · Heritage Overlay HO448<br>
-    Source: Victorian Heritage Database. Project repository:
-    <a href="https://github.com/dghx23/fawknermansions">github.com/dghx23/fawknermansions</a><br>
-    <a href="admin/index.html" style="font-size:.75rem;">Project team login</a>
-  </footer>
-
+<footer class="home-footer">
+  Fawkner Mansions · 250 Punt Road, Prahran VIC 3181 · Heritage Overlay HO448<br>
+  Independent research, heritage-documentation and operations-development project.
+</footer>
 </body>
 </html>
