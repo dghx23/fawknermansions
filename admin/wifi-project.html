@@ -103,11 +103,15 @@ table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem}th,td
 <tr><td>Starlink account administration as authorised; network configuration; managed AP/controller administration; captive portal; backend; billing workflow; monitoring; incident response; updates; monthly service/revenue reporting.</td><td>Approvals for installation/cabling/power; physical access; agreed direct service/hardware costs; hotel policies and guest support escalation; legal operating entity and merchant account.</td><td>Revenue split; settlement timing; support hours/SLA; ownership of hardware/code/data; termination/handover; tax/GST treatment; privacy/data roles; Starlink plan compliance; refund policy.</td></tr>
 </table>
 
+<h2>Room inventory assumption</h2>
+<p>The current working physical model is <strong>approximately 27 theoretical bedrooms — about 9 per level across 3 levels</strong>. This is not yet a verified room schedule. The revenue model therefore defaults to <strong>15 usable/sellable rooms</strong> as a conservative current-market proxy and lets you expand toward 27 as rooms are confirmed or brought online.</p>
+<p><a class="btn" href="room-inventory-model.html">Open room &amp; network-capacity model</a></p>
+
 <h2>Revenue & profit-share scenario builder</h2>
 <p>Separate <strong>total rooms</strong> from <strong>usable/sellable rooms</strong>. Occupancy applies to usable inventory. Direct costs are deducted before the distributable operating profit is split.</p>
 <div class="calc">
-<div class="calc-row"><label for="totalRooms">Total rooms</label><input id="totalRooms" type="number" value="30" min="1" max="150"><span></span></div>
-<div class="calc-row"><label for="usableRooms">Usable / sellable rooms</label><input id="usableRooms" type="range" value="27" min="1" max="30"><span id="usableRoomsOut">27</span></div>
+<div class="calc-row"><label for="totalRooms">Total rooms</label><input id="totalRooms" type="number" value="27" min="1" max="150"><span></span></div>
+<div class="calc-row"><label for="usableRooms">Usable / sellable rooms</label><input id="usableRooms" type="range" value="15" min="1" max="27"><span id="usableRoomsOut">15</span></div>
 <div class="calc-row"><label for="occupancy">Average occupancy</label><input id="occupancy" type="range" value="60" min="0" max="100"><span id="occupancyOut">60%</span></div>
 <div class="calc-row"><label for="takeup">Wi‑Fi take-up</label><input id="takeup" type="range" value="35" min="0" max="100"><span id="takeupOut">35%</span></div>
 <div class="calc-row"><label for="avgStay">Average stay</label><input id="avgStay" type="range" value="2" min="1" max="30"><span id="avgStayOut">2 nights</span></div>
@@ -118,10 +122,10 @@ table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem}th,td
 <div class="calc-row"><label for="setupCost">One-off hardware/setup cost</label><input id="setupCost" type="number" value="1500" min="0" step="50"><span>A$</span></div>
 <div class="calc-row"><label for="sentrixShare">Sentrix Digital share of distributable profit</label><input id="sentrixShare" type="range" value="30" min="0" max="100"><span id="sentrixShareOut">30%</span></div>
 <div class="calc-buttons">
-<button type="button" onclick="setScenario(30,24,50,20,2,10,486,30)">Conservative</button>
-<button type="button" onclick="setScenario(30,27,60,35,2,10,486,30)">Working case</button>
-<button type="button" onclick="setScenario(30,30,75,55,3,13,486,30)">High take-up</button>
-<button type="button" onclick="setScenario(30,27,60,35,2,10,110,30)">Legacy ~A$110 backhaul case</button>
+<button type="button" onclick="setScenario(27,12,45,20,2,10,486,30)">Stress / partial inventory</button>
+<button type="button" onclick="setScenario(27,15,60,35,2,10,486,30)">Current marketed proxy</button>
+<button type="button" onclick="setScenario(27,21,70,50,3,13,486,30)">Partial expansion</button>
+<button type="button" onclick="setScenario(27,27,70,55,3,13,486,30)">Full theoretical inventory</button><button type="button" onclick="setScenario(27,15,60,35,2,10,110,30)">Legacy ~A$110 backhaul case</button>
 </div>
 <div class="calc-results">
 <div class="result"><div class="result-label">Usable inventory</div><div class="result-value" id="inventoryOut">—</div></div>
