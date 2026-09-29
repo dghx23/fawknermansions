@@ -1,4 +1,19 @@
 (() => {
+  // Keep browser chrome/form rendering consistent with the deliberately light project UI.
+  document.documentElement.style.colorScheme='light';
+  if(!document.querySelector('meta[name="color-scheme"]')){
+    const scheme=document.createElement('meta');
+    scheme.name='color-scheme';
+    scheme.content='light';
+    scheme.id='fm-colour-scheme-lock';
+    document.head.appendChild(scheme);
+  }
+  if(!document.querySelector('meta[name="theme-color"]')){
+    const themeMeta=document.createElement('meta');
+    themeMeta.name='theme-color';
+    themeMeta.content='#151d24';
+    document.head.appendChild(themeMeta);
+  }
   const path = window.location.pathname.replace(/\\/g,'/');
   const inAdmin = /\/admin\//.test(path);
   const inDocs = /\/docs\//.test(path);
@@ -60,7 +75,7 @@
         <span class="fm-brand-copy"><strong>Fawkner Mansions</strong><span>Heritage · Operations · Research</span></span>
       </a>
       <nav class="fm-nav-scroll" aria-label="Project navigation">
-        ${items.map(([key,label,href]) => `<a class="fm-nav-link fm-nav-${key}${isActive(key,href)?' active':''}" href="${href}">${label}</a>`).join('')}
+        ${items.map(([key,label,href]) => { const active=isActive(key,href); return `<a class="fm-nav-link fm-nav-${key}${active?' active':''}" href="${href}"${active?' aria-current="page"':''}>${label}</a>`; }).join('')}
       </nav>
     </div>`;
   document.body.insertAdjacentElement('afterbegin',nav);
