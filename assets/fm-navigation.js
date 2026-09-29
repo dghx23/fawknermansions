@@ -65,7 +65,7 @@
     </div>`;
   document.body.insertAdjacentElement('afterbegin',nav);
 
-  if(!inPortal){
+  if(!inPortal && !navOnly){
     const labels = {
       public:['Public history','250 Punt Road · Prahran · Victoria'],
       proposal:['Owner proposal','Heritage + operations + managed infrastructure'],

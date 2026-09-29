@@ -265,6 +265,25 @@ body.fm-shell.fm-portal .fm-page-ribbon{display:none}
   body.fm-shell{background:#fff!important}
 }
 
+/* The shared anchor-colour rule above (body.fm-shell:not(.fm-portal) a) is a
+   compound selector, so it outranks a page's own lower-specificity
+   ".foo a{color:#fff}" button/link rules on plain class selectors — silently
+   repainting colour-background button text a near-invisible dark accent
+   colour. Restore the intended text colour for every such pattern found
+   across the project's pages. */
+body.fm-shell:not(.fm-portal) .btn,
+body.fm-shell:not(.fm-portal) .links a,
+body.fm-shell:not(.fm-portal) .wifi-headline a,
+body.fm-shell:not(.fm-portal) .button:not(.outline):not(.gold),
+body.fm-shell:not(.fm-portal) .work-card,
+body.fm-shell:not(.fm-portal) .work-card *,
+body.fm-shell:not(.fm-portal) .fm-workstream-card,
+body.fm-shell:not(.fm-portal) .fm-workstream-card *{
+  color:#fff!important;
+}
+body.fm-shell:not(.fm-portal) .button.gold{color:#17202a!important;}
+body.fm-shell:not(.fm-portal) .button.outline{color:inherit!important;}
+
 /* Retire legacy top-level navigation in favour of the shared project nav */
 body.fm-shell:not(.fm-portal) > nav{display:none!important}
 body.fm-shell:not(.fm-portal) .site-nav-strip{display:none!important}
