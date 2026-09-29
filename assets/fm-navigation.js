@@ -29,7 +29,7 @@
     inPortal ? 'wifi' :
     'public';
 
-  const navOnly = /\/docs\/(book-mockup(?:-3d)?|send-postcard)\.html$/.test(path);
+  const navOnly = /\/docs\/(book-mockup(?:-3d)?|send-postcard|checkin-mockup)\.html$/.test(path);
   if(navOnly){
     document.body.classList.add('fm-nav-only');
   }else{

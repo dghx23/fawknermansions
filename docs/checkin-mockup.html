@@ -1,0 +1,422 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Fawkner Mansions — Digital Check‑in Tablet Mockup</title>
+<style>
+:root{--ink:#17202a;--blue:#265b86;--blue2:#3e7cb1;--paper:#fff;--page:#e8edf3;--muted:#637382;--green:#2c7048;--red:#8b2430;--amber:#a06b00}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:Georgia,'Times New Roman',serif;padding:2.5rem 1.5rem 4rem;}
+.page-title{text-align:center;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.4rem;}
+.page-sub{text-align:center;font-size:.85rem;color:var(--muted);margin-bottom:2rem;max-width:640px;margin-left:auto;margin-right:auto;}
+
+.scene{
+  width:100%;
+  max-width:640px;
+  margin:0 auto 1.5rem;
+  perspective:1600px;
+  height:560px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rig{
+  position:relative;
+  width:340px;
+  height:480px;
+  transform-style:preserve-3d;
+  transition:transform .1s ease-out;
+  cursor:grab;
+}
+.rig.dragging{cursor:grabbing;transition:none;}
+
+/* Countertop stand (Beelta-style) */
+.stand-base{
+  position:absolute;
+  bottom:-46px;left:50%;
+  width:220px;height:26px;
+  margin-left:-110px;
+  background:linear-gradient(180deg,#8a8f96,#5c6167);
+  border-radius:6px;
+  transform:translateZ(-8px) rotateX(78deg);
+  box-shadow:0 18px 30px rgba(0,0,0,.35);
+}
+.stand-arm{
+  position:absolute;
+  bottom:-40px;left:50%;
+  width:14px;height:56px;
+  margin-left:-7px;
+  background:linear-gradient(90deg,#7a7f86,#9ba0a6,#7a7f86);
+  transform:translateZ(-4px);
+}
+
+/* Tablet body */
+.tablet{
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  background:linear-gradient(155deg,#2a2f36,#15181d);
+  box-shadow:0 30px 60px rgba(0,0,0,.4), inset 0 0 0 2px rgba(255,255,255,.06);
+  transform:translateZ(10px);
+  padding:14px;
+}
+.tablet .cam{
+  position:absolute;
+  top:6px;left:50%;
+  width:6px;height:6px;
+  margin-left:-3px;
+  border-radius:50%;
+  background:#0a0c0f;
+  box-shadow:0 0 0 2px rgba(255,255,255,.05);
+}
+.screen{
+  width:100%;height:100%;
+  border-radius:12px;
+  background:#fff;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Screen chrome */
+.screen-bar{
+  background:var(--blue);
+  color:#fff;
+  padding:.6rem .9rem;
+  font-family:Inter,-apple-system,sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.screen-bar .brand{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+.screen-bar .clock{font-size:.68rem;opacity:.85;}
+.step-track{
+  display:flex;
+  gap:2px;
+  padding:.5rem .7rem 0;
+  background:#f3f6f9;
+}
+.step-track .dot{flex:1;height:4px;border-radius:2px;background:#d3dde5;}
+.step-track .dot.done{background:var(--blue2);}
+.step-track .dot.current{background:var(--blue);}
+
+.screen-body{
+  flex:1;
+  overflow-y:auto;
+  padding:1rem 1.1rem 1.2rem;
+  font-family:Inter,-apple-system,sans-serif;
+  background:#f3f6f9;
+}
+.step{display:none;}
+.step.active{display:block;animation:fadein .25s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.step h2{font-family:Georgia,serif;font-size:1.15rem;margin:.2rem 0 .3rem;color:var(--ink);}
+.step .lede{font-size:.78rem;color:var(--muted);margin:0 0 1rem;line-height:1.4;}
+
+.field{margin-bottom:.8rem;}
+.field label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.3rem;}
+.field input, .field select{
+  width:100%;min-height:40px;border:1px solid #c7d4df;border-radius:8px;
+  padding:0 .7rem;font:inherit;font-size:.85rem;background:#fff;
+}
+
+.booking-card{
+  background:#fff;border:1px solid #d7e0e8;border-radius:10px;padding:.8rem .9rem;margin-bottom:1rem;
+  display:none;
+}
+.booking-card.show{display:block;}
+.booking-card .row{display:flex;justify-content:space-between;font-size:.78rem;padding:.2rem 0;border-bottom:1px solid #eef2f5;}
+.booking-card .row:last-child{border-bottom:none;}
+.booking-card .row b{color:var(--ink);}
+
+.id-upload{
+  border:2px dashed #b7c6d3;border-radius:10px;padding:1.4rem 1rem;text-align:center;
+  background:#fff;cursor:pointer;font-size:.8rem;color:var(--muted);
+}
+.id-upload.captured{border-style:solid;border-color:var(--green);background:#eaf6ef;color:var(--green);}
+.id-upload .icon{font-size:1.6rem;display:block;margin-bottom:.4rem;}
+
+.consent-row{display:flex;gap:.6rem;align-items:flex-start;background:#fff;border:1px solid #d7e0e8;border-radius:10px;padding:.7rem .8rem;margin-bottom:.6rem;font-size:.78rem;line-height:1.4;}
+.consent-row input{margin-top:.15rem;flex:0 0 auto;}
+
+.code-reveal{
+  text-align:center;background:#fff;border:1px solid #d7e0e8;border-radius:12px;padding:1.2rem 1rem;margin-bottom:1rem;
+}
+.code-reveal .room{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
+.code-reveal .num{font:700 2.2rem/1 Georgia,serif;color:var(--blue);margin:.4rem 0;letter-spacing:.04em;}
+.code-reveal .valid{font-size:.72rem;color:var(--muted);}
+
+.success-tick{
+  width:56px;height:56px;border-radius:50%;background:#eaf6ef;color:var(--green);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:.4rem auto 1rem;
+  border:1px solid #bfe4cd;
+}
+
+.btn-row{display:flex;gap:.5rem;margin-top:.3rem;}
+.btn{
+  flex:1;min-height:42px;border:none;border-radius:8px;font:600 .82rem Inter,sans-serif;cursor:pointer;
+  background:var(--blue);color:#fff;
+}
+.btn.secondary{background:#e2e9ef;color:var(--ink);}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.btn.ghost{background:transparent;border:1px solid #c7d4df;color:var(--muted);}
+
+.staff-note{
+  font-size:.7rem;color:var(--muted);background:#fff8e6;border-left:3px solid var(--amber);
+  padding:.5rem .7rem;border-radius:4px;margin-top:.8rem;line-height:1.4;
+}
+
+.controls{text-align:center;margin-top:.5rem;font-size:.85rem;color:var(--muted);}
+.controls button{
+  border:1px solid var(--ink);background:#fff;color:var(--ink);padding:.4rem .8rem;margin:0 .3rem;
+  border-radius:4px;cursor:pointer;font:inherit;font-size:.78rem;
+}
+.controls button:hover{background:#eef2f5;}
+
+.caption{max-width:640px;margin:1.5rem auto 0;font-size:.8rem;color:var(--muted);text-align:center;line-height:1.6;}
+.legend{max-width:640px;margin:2rem auto 0;background:#fff;border:1px solid #d7e0e8;border-radius:10px;padding:1rem 1.2rem;font-size:.82rem;}
+.legend h3{margin:.2rem 0 .6rem;font-size:.95rem;}
+.legend ol{margin:0;padding-left:1.2rem;}
+.legend li{margin-bottom:.35rem;}
+</style>
+
+<link rel="stylesheet" href="../assets/fm-system.css">
+<script src="../assets/fm-navigation.js" defer></script>
+</head>
+<body>
+
+<div class="page-title">Fawkner Mansions — Digital Check‑in Tablet Mockup</div>
+<p class="page-sub">Interactive 3D mockup of the reception tablet — drag to rotate the device, and step through the actual check‑in flow inside the screen. This simulates the client-side UI only; no data leaves this page.</p>
+
+<div class="scene" id="scene">
+  <div class="rig" id="rig">
+    <div class="stand-base"></div>
+    <div class="stand-arm"></div>
+    <div class="tablet">
+      <div class="cam"></div>
+      <div class="screen">
+        <div class="screen-bar">
+          <span class="brand">Fawkner Mansions · Check‑in</span>
+          <span class="clock" id="clock">10:24</span>
+        </div>
+        <div class="step-track" id="stepTrack"></div>
+
+        <div class="screen-body">
+
+          <!-- Step 1: Booking lookup -->
+          <div class="step active" data-step="1">
+            <h2>Find your booking</h2>
+            <p class="lede">Enter the confirmation code from your booking email, or your last name and arrival date.</p>
+            <div class="field"><label for="confCode">Confirmation code</label><input id="confCode" placeholder="e.g. FM-48213" autocomplete="off"></div>
+            <div class="booking-card" id="bookingCard">
+              <div class="row"><span>Guest</span><b id="bcGuest">—</b></div>
+              <div class="row"><span>Stay dates</span><b id="bcDates">—</b></div>
+              <div class="row"><span>Room type</span><b id="bcRoom">—</b></div>
+            </div>
+            <div class="btn-row"><button class="btn" id="lookupBtn">Find booking</button></div>
+          </div>
+
+          <!-- Step 2: Guest details -->
+          <div class="step" data-step="2">
+            <h2>Confirm your details</h2>
+            <p class="lede">This information is matched against your booking. Correct anything that's changed.</p>
+            <div class="field"><label for="fullName">Full name</label><input id="fullName" placeholder="As it appears on your ID"></div>
+            <div class="field"><label for="mobile">Mobile number</label><input id="mobile" placeholder="For check‑out and access-code delivery"></div>
+            <div class="field"><label for="arrival">Expected arrival time</label><input id="arrival" type="time" value="15:00"></div>
+            <div class="btn-row"><button class="btn secondary" data-back>Back</button><button class="btn" data-next>Continue</button></div>
+          </div>
+
+          <!-- Step 3: ID verification -->
+          <div class="step" data-step="3">
+            <h2>Verify identity</h2>
+            <p class="lede">Sight of photo ID is requested to confirm your details. The image is used for verification only and is not retained by default.</p>
+            <div class="id-upload" id="idUpload">
+              <span class="icon">🪪</span>
+              <span id="idUploadText">Tap to capture or upload photo ID</span>
+            </div>
+            <div class="staff-note">Verify → discard by default. Only the verification result and a transaction reference are kept, per the project's data-minimisation design.</div>
+            <div class="btn-row"><button class="btn secondary" data-back>Back</button><button class="btn" id="idNextBtn" data-next disabled>Continue</button></div>
+          </div>
+
+          <!-- Step 4: Consent -->
+          <div class="step" data-step="4">
+            <h2>House rules &amp; privacy</h2>
+            <p class="lede">Please review and accept before we issue your room access.</p>
+            <label class="consent-row"><input type="checkbox" class="consentBox"><span>I agree to the <a href="#">house rules</a> and understand this is shared budget accommodation, not a hostel.</span></label>
+            <label class="consent-row"><input type="checkbox" class="consentBox"><span>I've read the <a href="#">privacy notice</a> and understand how my stay record is stored and for how long.</span></label>
+            <div class="btn-row"><button class="btn secondary" data-back>Back</button><button class="btn" id="consentNextBtn" data-next disabled>Accept &amp; continue</button></div>
+          </div>
+
+          <!-- Step 5: Room + access code -->
+          <div class="step" data-step="5">
+            <h2>You're checked in</h2>
+            <p class="lede">Your room and door code are ready. This code is unique to your booking and stay dates.</p>
+            <div class="code-reveal">
+              <div class="room">Room</div>
+              <div class="num" id="roomNum">L2‑R05</div>
+              <div class="room" style="margin-top:.6rem;">Door code</div>
+              <div class="num" id="doorCode">7042</div>
+              <div class="valid">Valid for your entire stay · also sent by SMS</div>
+            </div>
+            <div class="btn-row"><button class="btn secondary" data-back>Back</button><button class="btn" data-next>Finish</button></div>
+          </div>
+
+          <!-- Step 6: Success -->
+          <div class="step" data-step="6">
+            <div class="success-tick">✓</div>
+            <h2 style="text-align:center;">Welcome to Fawkner Mansions</h2>
+            <p class="lede" style="text-align:center;">Your stay record has been created. Guest Wi‑Fi can be added any time from your room — just look for "Mansion WiFi".</p>
+            <div class="btn-row"><button class="btn ghost" id="restartBtn">Start over (demo)</button></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <button type="button" id="resetView">Reset view</button>
+  <button type="button" id="autoSpinBtn">Auto-spin: off</button>
+</div>
+
+<div class="legend">
+  <h3>What this demonstrates</h3>
+  <ol>
+    <li><strong>Booking lookup</strong> — guest enters a confirmation code; the tablet already knows the room, dates and stay length once matched.</li>
+    <li><strong>Guest details</strong> — confirms name/contact against the booking, doesn't re-collect from scratch.</li>
+    <li><strong>ID verification</strong> — sighted/captured for verification, not retained by default (see <a href="../admin/guest-operations.html#risks">risk &amp; compliance matrix</a>).</li>
+    <li><strong>Consent</strong> — explicit acceptance of house rules and the privacy notice, recorded against the stay.</li>
+    <li><strong>Room + access code</strong> — issued automatically once check-in completes; the same booking-linked entitlement can also unlock guest Wi‑Fi (see <a href="../admin/wifi-project.html">Wi‑Fi project</a>).</li>
+    <li><strong>Confirmation</strong> — closes the loop with a clear "you're in" state, same pattern as the <a href="../wifi-portal/index.html">Wi‑Fi captive portal mockup</a>.</li>
+  </ol>
+  <p style="margin-bottom:0;color:var(--muted);font-size:.78rem;">This is a front-end simulation only — no booking system, ID verification service, or backend is connected. See <a href="../admin/guest-operations.html">Guest Operations &amp; Digital Check‑in</a> for the full design and hardware options.</p>
+</div>
+
+<script>
+(function(){
+  // ---- 3D drag-to-rotate rig (same mechanic as the book mockup) ----
+  var scene = document.getElementById("scene");
+  var rig = document.getElementById("rig");
+  var resetBtn = document.getElementById("resetView");
+  var spinBtn = document.getElementById("autoSpinBtn");
+
+  var rotY = -18, rotX = 6;
+  var dragging = false, lastX = 0, lastY = 0, autoSpin = false;
+
+  function apply(){ rig.style.transform = "rotateX(" + rotX + "deg) rotateY(" + rotY + "deg)"; }
+  apply();
+
+  function pointerDown(x,y){ dragging = true; autoSpin = false; spinBtn.textContent = "Auto-spin: off"; lastX = x; lastY = y; rig.classList.add("dragging"); }
+  function pointerMove(x,y){
+    if(!dragging) return;
+    var dx = x - lastX, dy = y - lastY;
+    rotY += dx * 0.4; rotX -= dy * 0.3;
+    rotX = Math.max(-40, Math.min(40, rotX));
+    lastX = x; lastY = y; apply();
+  }
+  function pointerUp(){ dragging = false; rig.classList.remove("dragging"); }
+
+  scene.addEventListener("mousedown", function(e){ pointerDown(e.clientX, e.clientY); });
+  window.addEventListener("mousemove", function(e){ pointerMove(e.clientX, e.clientY); });
+  window.addEventListener("mouseup", pointerUp);
+  scene.addEventListener("touchstart", function(e){ var t=e.touches[0]; pointerDown(t.clientX, t.clientY); }, {passive:true});
+  scene.addEventListener("touchmove", function(e){ var t=e.touches[0]; pointerMove(t.clientX, t.clientY); }, {passive:true});
+  scene.addEventListener("touchend", pointerUp);
+
+  resetBtn.addEventListener("click", function(){ rotY = -18; rotX = 6; apply(); });
+  spinBtn.addEventListener("click", function(){ autoSpin = !autoSpin; spinBtn.textContent = "Auto-spin: " + (autoSpin?"on":"off"); });
+  function tick(){ if(autoSpin && !dragging){ rotY += 0.1; apply(); } requestAnimationFrame(tick); }
+  requestAnimationFrame(tick);
+
+  // ---- Clock ----
+  function updateClock(){
+    var d = new Date();
+    document.getElementById("clock").textContent = d.getHours().toString().padStart(2,"0") + ":" + d.getMinutes().toString().padStart(2,"0");
+  }
+  updateClock(); setInterval(updateClock, 30000);
+
+  // ---- Step flow ----
+  var TOTAL_STEPS = 6;
+  var current = 1;
+  var track = document.getElementById("stepTrack");
+  for(var i=0;i<TOTAL_STEPS;i++){ var dot=document.createElement("div"); dot.className="dot"; track.appendChild(dot); }
+
+  function renderTrack(){
+    var dots = track.querySelectorAll(".dot");
+    dots.forEach(function(d,i){
+      d.classList.remove("done","current");
+      if(i+1 < current) d.classList.add("done");
+      else if(i+1 === current) d.classList.add("current");
+    });
+  }
+
+  function goTo(step){
+    current = step;
+    document.querySelectorAll(".step").forEach(function(s){ s.classList.toggle("active", +s.dataset.step === step); });
+    renderTrack();
+  }
+  renderTrack();
+
+  document.querySelectorAll("[data-next]").forEach(function(b){ b.addEventListener("click", function(){ if(!b.disabled) goTo(current+1); }); });
+  document.querySelectorAll("[data-back]").forEach(function(b){ b.addEventListener("click", function(){ goTo(current-1); }); });
+
+  // Step 1: booking lookup
+  document.getElementById("lookupBtn").addEventListener("click", function(){
+    var code = document.getElementById("confCode").value.trim();
+    if(!code) return;
+    document.getElementById("bcGuest").textContent = "Guest of Fawkner Mansions";
+    document.getElementById("bcDates").textContent = "3 nights, from today";
+    document.getElementById("bcRoom").textContent = "Standard room, L2";
+    document.getElementById("bookingCard").classList.add("show");
+    setTimeout(function(){ goTo(2); }, 500);
+  });
+
+  // Step 3: ID capture (simulated)
+  var idUpload = document.getElementById("idUpload");
+  var idNextBtn = document.getElementById("idNextBtn");
+  idUpload.addEventListener("click", function(){
+    idUpload.classList.add("captured");
+    document.getElementById("idUploadText").textContent = "ID sighted — verification recorded";
+    idNextBtn.disabled = false;
+  });
+
+  // Step 4: consent checkboxes
+  var consentBoxes = document.querySelectorAll(".consentBox");
+  var consentNextBtn = document.getElementById("consentNextBtn");
+  function syncConsent(){
+    consentNextBtn.disabled = !Array.from(consentBoxes).every(function(c){ return c.checked; });
+  }
+  consentBoxes.forEach(function(c){ c.addEventListener("change", syncConsent); });
+
+  // Step 5: generate a room + code on entry
+  function randomCode(){ return Math.floor(1000 + Math.random()*9000); }
+  var rooms = ["L1‑R02","L1‑R06","L2‑R05","L2‑R08","L3‑R03"];
+  document.querySelectorAll('[data-next]').forEach(function(b){
+    b.addEventListener("click", function(){
+      if(current === 5){ /* moving to 6, nothing to generate */ }
+    });
+  });
+  // populate code when step 4 -> 5 transition happens
+  var origGoTo = goTo;
+  goTo = function(step){
+    if(step === 5){
+      document.getElementById("roomNum").textContent = rooms[Math.floor(Math.random()*rooms.length)];
+      document.getElementById("doorCode").textContent = randomCode();
+    }
+    origGoTo(step);
+  };
+
+  document.getElementById("restartBtn").addEventListener("click", function(){
+    document.getElementById("confCode").value = "";
+    document.getElementById("bookingCard").classList.remove("show");
+    idUpload.classList.remove("captured");
+    document.getElementById("idUploadText").textContent = "Tap to capture or upload photo ID";
+    idNextBtn.disabled = true;
+    consentBoxes.forEach(function(c){ c.checked = false; });
+    consentNextBtn.disabled = true;
+    goTo(1);
+  });
+})();
+</script>
+
+</body></html>
