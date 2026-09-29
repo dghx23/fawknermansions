@@ -22,9 +22,7 @@
 
   const theme =
     /wifi-project/.test(path) ? 'wifi' :
-    /guest-operations-risks/.test(path) ? 'risk' :
     /guest-operations/.test(path) ? 'guest' :
-    /room-inventory-model/.test(path) ? 'rooms' :
     /research/.test(path) ? 'research' :
     /heritage-project/.test(path) ? 'heritage' :
     /proposal/.test(path) ? 'proposal' :
@@ -45,9 +43,7 @@
     ['heritage','Heritage',base+'admin/heritage-project.html'],
     ['wifi','Wi‑Fi',base+'admin/wifi-project.html'],
     ['guest','Guest Ops',base+'admin/guest-operations.html'],
-    ['rooms','Rooms',base+'admin/room-inventory-model.html'],
     ['research','Research',base+'admin/research.html'],
-    ['risk','Risk',base+'admin/guest-operations-risks.html'],
     ['portal','Portal',base+'wifi-portal/index.html'],
     ['dashboard','Dashboard',base+'admin/index.html']
   ];
@@ -58,10 +54,8 @@
     if(key==='proposal') return /\/docs\/proposal\.html$/.test(path);
     if(key==='heritage') return /heritage-project\.html$/.test(path);
     if(key==='wifi') return /wifi-project\.html$/.test(path);
-    if(key==='guest') return /guest-operations\.html$/.test(path) && !/risks/.test(path);
-    if(key==='rooms') return /room-inventory-model\.html$/.test(path);
+    if(key==='guest') return /guest-operations\.html$/.test(path);
     if(key==='research') return /admin\/research\.html$/.test(path);
-    if(key==='risk') return /guest-operations-risks\.html$/.test(path);
     if(key==='portal') return /wifi-portal\/index\.html$/.test(path);
     return false;
   }
@@ -86,10 +80,8 @@
       proposal:['Owner proposal','Heritage + operations + managed infrastructure'],
       heritage:['Heritage & legacy','Research · book · documentary · 3D/VR'],
       wifi:['Wi‑Fi & infrastructure','Managed network · guest access · revenue'],
-      guest:['Guest operations','Digital check-in · identity · payments · access'],
-      rooms:['Room & capacity model','Theoretical · usable · occupied · network load'],
-      research:['Research & development','Versioned evidence · sources · contradictions'],
-      risk:['Risk & compliance','Privacy · identity · availability · governance']
+      guest:['Guest operations & risk','Digital check-in · identity · payments · access · compliance'],
+      research:['Research & development','Versioned evidence · sources · contradictions']
     };
     const [a,b]=labels[theme]||labels.public;
     const ribbon=document.createElement('div');

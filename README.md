@@ -37,10 +37,8 @@ the book concept, the preservation/VR plan, and an early, parked concept for a
 
 - [Public project site](index.html) — unified landing page and navigation.
 - [Heritage & Legacy](admin/heritage-project.html) — research, book, documentary and 3D/VR preservation.
-- [Wi-Fi Project](admin/wifi-project.html) — managed network, captive portal, commercial model and Sentrix operating model.
-- [Guest Operations](admin/guest-operations.html) — digital check-in, identity, payments and access.
-- [Room & Capacity Model](admin/room-inventory-model.html) — theoretical vs sellable vs occupied rooms and network demand.
-- [Risk & Compliance](admin/guest-operations-risks.html) — privacy, identity, resilience and governance.
+- [Wi-Fi Project](admin/wifi-project.html) — managed network, captive portal, commercial model, Sentrix operating model, and the room/capacity model (theoretical vs sellable vs occupied rooms and network demand).
+- [Guest Operations & Risk](admin/guest-operations.html) — digital check-in, identity, payments, access, and the full privacy/compliance risk matrix.
 - [Research & Development](admin/research.html) — versioned research runs, sources, contradictions and provenance.
 
 ## Project goals

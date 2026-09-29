@@ -25,6 +25,10 @@ table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem}th,td
 .result{background:#fff;border:1px solid #ccd9d0;padding:.7rem}.result-label{font-size:.68rem;text-transform:uppercase;color:var(--muted)}.result-value{font-size:1.25rem;font-weight:bold}
 .source-list li{margin:.5rem 0}.small{font-size:.8rem;color:var(--muted)}
 @media(max-width:650px){.calc-row{grid-template-columns:1fr}.calc-row span{text-align:right}}
+.tag{display:inline-block;padding:.15rem .42rem;font-size:.67rem;text-transform:uppercase;letter-spacing:.06em;background:#e4edf6;color:#24587f;border-radius:2px}.tag.warn{background:#fff1c9;color:#735000}.tag.good{background:#dcefe3;color:#235c3b}
+.room-calc{background:#f7f3ea;border:1px solid #cfc4b1;padding:1rem}.room-calc .row{display:grid;grid-template-columns:1.2fr 1fr auto;gap:.7rem;align-items:center;margin:.7rem 0}.room-calc .row label{font-weight:bold}.room-calc .row input{width:100%}
+.room-calc .results{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.65rem;margin-top:1rem}.room-calc .results .result{background:#fff;border:1px solid var(--line);padding:.7rem}.room-calc .lab{font-size:.66rem;text-transform:uppercase;color:var(--muted)}.room-calc .val{font-size:1.25rem;font-weight:bold}
+.room-calc .buttons{display:flex;gap:.45rem;flex-wrap:wrap;margin:1rem 0}.room-calc .buttons button{border:0;background:var(--green);color:#fff;padding:.45rem .7rem;cursor:pointer}
 </style>
 
 <link rel="stylesheet" href="../assets/fm-system.css">
@@ -32,7 +36,7 @@ table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem}th,td
 </head>
 <body>
 <header><div><div class="eyebrow">Workstream 2 · Revenue + Infrastructure</div><h1>Wi‑Fi Project</h1><p>Managed connectivity · paid guest access · captive portal · building network · ongoing operations</p></div></header>
-<nav><div><a href="index.html">← Project hub</a><a href="../wifi-portal/index.html">Portal prototype</a><a href="guest-operations.html">Guest/check‑in platform</a><a href="guest-operations-risks.html">Operational risks</a><a href="heritage-project.html">Heritage project</a></div></nav>
+<nav><div><a href="index.html">← Project hub</a><a href="../wifi-portal/index.html">Portal prototype</a><a href="guest-operations.html">Guest/check‑in platform</a><a href="guest-operations.html#risks">Operational risks</a><a href="heritage-project.html">Heritage project</a></div></nav>
 <main>
 <section class="hero">
 <span class="pill">Priority operational opportunity</span>
@@ -106,9 +110,59 @@ table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem}th,td
 <tr><td>Starlink account administration as authorised; network configuration; managed AP/controller administration; captive portal; backend; billing workflow; monitoring; incident response; updates; monthly service/revenue reporting.</td><td>Approvals for installation/cabling/power; physical access; agreed direct service/hardware costs; hotel policies and guest support escalation; legal operating entity and merchant account.</td><td>Revenue split; settlement timing; support hours/SLA; ownership of hardware/code/data; termination/handover; tax/GST treatment; privacy/data roles; Starlink plan compliance; refund policy.</td></tr>
 </table>
 
-<h2>Room inventory assumption</h2>
-<p>The current working physical model is <strong>approximately 27 theoretical bedrooms — about 9 per level across 3 levels</strong>. This is not yet a verified room schedule. The revenue model therefore defaults to <strong>15 usable/sellable rooms</strong> as a conservative current-market proxy and lets you expand toward 27 as rooms are confirmed or brought online.</p>
-<p><a class="btn" href="room-inventory-model.html">Open room &amp; network-capacity model</a></p>
+<h2 id="room-model">Room inventory, capacity &amp; network-demand model</h2>
+<p class="small">Physical bedrooms &ne; sellable rooms &ne; occupied rooms.</p>
+<p>The current working physical model is <strong>approximately 27 theoretical bedrooms — about 9 per level across 3 levels</strong>. This is not yet a verified room schedule. The revenue model above defaults to <strong>15 usable/sellable rooms</strong> as a conservative current-market proxy and lets you expand toward 27 as rooms are confirmed or brought online. Historical sources that mention 27 flats concern an earlier building configuration and should not be used as proof of today's hotel inventory. A current-era accommodation source in the research dossier appeared to market about 15 rooms at one point, which is why the model keeps usable/sellable inventory separate from the theoretical 27-room physical estimate.</p>
+
+<h3>Room-size planning envelope</h3>
+<div class="grid">
+<div class="card"><span class="tag warn">Visual estimate only</span><h4 style="margin:.4rem 0">Compact standard rooms</h4><p><strong>~10–14 m²</strong> planning envelope from the supplied interior photographs. Default model midpoint: 12 m².</p></div>
+<div class="card"><span class="tag warn">Visual estimate only</span><h4 style="margin:.4rem 0">Suite / larger rooms</h4><p><strong>~14–20 m²</strong> as a planning band, pending measurement and room-by-room classification.</p></div>
+<div class="card"><span class="tag good">What to measure</span><h4 style="margin:.4rem 0">Replace estimates onsite</h4><p>Laser length × width, ceiling height, bed type, basin, window, outlets, TV, network signal, current status and room ID.</p></div>
+<div class="card"><span class="tag">Important</span><h4 style="margin:.4rem 0">Bedroom area is not building area</h4><p>The model excludes corridors, shared bathrooms, kitchen, library/lounge, reception, stairs, walls and plant/service spaces.</p></div>
+</div>
+
+<h3>Interactive physical + operating model</h3>
+<div class="room-calc">
+<div class="row"><label for="floors">Accommodation levels</label><input id="floors" type="range" min="1" max="5" value="3"><span id="floorsOut">3</span></div>
+<div class="row"><label for="perFloor">Bedrooms per level</label><input id="perFloor" type="range" min="1" max="20" value="9"><span id="perFloorOut">9</span></div>
+<div class="row"><label for="usable">Usable / sellable bedrooms</label><input id="usable" type="range" min="1" max="27" value="15"><span id="usableOut">15</span></div>
+<div class="row"><label for="roomOccupancy">Occupancy of usable rooms</label><input id="roomOccupancy" type="range" min="0" max="100" value="60"><span id="roomOccupancyOut">60%</span></div>
+<div class="row"><label for="roomSize">Average bedroom area</label><input id="roomSize" type="range" min="8" max="22" step=".5" value="12"><span id="roomSizeOut">12 m²</span></div>
+<div class="row"><label for="guestsPerRoom">Average guests / occupied room</label><input id="guestsPerRoom" type="range" min="1" max="3" step=".1" value="1.4"><span id="guestsPerRoomOut">1.4</span></div>
+<div class="row"><label for="roomWifiTake">Paid Wi‑Fi take-up</label><input id="roomWifiTake" type="range" min="0" max="100" value="35"><span id="roomWifiTakeOut">35%</span></div>
+<div class="row"><label for="devicesGuest">Devices per Wi‑Fi guest</label><input id="devicesGuest" type="range" min="1" max="5" step=".5" value="2"><span id="devicesGuestOut">2</span></div>
+<div class="row"><label for="fixedDevices">Permanent TVs/cameras/IoT/staff endpoints</label><input id="fixedDevices" type="range" min="0" max="100" value="40"><span id="fixedDevicesOut">40</span></div>
+<div class="buttons">
+<button type="button" onclick="roomScenario(3,9,12,45)">Stress / partial inventory</button>
+<button type="button" onclick="roomScenario(3,9,15,60)">Current marketed proxy</button>
+<button type="button" onclick="roomScenario(3,9,21,65)">Partial expansion</button>
+<button type="button" onclick="roomScenario(3,9,27,70)">Full theoretical inventory</button>
+</div>
+<div class="results">
+<div class="result"><div class="lab">Theoretical bedrooms</div><div class="val" id="theoreticalOut">27</div></div>
+<div class="result"><div class="lab">Usable share</div><div class="val" id="usableShareOut">56%</div></div>
+<div class="result"><div class="lab">Occupied rooms</div><div class="val" id="roomOccupiedOut">9</div></div>
+<div class="result"><div class="lab">Estimated guests onsite</div><div class="val" id="guestsOut">13</div></div>
+<div class="result"><div class="lab">Bedroom-only area</div><div class="val" id="areaOut">324 m²</div></div>
+<div class="result"><div class="lab">Bedroom area / level</div><div class="val" id="areaFloorOut">108 m²</div></div>
+<div class="result"><div class="lab">Paid Wi‑Fi guest devices</div><div class="val" id="guestDevicesOut">9</div></div>
+<div class="result"><div class="lab">Total managed endpoints</div><div class="val" id="endpointsOut">49</div></div>
+</div>
+<p class="note"><strong>Network note:</strong> endpoint count helps size switching/controller capacity, but it does not determine access-point count. Fawkner Mansions' masonry, corridors and floor separation mean AP placement must be validated by an RF/coverage survey. Do not buy APs solely from this model.</p>
+</div>
+
+<h3>What this means for the Wi‑Fi business case</h3>
+<table>
+<tr><th>Scenario</th><th>Theoretical</th><th>Sellable</th><th>Why it matters</th></tr>
+<tr><td>Current marketed proxy</td><td>27</td><td>15</td><td>Useful conservative starting point until the onsite room schedule is known.</td></tr>
+<tr><td>Partial expansion</td><td>27</td><td>21</td><td>Models refurbishment/operational improvement bringing additional rooms online.</td></tr>
+<tr><td>Full theoretical</td><td>27</td><td>27</td><td>Upside case only; should not be used as a present operating fact.</td></tr>
+</table>
+
+<h3>Next onsite survey</h3>
+<p>Give every space a stable identifier such as <code>L1-R01</code>, <code>L1-BATH-A</code>, <code>L2-R05</code>. For every bedroom record dimensions, saleability, bed type, power, TV, Wi‑Fi signal, condition and current use. Once that is done, the model can be replaced with a real floor-by-floor inventory and network heatmap.</p>
+<p><a href="../research/models/room-inventory-working-model.md">Open the underlying assumptions document →</a></p>
 
 <h2>Revenue & profit-share scenario builder</h2>
 <p>Separate <strong>total rooms</strong> from <strong>usable/sellable rooms</strong>. Occupancy applies to usable inventory. Direct costs are deducted before the distributable operating profit is split.</p>
@@ -197,6 +251,21 @@ function calc(){
   E('grossOut').textContent=money(gross);E('profitOut').textContent=money(profit);E('roiOut').textContent=roi.toFixed(0)+'%/year';E('ownerOut').textContent=money(owner);E('sentrixOut').textContent=money(sentrix);E('ownerYearOut').textContent=money(owner*12);E('sentrixYearOut').textContent=money(sentrix*12);
 }
 window.setScenario=function(t,u,o,w,s,p,n,share){E('totalRooms').value=t;E('usableRooms').max=t;E('usableRooms').value=u;E('occupancy').value=o;E('takeup').value=w;E('avgStay').value=s;E('avgPackage').value=p;E('networkCost').value=n;E('sentrixShare').value=share;calc();}
+ids.forEach(id=>E(id).addEventListener('input',calc));calc();
+})();
+
+(function(){
+const E=id=>document.getElementById(id);
+const ids=['floors','perFloor','usable','roomOccupancy','roomSize','guestsPerRoom','roomWifiTake','devicesGuest','fixedDevices'];
+function calc(){
+ const floors=+E('floors').value, per=+E('perFloor').value, theoretical=floors*per;
+ E('usable').max=theoretical;if(+E('usable').value>theoretical)E('usable').value=theoretical;
+ const usable=+E('usable').value, occ=+E('roomOccupancy').value/100,size=+E('roomSize').value,gpr=+E('guestsPerRoom').value,wifi=+E('roomWifiTake').value/100,dpg=+E('devicesGuest').value,fixed=+E('fixedDevices').value;
+ const occupied=usable*occ, guests=occupied*gpr, wifiGuests=guests*wifi, guestDevices=wifiGuests*dpg, endpoints=guestDevices+fixed, area=theoretical*size;
+ E('floorsOut').textContent=floors;E('perFloorOut').textContent=per;E('usableOut').textContent=usable;E('roomOccupancyOut').textContent=Math.round(occ*100)+'%';E('roomSizeOut').textContent=size+' m²';E('guestsPerRoomOut').textContent=gpr;E('roomWifiTakeOut').textContent=Math.round(wifi*100)+'%';E('devicesGuestOut').textContent=dpg;E('fixedDevicesOut').textContent=fixed;
+ E('theoreticalOut').textContent=theoretical;E('usableShareOut').textContent=Math.round(usable/theoretical*100)+'%';E('roomOccupiedOut').textContent=occupied.toFixed(1);E('guestsOut').textContent=guests.toFixed(1);E('areaOut').textContent=Math.round(area)+' m²';E('areaFloorOut').textContent=Math.round(area/floors)+' m²';E('guestDevicesOut').textContent=guestDevices.toFixed(1);E('endpointsOut').textContent=Math.round(endpoints);
+}
+window.roomScenario=(f,p,u,o)=>{E('floors').value=f;E('perFloor').value=p;E('usable').max=f*p;E('usable').value=u;E('roomOccupancy').value=o;calc();}
 ids.forEach(id=>E(id).addEventListener('input',calc));calc();
 })();
 </script>

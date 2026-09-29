@@ -58,7 +58,7 @@ pricing, and a signed managed-services agreement.
 ## Phase 2 — Survey & core network
 
 - Physical coverage survey of the building (see the [room & capacity
-  model](../admin/room-inventory-model.html) for the current ~27
+  model](../admin/wifi-project.html) for the current ~27
   theoretical bedroom / 9-per-floor / 3-level working assumption).
 - Install or reconfigure: Starlink dish/router → gateway/firewall →
   managed switches/APs, split into the four segments already specified in
